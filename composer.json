@@ -1,0 +1,13 @@
+{
+    "name": "gitlab/ripple",
+    "type": "metapackage",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Yash Pal",
+            "email": "yashpalmnd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
