@@ -1,6 +1,2 @@
-# ripple
+# Ripple
 
-
-<script>
-window.alert('asdf');
-</script>
