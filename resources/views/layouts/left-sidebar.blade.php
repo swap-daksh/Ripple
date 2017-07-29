@@ -49,7 +49,7 @@
                         </li>
                     </ul>
                 </div>
-                <a class="h5 text-white" href="start_backend.html">
+                <a class="h5 text-white" href="{!! url('/admin') !!}">
                     <i class="fa fa-circle-o-notch text-primary"></i> <span class="h4 font-w600 sidebar-mini-hide">ne</span>
                 </a>
             </div>
@@ -59,11 +59,11 @@
             <div class="side-content">
                 <ul class="nav-main">
                     <li>
-                        <a class="active" href="start_backend.html"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
+                        <a class="active" href="{!! url('/admin') !!}"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Header</span></li>
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Dropdown</span></a>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="javascript:void(0);"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Dropdown</span></a>
                         <ul>
                             <li>
                                 <a href="start_backend.html">Link #1</a>
