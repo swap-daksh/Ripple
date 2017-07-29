@@ -1,6 +1,6 @@
 <?php
 
-namespace ETU\Ripple\Models;
+namespace GitLab\Ripple\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

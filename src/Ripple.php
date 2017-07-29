@@ -1,6 +1,6 @@
 <?php 
 
-namespace ETU\Ripple;
+namespace GitLab\Ripple;
 use Illuminate\Support\Facades\DB;
 
 class Ripple{

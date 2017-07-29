@@ -1,6 +1,6 @@
 <?php
 
-namespace ETU\Ripple\Commands;
+namespace GitLab\Ripple\Commands;
 
 use Illuminate\Console\Command;
 

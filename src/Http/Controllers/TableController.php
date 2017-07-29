@@ -1,6 +1,6 @@
 <?php
 
-namespace ETU\Ripple\Http\Controllers;
+namespace GitLab\Ripple\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

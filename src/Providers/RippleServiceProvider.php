@@ -1,6 +1,6 @@
 <?php
 
-namespace ETU\Ripple\Providers;
+namespace GitLab\Ripple\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
@@ -11,8 +11,8 @@ class RippleServiceProvider extends ServiceProvider {
   | Ripple Commands
   */
   protected $commands = [
-    'ETU\Ripple\Commands\RippleInstall',
-    'ETU\Ripple\Commands\RippleCssJs'
+    'GitLab\Ripple\Commands\RippleInstall',
+    'GitLab\Ripple\Commands\RippleCssJs'
   ];
 
   /**
@@ -29,19 +29,19 @@ class RippleServiceProvider extends ServiceProvider {
     $this->loadViewsFrom(realpath(__DIR__.'/../../resources/views'), 'Ripple');
 
     //Publishable Assets...
-    $this->publishes([realpath(__DIR__.'/../../publishable/assets')=>public_path('vendor/etu/ripple/assets/')], 'assets');
+    $this->publishes([realpath(__DIR__.'/../../resources/assets')=>public_path('vendor/etu/ripple/assets/')], 'assets');
 
     //Publishable Config...
-    $this->publishes([realpath(__DIR__.'/../../publishable/config')=>config_path('/')], 'config');
+    $this->publishes([realpath(__DIR__.'/../../config')=>config_path('/')], 'config');
 
     //Publishable Database...
-    $this->publishes([realpath(__DIR__.'/../../publishable/database/migrations')=>database_path('/migrations')], 'database');
+    $this->publishes([realpath(__DIR__.'/../../database/migrations')=>database_path('/migrations')], 'database');
     
     //Publishable Css...
-    $this->publishes([realpath(__DIR__.'/../../publishable/assets/css')=>public_path('vendor/etu/ripple/assets/css/')], 'css');
+    $this->publishes([realpath(__DIR__.'/../../resources/assets/css')=>public_path('vendor/etu/ripple/assets/css/')], 'css');
     
     //Publishable Js...
-    $this->publishes([realpath(__DIR__.'/../../publishable/assets/js')=>public_path('vendor/etu/ripple/assets/js/')], 'js');
+    $this->publishes([realpath(__DIR__.'/../../resources/assets/js')=>public_path('vendor/etu/ripple/assets/js/')], 'js');
 
 
   }
@@ -55,7 +55,7 @@ class RippleServiceProvider extends ServiceProvider {
 
     $this->commands($this->commands);
     /*$this->commands([
-      ETU\Ripple\Commands\RippleInstall::class,
+      GitLab\Ripple\Commands\RippleInstall::class,
     ]);*/
   }
 

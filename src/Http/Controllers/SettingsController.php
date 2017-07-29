@@ -1,8 +1,8 @@
 <?php
 
-namespace ETU\Ripple\Http\Controllers;
+namespace GitLab\Ripple\Http\Controllers;
 
-use ETU\Ripple\Traits\Settings;
+use GitLab\Ripple\Traits\Settings;
 use Illuminate\Http\Request;
 use ETU\Ripple\Models\Setting;
 use Illuminate\Support\Facades\DB;
