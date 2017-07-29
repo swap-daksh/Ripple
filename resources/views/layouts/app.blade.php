@@ -32,19 +32,10 @@
         <link rel="apple-touch-icon" sizes="180x180" href="{!! ripple_asset('/img/favicons/apple-touch-icon-180x180.png') !!}">
         {{-- END Icons --}}
 
-        {{-- Stylesheets --}}
-        {{-- Web fonts --}}
+        {{-- Stylesheets & Web fonts --}}
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
         <link href="{!! ripple_asset('css/app.css') !!}" rel="stylesheet">
-        {{-- Page JS Plugins CSS go here --}}
-
-        {{-- OneUI CSS framework --}}
-        <link rel="stylesheet" id="css-main" href="{!! ripple_asset('/css/oneui.min.css') !!}">
-        <link rel="stylesheet" id="css-theme" href="{!! ripple_asset('/css/themes/amethyst.min.css') !!}">
-
-        {{-- You can include a specific file from css/themes/ folder to alter the default color theme of the template. eg: --}}
-        {{-- <link rel="stylesheet" id="css-theme" href="assets/css/themes/flat.min.css"> --}}
-        {{-- END Stylesheets --}}
+        @include('Ripple::layouts.links')
     </head>
     <body>
         {{-- Page Container --}}
@@ -65,34 +56,33 @@
             'header-navbar-fixed'        Enables fixed header
         --}}
         <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
-            
+
             {{-- Right Sidebar --}}
             @include('Ripple::layouts.right-sidebar')
-            
+
             {{-- Left Sidebar --}}
             @include('Ripple::layouts.left-sidebar')
-            
+
             {{-- Header --}}
             @include('Ripple::layouts.header')
 
             {{-- Main Container --}}
             <main id="main-container">
-                
+
                 @yield('page-content')
-                
+
             </main>
             {{-- END Main Container --}}
-            
+
             {{-- Footer --}}
             @include('Ripple::layouts.footer')
 
         </div>
         {{-- END Page Container --}}
 
-        {{-- OneUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock, Appear, CountTo, Placeholder, Cookie and App.js --}}
+        {{-- JS Scripts --}}
         <script src="{!! ripple_asset('/js/app.js') !!}"></script>
-        <script src="{!! ripple_asset('/js/oneui.min.js') !!}"></script>
+        @include('Ripple::layouts.scripts')
 
-        {{-- Page JS Plugins + Page JS Code --}}
     </body>
 </html>
