@@ -17,7 +17,7 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
       |	Admin Route
       |----------------------------------------------------------------------
      */
-    Route::any('/', "RippleController@dashboard")->name('adminDashboard');
+    Route::any('/', "RippleController@dashboard")->name('dashboard');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------

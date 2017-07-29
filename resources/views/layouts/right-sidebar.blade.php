@@ -25,10 +25,18 @@
                             <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
                         </li>
                     </ul>
-                    <h3 class="block-title">Block</h3>
+                    <h3 class="block-title">Quick Links</h3>
                 </div>
                 <div class="block-content">
-                    <p>...</p>
+                    <ul class="nav-users">
+                        <li>
+                            <a href="{!! route('Ripple::adminSettings') !!}">
+                                <img class="img-avatar" src="{!! ripple_asset('/img/icons/setting.png') !!}" alt="">
+                                <i class="fa fa-cog text-warning"></i> Settings
+                                <div class="font-w400 text-muted"><small>Website settings.</small></div>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             {{-- END Block --}}

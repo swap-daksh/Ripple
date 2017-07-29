@@ -101,7 +101,7 @@ $(document).ready(function () {
             $('.setting-option-group.option-group').each(function (index, ele) {
                 if (index !== 0)
                     $(this).remove();
-            }); 
+            });
             $('#setting-type').val('text_box');
         });
     });
@@ -156,16 +156,16 @@ $(document).ready(function () {
     /*
      * Delete Setting
      */
-    $(document).on('click', '.setting-trash', function(){
+    $(document).on('click', '.setting-trash', function () {
         var id = $(this).attr('data-id'), key = $(this).attr('data-key'), token = window.Laravel.csrfToken;
         var data = {
-            _token:token,
-            id:id,
-            key:key,
-            "setting-delete":'yes'
+            _token: token,
+            id: id,
+            key: key,
+            "setting-delete": 'yes'
         };
-        $.post(window.location, data, function(data){
-            if(data.status === 'ok'){
+        $.post(window.location, data, function (data) {
+            if (data.status === 'ok') {
                 window.location.reload();
             }
         })
@@ -177,7 +177,7 @@ $(document).ready(function () {
     /*
      * testing
      */
-    
+
 
 
 });
@@ -189,8 +189,12 @@ $(document).ready(function () {
 $.fn.extend({
     previewImage: function (o) {
         this.on('change', function () {
-            var options = $.extend({'class': 'img-thumbnail', id: '', height: '120px', width: '120px', alt: '', wrapInto: '#' + $(this).attr('data-preview')}, o);
-            $(options.wrapInto).html('');
+            var options = $.extend({'class': 'img-responsive', id: '', height: 'auto', width: 'auto', alt: '', wrapInto: '#' + $(this).attr('data-preview')}, o);
+
+            $(options.wrapInto)
+                    //Setting up img wrapper height to prevent toggle div height
+                    .css('height', $(options.wrapInto).children('img').height() + 'px')
+                    .html('');
             if (typeof (FileReader) !== 'undefined') {
                 for (var i in this.files) {
                     if (typeof this.files[i] === 'object' && this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png' || this.files[i].type === 'image/gif' || this.files[i].type === 'image/svg' || this.files[i].type === 'image/jpg') {
