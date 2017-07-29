@@ -10,7 +10,7 @@ return [
       |
      */
     "controllers" => [
-        "namespace" => "ETU\\Ripple\\Http\\Controllers",
+        "namespace" => "GitLab\\Ripple\\Http\\Controllers",
     ],
     /*
       |----------------------------------------------------------------------------
@@ -20,5 +20,5 @@ return [
       | Here you can specify ripple assets path
       |
      */
-    "assets_url" => "/vendor/etu/ripple/assets"
+    "assets_url" => "/vendor/gitlab/ripple/assets"
 ];

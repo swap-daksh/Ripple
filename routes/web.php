@@ -11,13 +11,13 @@
   |
  */
 
-Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.namespace', 'ETU\Ripple\Http\Controllers'), 'middleware' => ['web']], function() {
+Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], "prefix"=>"admin"], function() {
     /*
       |----------------------------------------------------------------------
       |	Admin Route
       |----------------------------------------------------------------------
      */
-    Route::any('/admin', "RippleController@dashboard")->name('adminDashboard');
+    Route::any('/', "RippleController@dashboard")->name('adminDashboard');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------

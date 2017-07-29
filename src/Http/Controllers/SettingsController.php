@@ -4,7 +4,7 @@ namespace GitLab\Ripple\Http\Controllers;
 
 use GitLab\Ripple\Traits\Settings;
 use Illuminate\Http\Request;
-use ETU\Ripple\Models\Setting;
+use GitLab\Ripple\Models\Setting;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 

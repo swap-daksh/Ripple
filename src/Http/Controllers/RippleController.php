@@ -12,6 +12,7 @@ class RippleController extends Controller {
     }
 
     public function dashboard() {
+//        dd('This is Ripple Dashboard');
         return view('Ripple::dashboard');
     }
 
