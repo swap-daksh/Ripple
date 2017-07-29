@@ -25,7 +25,8 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::match(['get', 'post'], '/settings', "SettingsController@settings")->name('adminSettings');
-    Route::post('/delete/setting', "SettingsController@deleteSetting")->name('adminDeleteSetting');
+    Route::any('/setting/create', "SettingsController@createSetting")->name('adminCreateSetting');
+    Route::post('/setting/delete', "SettingsController@deleteSetting")->name('adminDeleteSetting');
 
 
     /*

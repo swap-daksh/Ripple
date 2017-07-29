@@ -16,7 +16,7 @@ trait Settings {
         return DB::table('settings')->get();
     }
 
-    private function createSetting() {
+    private function saveSetting() {
         if (self::hasSetting(request('setting-key'))):
             session()->flash('setting-warning', 'Oops! Setting "' . request('setting-key') . '" already exists!!');
             return false;

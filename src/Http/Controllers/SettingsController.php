@@ -14,7 +14,7 @@ class SettingsController extends Controller {
 
     public function settings() {
         if (request()->has('setting-create')):
-            self::createSetting();
+            self::saveSetting();
             return back();
         elseif (request()->has('setting-update')):
             self::updateSetting();
@@ -24,6 +24,14 @@ class SettingsController extends Controller {
         endif;
         $settings = self::hasSettings();
         return view('Ripple::settings.settings', compact('settings'));
+    }
+
+    public function createSetting() {
+        if (request()->has('setting-create')):
+            self::saveSetting();
+            return redirect()->route('Ripple::adminSettings');
+        endif;
+        return view('Ripple::settings.create-setting');
     }
 
 }

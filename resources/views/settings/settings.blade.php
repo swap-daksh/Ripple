@@ -5,9 +5,10 @@
     <div class="row items-push">
         <div class="col-sm-7">
             <h1 class="page-heading">
-                Settings <small>Website Settings</small><button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-ripple-setting">
-        <i class="fa fa-cog"></i> Add Setting
-    </button>
+                Settings <small>Website Settings</small>
+                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-ripple-setting">
+                    <i class="fa fa-cog"></i> Add Setting
+                </button>
             </h1>
         </div>
         <div class="col-sm-5 text-right hidden-xs">
@@ -304,7 +305,7 @@
         <div class="block">
             <div class="block-content">
                 <p class="text-center">
-                    <a class="btn btn-minw btn-square btn-primary" href='{!! route("Ripple::adminSettings") !!}'><i class="fa fa-plus"></i> Add Setting</a>
+                    <a class="btn btn-minw btn-square btn-primary" href='{!! route("Ripple::adminCreateSetting") !!}'><i class="fa fa-plus"></i> Add Setting</a>
                     <button class="btn btn-minw btn-square btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Update Settings</button>
                 </p>
             </div>
