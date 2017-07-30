@@ -4,7 +4,7 @@ namespace GitLab\Ripple\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use ETU\Ripple\Traits\DatabaseTables;
+use GitLab\Ripple\Traits\DatabaseTables;
 
 class DatabaseController extends Controller {
 

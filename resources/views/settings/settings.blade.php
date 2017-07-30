@@ -6,9 +6,6 @@
         <div class="col-sm-7">
             <h1 class="page-heading">
                 Settings <small>Website Settings</small>
-                <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#add-ripple-setting">
-                    <i class="fa fa-cog"></i> Add Setting
-                </button>
             </h1>
         </div>
         <div class="col-sm-5 text-right hidden-xs">
@@ -306,182 +303,13 @@
             <div class="block-content">
                 <p class="text-center">
                     <a class="btn btn-minw btn-square btn-primary" href='{!! route("Ripple::adminCreateSetting") !!}'><i class="fa fa-plus"></i> Add Setting</a>
+                    @if(count($settings) > 0)
                     <button class="btn btn-minw btn-square btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Update Settings</button>
+                    @endif
                 </p>
             </div>
         </div>
     </form>
 </div>
 {{-- END Page Content --}}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div id="add-ripple-setting" class="modal animated fadeIn" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4><i class="fa fa-cog fa-spin fa-fw"></i> Add New Setting</h4>
-            </div>
-            <div class="modal-body clearfix">
-                <form method="post" action="" id="add_new_setting">
-                    {!! csrf_field() !!}
-                    <input type="hidden" name="setting-create" value="zzz">
-                    <div class="col-md-4">
-                        <div class="form-group clearfix">
-                            <div class="col-md-12 no-padding">
-                                <label><i class="fa fa-key"></i> Key</label>
-                                <input type="text" class="form-control setting-key" id="setting-key" data-id="setting-key" name="setting-key" value="" placeholder='"site_title", "site-title"'>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group clearfix">
-                            <div class="col-md-12 no-padding">
-                                <label><i class="fa fa-hashtag"></i> Name</label>
-                                <input type="text" class="form-control setting-name" name="setting-name" data-id='setting-name' id="setting-name" value="" placeholder="Site Title">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group clearfix">
-                            <div class="col-md-12 no-padding">
-                                <label><i class="fa fa-list"></i> Type</label>
-                                <select name="setting-type" id="setting-type" data-id='setting-type' class="form-control setting-type">
-                                    <option value="check_box">Check Box</option>
-                                    <option value="file">File</option>
-                                    <option value="image">Image</option>
-                                    <option value="radio_btn">Radio Button</option>
-                                    <option value="select_dropdown">Select Dropdown</option>
-                                    <option value="text_box" selected>Text Box</option>
-                                    <option value="text_area">Text Area</option>
-                                    <option value="text_editor">Text Editor</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-sm-12 col-xs-12 setting-options no-padding" id="setting-options" data-id='setting-options' style="display: none">
-                        <hr>
-                        <div class="form-group col-md-12 col-sm-12 col-xs-12 no-padding">
-                            <div class="col-md-6 col-sm-6 col-xs-6"><label>Name <i class="fa fa-angle-double-down"></i></label></div>
-                            <div class="col-md-6 col-sm-6 col-xs-6"><label>Value <i class="fa fa-angle-double-down"></i></label></div>
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 option-wrappers no-padding" id="option-wrappers">
-                            <div class="form-group option-group setting-option-group col-md-12 col-sm-12 col-xs-12 no-padding">
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <input  type="text" name="" class="form-control option-name" data-id='option-name' data-name='option-name'>
-                                </div>
-                                <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <input  type="text" name="" class="form-control option-value" data-id='option-value' data-name='option-value'>
-                                </div>
-                            </div> 
-                        </div>
-                        <div class="col-md-12 col-sm-12 col-xs-12 no-padding text-center clearfix option-btn-group setting-option-btn-group">
-                            <button type="button" class="btn btn-success btn-xs add-options" data-id='add-options' id="add-options"><i class="fa fa-plus"></i> Add Option</button>
-                            <button type="button" class="btn btn-danger btn-xs remove-options" id="remove-options" data-id='remove-options'><i class="fa fa-trash"></i> Delete Option</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                <button class="btn btn-success save_setting_btn" data-id="save_setting_btn" id="save_setting_btn">Save Setting</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<div id="delete-ripple-setting" class="modal animated fadeIn" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h4><i class="fa fa-cog fa-spin fa-fw"></i> Add New Setting</h4>
-            </div>
-            <div class="modal-body clearfix">
-                <form method="post" action="" id="delete_setting">
-                    {!! csrf_field() !!}
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
-                <button class="btn btn-success save_setting_btn" data-id="save_setting_btn" id="save_setting_btn">Save Setting</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-@stop
-@section('unused Content')
-<div class="sticky-form-wrapper">
-    <div class="sticky-btn-group">
-        <div class="sticky-btn">
-            <button class="btn btn-primary" id="new-ripple-setting"><i class="fa fa-plus"></i> <span>Add Setting</span></button>
-        </div>
-        <div class="sticky-btn-close">
-            <button data-button="close-form-wrapper" class="btn btn-primary" id="close-form-wrapper"><i class="fa fa-remove"></i></button>
-        </div>
-    </div>
-    <div class="sticky-form-body">
-        <form action="{!! route('Ripple::adminSettings') !!}" method="post" class="">
-            {!! csrf_field() !!}
-            <h4 class="text-center">Add New Setting</h4>
-            <div class="form-group">
-                <label class="" for="setting-name">Setting Name</label>
-                <input id="setting-name" name="setting-name" class="form-control " type="text">
-            </div>
-            <div class="form-group">
-                <label class="" for="setting-value">Setting Key</label>
-                <input id="setting-value" name="setting-key" class="form-control " type="text">
-            </div>
-            <div class="form-group">
-                <label class="" for="setting-type">Setting Type</label>
-                <select name="setting-type" id="setting-type" class="form-control">
-                    <option value="text">Text Box</option>
-                    <option value="text_area">Text Area</option>
-                    <option value="rich_text_box">Rich Textbox</option>
-                    <option value="checkbox">Check Box</option>
-                    <option value="radio_btn">Radio Button</option>
-                    <option value="select_dropdown">Select Dropdown</option>
-                    <option value="file">File</option>
-                    <option value="image">Image</option>
-                </select>
-            </div>
-            <div class="form-group form-actions">
-                <input class="btn btn-success" value="Save changes" type="submit">
-            </div>
-        </form>
-    </div>
-</div>
 @stop

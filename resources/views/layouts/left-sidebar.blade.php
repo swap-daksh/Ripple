@@ -61,15 +61,15 @@
                     <li>
                         <a class="active" href="{!! url('/admin') !!}"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Header</span></li>
+                    <li class="nav-main-heading"><span class="sidebar-mini-hide">Utility</span></li>
                     <li>
-                        <a class="nav-submenu" data-toggle="nav-submenu" href="javascript:void(0);"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Dropdown</span></a>
+                        <a class="nav-submenu" data-toggle="nav-submenu" href="javascript:void(0);"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Preferences</span></a>
                         <ul>
                             <li>
-                                <a href="start_backend.html">Link #1</a>
+                                <a href="{!! route('adminSettings') !!}">Settings</a>
                             </li>
                             <li>
-                                <a href="start_backend.html">Link #2</a>
+                                <a href="start_backend.html">Database</a>
                             </li>
                         </ul>
                     </li>
