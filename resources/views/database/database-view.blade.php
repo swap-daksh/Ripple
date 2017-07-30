@@ -5,7 +5,7 @@
     <div class="row items-push">
         <div class="col-sm-7">
             <h1 class="page-heading">
-                Database <small>Subtitle.</small>
+                Database <small>Tables</small>
             </h1>
         </div>
         <div class="col-sm-5 text-right hidden-xs">
@@ -40,7 +40,9 @@
                     <button type="button" data-toggle="block-option" data-action="close"><i class="si si-close"></i></button>
                 </li>
             </ul>
-            <h3 class="block-title">Tables</h3>
+            <h3 class="block-title">
+                <a class="btn btn-sm btn-primary push-5-r push-10" href="{!! route('Ripple::adminCreateTable') !!}">Create Table</a>
+            </h3>
         </div>
         <div class="block-content">
             <p>

@@ -27,8 +27,8 @@ trait Settings {
     }
 
     private static function updateSetting() {
-        foreach (request()->all() as $setting_name => $setting_value):
-            DB::table('settings')->where('key', $setting_name)->update(['value' => self::settingFile($setting_name)]);
+        foreach (array_keys(request()->all()) as $setting):
+            DB::table('settings')->where('key', $setting)->update(['value' => self::settingFile($setting)]);
         endforeach;
         session()->flash('setting-success', 'Success! Settings are saved!');
     }
@@ -57,8 +57,8 @@ trait Settings {
 
     private function settingOptions($option_name, $option_value) {
         if (is_array($option_name)):
-            foreach ($option_name as $name_index => $name):
-                $option_json[$name] = $option_value[$name_index];
+            foreach ($option_name as $index => $name):
+                $option_json[$name] = $option_value[$index];
             endforeach;
             return json_encode($option_json);
         endif;

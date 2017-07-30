@@ -66,10 +66,10 @@
                         <a class="nav-submenu" data-toggle="nav-submenu" href="javascript:void(0);"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Preferences</span></a>
                         <ul>
                             <li>
-                                <a href="{!! route('adminSettings') !!}">Settings</a>
+                                <a href="{!! route('Ripple::adminSettings') !!}">Settings</a>
                             </li>
                             <li>
-                                <a href="start_backend.html">Database</a>
+                                <a href="{!! route('Ripple::adminDatabase') !!}">Database</a>
                             </li>
                         </ul>
                     </li>
