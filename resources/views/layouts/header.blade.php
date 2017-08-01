@@ -31,14 +31,14 @@
                 <i class="fa fa-search"></i>
             </button>
         </li>
-        <li class="js-header-search header-search">
+<!--        <li class="js-header-search header-search">
             <form class="form-horizontal" action="start_backend.html" method="post">
                 <div class="form-material form-material-primary input-group remove-margin-t remove-margin-b">
                     <input class="form-control" type="text" id="base-material-text" name="base-material-text" placeholder="Search..">
                     <span class="input-group-addon"><i class="si si-magnifier"></i></span>
                 </div>
             </form>
-        </li>
+        </li>-->
     </ul>
     {{-- END Header Navigation Left --}}
 </header>

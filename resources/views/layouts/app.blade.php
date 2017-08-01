@@ -55,7 +55,7 @@
 
             'header-navbar-fixed'        Enables fixed header
         --}}
-        <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed">
+        <div id="page-container" class="sidebar-l sidebar-o side-scroll header-navbar-fixed sidebar-mini">
 
             {{-- Right Sidebar --}}
             @include('Ripple::layouts.right-sidebar')
@@ -67,7 +67,7 @@
             @include('Ripple::layouts.header')
 
             {{-- Main Container --}}
-            <main id="main-container">
+            <main id="main-container" style="background: url({!! ripple_asset('/img/background/bg-3.jpg') !!}); background-size: cover; background-repeat: no-repeat; background-color:rgba(0, 0, 0, 0.1);">
 
                 @yield('page-content')
 
