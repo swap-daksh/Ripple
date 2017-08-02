@@ -2,6 +2,7 @@
     "name": "gitlab/ripple",
     "type": "metapackage",
     "license": "MIT",
+    "keywords": ["admin-panel", "laravel", "laravel-package", "laravel-admin"],
     "authors": [
         {
             "name": "Yash Pal",
@@ -9,5 +10,13 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "php": ">=5.6.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "files": ["src/support/RippleHelpers.php"],
+            "GitLab\\Ripple\\": "src/"
+        }
+    }
 }
