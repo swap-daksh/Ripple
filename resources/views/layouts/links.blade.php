@@ -2,7 +2,7 @@
 
 {{-- OneUI CSS framework --}}
 <link rel="stylesheet" href="{!! ripple_asset('/css/theme.css') !!}">
-<link rel="stylesheet" href="{!! ripple_asset('/css/theme.css') !!}">
+<link rel="stylesheet" href="{!! ripple_asset('/css/ripple.css') !!}">
 <link rel="stylesheet" href="{!! ripple_asset('/lib/css/toastr/toastr.min.css') !!}">
 <!--<link rel="stylesheet" id="css-theme" href="{!! ripple_asset('/css/themes/amethyst.min.css') !!}">-->
 @stack('page-style')

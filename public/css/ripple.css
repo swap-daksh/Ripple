@@ -93,3 +93,6 @@ a:focus, a:hover {
 .no-padding{
     padding:0px;
 }
+.margin-bottom{
+    margin-bottom: 15px !important;
+}

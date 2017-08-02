@@ -16,7 +16,9 @@ class DatabaseController extends Controller {
     }
     
     public function createTable(){
-        
+        if(request()->has('create-table')):
+            dd(request()->all());
+        endif;
         return view("Ripple::database.database-create");
     }
 
