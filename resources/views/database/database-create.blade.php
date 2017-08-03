@@ -80,11 +80,11 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <input type="text" name="field[name]" class="form-control" value="id" style="min-width: 150px !important;">
+                                    <input type="text" name="columns[1][name]" class="form-control table-input" value="id">
                                 </td>
                                 <td>
-                                    <select class="form-control" name="field[data_type]" style="width: 150px !important;">
-                                        <option >INT</option>
+                                    <select class="form-control table-input" name="columns[1][type]" >
+                                        <option value="integer">INT</option>
                                         <option >VARCHAR</option>
                                         <option >TEXT</option>
                                         <option title="">DATE</option>
@@ -146,10 +146,10 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="number" style="width: 100px !important;" name="field[length]" class="form-control" placeholder="Length">
+                                    <input type="number"  name="columns[1][length]" class="form-control table-input" placeholder="Length">
                                 </td>
                                 <td>
-                                    <select class="form-control" name="field[type]" style="min-width: 100px !important;">
+                                    <select class="form-control table-input" name="columns[1][type]">
                                         <option>---</option>
                                         <option>Index</option>
                                         <option>Unique</option>
@@ -157,25 +157,124 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="number" class="form-control" name="field[default]" style="width: 100px !important;">
+                                    <input type="number" class="form-control table-input" name="columns[1][default]" >
                                 </td>
                                 <td>
                                     <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
-                                        <input checked="" type="checkbox" name="field[unsigned]"><span></span>
+                                        <input checked="" type="checkbox" name="columns[1][unsigned]" ><span></span>
                                     </label>
                                 </td>
                                 <td>
                                     <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
-                                        <input checked="" type="checkbox" name="field[nullable]"><span></span>
+                                        <input checked="" type="checkbox" name="columns[1][nullable]" ><span></span>
                                     </label>
                                 </td>
                                 <td>
                                     <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
-                                        <input checked="" type="checkbox" name="field[increment]"><span></span>
+                                        <input checked="" type="checkbox" name="columns[1][autoIncrement]" ><span></span>
                                     </label>
                                 </td>
                                 <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" name="columns[2][name]" class="form-control table-input" value="id">
+                                </td>
+                                <td>
+                                    <select class="form-control table-input" name="columns[2][type]" >
+                                        <option value="integer">INTEGER</option>
+                                        <option value="string">VARCHAR</option>
+                                        <option >TEXT</option>
+                                        <option title="">DATE</option>
+                                        <optgroup label="Numeric">
+                                            <option >TINYINT</option>
+                                            <option>SMALLINT</option>
+                                            <option>MEDIUMINT</option>
+                                            <option>INT</option>
+                                            <option>BIGINT</option>
+                                            <option disabled="disabled">-</option>
+                                            <option>DECIMAL</option>
+                                            <option>FLOAT</option>
+                                            <option>DOUBLE</option>
+                                            <option>REAL</option>
+                                            <option disabled="disabled">-</option>
+                                            <option >BIT</option>
+                                            <option>BOOLEAN</option>
+                                            <option >SERIAL</option>
+                                        </optgroup>
+                                        <optgroup label="Date and time">
+                                            <option >DATE</option>
+                                            <option >DATETIME</option>
+                                            <option >TIMESTAMP</option>
+                                            <option >TIME</option>
+                                            <option >YEAR</option>
+                                        </optgroup>
+                                        <optgroup label="String">
+                                            <option >CHAR</option>
+                                            <option >VARCHAR</option>
+                                            <option disabled="disabled">-</option>
+                                            <option >TINYTEXT</option>
+                                            <option >TEXT</option>
+                                            <option >MEDIUMTEXT</option>
+                                            <option >LONGTEXT</option>
+                                            <option disabled="disabled">-</option>
+                                            <option >BINARY</option>
+                                            <option >VARBINARY</option>
+                                            <option disabled="disabled">-</option>
+                                            <option >TINYBLOB</option>
+                                            <option >MEDIUMBLOB</option>
+                                            <option >BLOB</option>
+                                            <option >LONGBLOB</option><option disabled="disabled">-</option>
+                                            <option >ENUM</option>
+                                            <option title="">SET</option>
+                                        </optgroup>
+                                        <optgroup label="Spatial">
+                                            <option >GEOMETRY</option>
+                                            <option >POINT</option>
+                                            <option >LINESTRING</option>
+                                            <option >POLYGON</option>
+                                            <option >MULTIPOINT</option>
+                                            <option >MULTILINESTRING</option>
+                                            <option >MULTIPOLYGON</option>
+                                            <option >GEOMETRYCOLLECTION</option>
+                                        </optgroup>
+                                        <optgroup label="JSON">
+                                            <option >JSON</option>
+                                        </optgroup>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number"  name="columns[2][length]" class="form-control table-input" placeholder="Length">
+                                </td>
+                                <td>
+                                    <select class="form-control table-input" name="columns[2][type]">
+                                        <option value="">---</option>
+                                        <option>Index</option>
+                                        <option>Unique</option>
+                                        <option selected>Primary</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" class="form-control table-input" name="columns[2][default]" >
+                                </td>
+                                <td>
+                                    <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
+                                        <input checked="" type="checkbox" name="columns[2][unsigned]"><span></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
+                                        <input checked="" type="checkbox" name="columns[2][nullable]"><span></span>
+                                    </label>
+                                </td>
+                                <td>
+                                    <label class="css-input css-checkbox css-checkbox-rounded css-checkbox-primary">
+                                        <input checked="" type="checkbox" name="columns[2][increment]"><span></span>
+                                    </label>
+                                </td>
+                                <td><button class="btn btn-danger"><i class="fa fa-trash"></i></button></td>
+                            </tr>
+                            
                         </tbody>
                     </table>
                 </div>
@@ -200,5 +299,90 @@
 </div>
 {{-- END Page Content --}}
 @stop
-
-
+@push('page-script')
+<style>
+    .table-input{
+        min-width: 150px !important;
+    }
+</style>
+<optgroup label="Numeric">
+    <option >TINYINT</option>
+    <option>SMALLINT</option>
+    <option>MEDIUMINT</option>
+    <option>INT</option>
+    <option>BIGINT</option>
+    <option disabled="disabled">-</option>
+    <option>DECIMAL</option>
+    <option>FLOAT</option>
+    <option>DOUBLE</option>
+    <option>REAL</option>
+    <option disabled="disabled">-</option>
+    <option >BIT</option>
+    <option>BOOLEAN</option>
+    <option >SERIAL</option>
+</optgroup>
+<optgroup label="Date and time">
+    <option >DATE</option>
+    <option >DATETIME</option>
+    <option >TIMESTAMP</option>
+    <option >TIME</option>
+    <option >YEAR</option>
+</optgroup>
+<optgroup label="String">
+    <option >CHAR</option>
+    <option >VARCHAR</option>
+    <option disabled="disabled">-</option>
+    <option >TINYTEXT</option>
+    <option >TEXT</option>
+    <option >MEDIUMTEXT</option>
+    <option >LONGTEXT</option>
+    <option disabled="disabled">-</option>
+    <option >BINARY</option>
+    <option >VARBINARY</option>
+    <option disabled="disabled">-</option>
+    <option >TINYBLOB</option>
+    <option >MEDIUMBLOB</option>
+    <option >BLOB</option>
+    <option >LONGBLOB</option><option disabled="disabled">-</option>
+    <option >ENUM</option>
+    <option title="">SET</option>
+</optgroup>
+<optgroup label="Spatial">
+    <option >GEOMETRY</option>
+    <option >POINT</option>
+    <option >LINESTRING</option>
+    <option >POLYGON</option>
+    <option >MULTIPOINT</option>
+    <option >MULTILINESTRING</option>
+    <option >MULTIPOLYGON</option>
+    <option >GEOMETRYCOLLECTION</option>
+</optgroup>
+<optgroup label="JSON">
+    <option >JSON</option>
+</optgroup>
+<script>
+    var options = {
+        'numeric':{}
+    };
+    <optgroup label="Numeric">
+    <option >TINYINT</option>
+    <option>SMALLINT</option>
+    <option>MEDIUMINT</option>
+    <option>INT</option>
+    <option>BIGINT</option>
+    <option disabled="disabled">-</option>
+    <option>DECIMAL</option>
+    <option>FLOAT</option>
+    <option>DOUBLE</option>
+    <option>REAL</option>
+    <option disabled="disabled">-</option>
+    <option >BIT</option>
+    <option>BOOLEAN</option>
+    <option >SERIAL</option>
+</optgroup>
+    $(document).ready(function () {
+        "use strict";
+        var tr = $('tr');
+    });
+</script>
+@endpush

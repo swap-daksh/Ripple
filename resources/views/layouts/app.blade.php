@@ -67,7 +67,7 @@
             @include('Ripple::layouts.header')
 
             {{-- Main Container --}}
-            <main id="main-container" style="background: url({!! ripple_asset('/img/background/bg-4.jpg') !!}); background-size: cover; background-repeat: no-repeat; background-color:rgba(0, 0, 0, 0.1);">
+            <main id="main-container" style="background: url(<?= ripple_asset('/img/background/bg-4.jpg') ?>); background-size: cover; background-repeat: no-repeat; background-color:rgba(0, 0, 0, 0.1);">
 
                 @yield('page-content')
 

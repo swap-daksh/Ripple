@@ -1,5 +1,4 @@
 <?php
-
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -45,4 +44,8 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
     })->name('asdf');
     Route::get('/test', "RippleController@index");
     Route::get('/test-ripple', "RippleController@index");
+    
+    Route::get('/testing-facades', function(){
+        Ripple::help();
+    });
 });

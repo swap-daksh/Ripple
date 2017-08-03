@@ -2,61 +2,80 @@
 
 namespace GitLab\Ripple\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 
 class RippleServiceProvider extends ServiceProvider {
 
-  /**
-  | Ripple Commands
-  */
-  protected $commands = [
-    'GitLab\Ripple\Commands\RippleInstall',
-    'GitLab\Ripple\Commands\RippleCssJs'
-  ];
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot() {
 
-  /**
-  * Bootstrap the application services.
-  *
-  * @return void
-  */
-  public function boot() {
+        //Load routes from "routes/web.php"...
+        $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
 
-    //Load routes from "routes/web.php"...
-    $this->loadRoutesFrom(realpath(__DIR__.'/../../routes/web.php'));
+        //Load Package Views...
+        $this->loadViewsFrom(realpath(__DIR__ . '/../../resources/views'), 'Ripple');
 
-    //Load Package Views...
-    $this->loadViewsFrom(realpath(__DIR__.'/../../resources/views'), 'Ripple');
+        # Load Ripple Publishes
+        $this->loadPublishableResources();
+    }
 
-    //Publishable Assets...
-    $this->publishes([realpath(__DIR__.'/../../public')=>public_path('vendor/gitlab/ripple/public/')], 'assets');
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register() {
+        #Register Ripple commands
+        $this->loadCommands();
 
-    //Publishable Config...
-    $this->publishes([realpath(__DIR__.'/../../config')=>config_path('/')], 'config');
+        #Register Ripple Facade to app
+        $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
 
-    //Publishable Database...
-    $this->publishes([realpath(__DIR__.'/../../database/migrations')=>database_path('/migrations')], 'database');
-    
-    //Publishable Css...
-    $this->publishes([realpath(__DIR__.'/../../public/css')=>public_path('vendor/gitlab/ripple/public/css/')], 'css');
-    
-    //Publishable Js...
-    $this->publishes([realpath(__DIR__.'/../../public/js')=>public_path('vendor/gitlab/ripple/public/js/')], 'js');
+        #Load All Aliases to app
+        $this->loadAlias();
+    }
 
+    /**
+     * Register all aliases from configuration
+     */
+    public function loadAlias() {
+        $loadAlias = AliasLoader::getInstance();
+        if (!is_null(config('ripple.aliases'))):
+            foreach (config('ripple.aliases') as $abstract => $class):
+                $loadAlias->alias($abstract, $class);
+            endforeach;
+        endif;
+    }
 
-  }
+    public function loadCommands() {
+        $this->commands([
+            \GitLab\Ripple\Commands\RippleInstall::class,
+            \GitLab\Ripple\Commands\RippleCssJs::class
+        ]);
+    }
 
-  /**
-  * Register the application services.
-  *
-  * @return void
-  */
-  public function register() {
+    public function loadPublishableResources() {
+        $publishes = [
+            #Publishable Assets
+            "assets" => [realpath(__DIR__ . '/../../public') => public_path('vendor/gitlab/ripple/public/')],
+            #Publishable Configuration
+            "config" => [realpath(__DIR__ . '/../../config') => config_path('/')],
+            #Publishable Database
+            "database" => [realpath(__DIR__ . '/../../database/migrations') => database_path('/migrations')],
+            #Publishable CSS
+            "css" => [realpath(__DIR__ . '/../../public/css') => public_path('vendor/gitlab/ripple/public/css/')],
+            #Publishable JS
+            "js" => [realpath(__DIR__ . '/../../public/js') => public_path('vendor/gitlab/ripple/public/js/')]
+        ];
+        foreach ($publishes as $tag => $paths):
+            $this->publishes($paths, $tag);
+        endforeach;
+    }
 
-    $this->commands($this->commands);
-    /*$this->commands([
-      GitLab\Ripple\Commands\RippleInstall::class,
-    ]);*/
-  }
-
-} 
+}
