@@ -5,6 +5,8 @@ namespace GitLab\Ripple\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Blade;
+use GitLab\Ripple\Support\Router\JavascriptRouteGenerator;
 
 class RippleServiceProvider extends ServiceProvider {
 
@@ -23,6 +25,11 @@ class RippleServiceProvider extends ServiceProvider {
 
         # Load Ripple Publishes
         $this->loadPublishableResources();
+
+
+        Blade::directive('routes', function () {
+            return "<?php echo app('" . JavascriptRouteGenerator::class . "')->generate(); ?>";
+        });
     }
 
     /**
@@ -34,7 +41,7 @@ class RippleServiceProvider extends ServiceProvider {
         #Register Ripple commands
         $this->loadCommands();
 
-        #Register Ripple Facade to app
+        #Register Ripple Facade Class to app
         $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
 
         #Load All Aliases to app

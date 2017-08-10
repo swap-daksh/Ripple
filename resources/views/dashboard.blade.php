@@ -1,6 +1,7 @@
 @extends('Ripple::layouts.app')
 @section('page-content')
-{!! dd(Ripple::setting('site_title', 'Hello')) !!}
+@routes
+
 {{-- Page Header --}}
 <div class="content bg-gray-lighter" >
     <div class="row items-push">
