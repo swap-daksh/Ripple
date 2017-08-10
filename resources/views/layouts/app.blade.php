@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="no-focus"> 
+<html class="no-focus">
     <head>
         <meta charset="utf-8">
 
@@ -34,7 +34,7 @@
 
         {{-- Stylesheets & Web fonts --}}
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
-        <link href="{!! ripple_asset('css/app.css') !!}" rel="stylesheet">
+        <link href="{!! ripple_asset('/css/app.css') !!}" rel="stylesheet">
         @include('Ripple::layouts.links')
     </head>
     <body>
