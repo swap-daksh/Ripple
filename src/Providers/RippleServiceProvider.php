@@ -5,8 +5,7 @@ namespace GitLab\Ripple\Providers;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Blade;
-use GitLab\Ripple\Support\Router\JavascriptRouteGenerator;
+use GitLab\Ripple\Support\Blade\RippleBlade;
 
 class RippleServiceProvider extends ServiceProvider {
 
@@ -17,19 +16,17 @@ class RippleServiceProvider extends ServiceProvider {
      */
     public function boot() {
 
-        //Load routes from "routes/web.php"...
+        # Load routes from "routes/web.php"...
         $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
 
-        //Load Package Views...
+        # Load Package Views...
         $this->loadViewsFrom(realpath(__DIR__ . '/../../resources/views'), 'Ripple');
 
         # Load Ripple Publishes
         $this->loadPublishableResources();
 
-
-        Blade::directive('routes', function () {
-            return "<?php echo app('" . JavascriptRouteGenerator::class . "')->generate(); ?>";
-        });
+        # Load Ripple Blade Directives
+        $this->loadBladeDirectives();
     }
 
     /**
@@ -44,7 +41,7 @@ class RippleServiceProvider extends ServiceProvider {
         #Register Ripple Facade Class to app
         $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
 
-        #Load All Aliases to app
+#Load All Aliases to app
         $this->loadAlias();
     }
 
@@ -83,6 +80,13 @@ class RippleServiceProvider extends ServiceProvider {
         foreach ($publishes as $tag => $paths):
             $this->publishes($paths, $tag);
         endforeach;
+    }
+
+    function loadBladeDirectives() {
+        $RippleBlade = new RippleBlade();
+        foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod) {
+            $RippleBlade->{$BladeMethod->name}();
+        }
     }
 
 }

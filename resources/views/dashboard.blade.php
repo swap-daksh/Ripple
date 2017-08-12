@@ -1,7 +1,5 @@
 @extends('Ripple::layouts.app')
 @section('page-content')
-@routes
-
 {{-- Page Header --}}
 <div class="content bg-gray-lighter" >
     <div class="row items-push">

@@ -1,4 +1,5 @@
 <?php
+
 /*
   |--------------------------------------------------------------------------
   | Web Routes
@@ -10,7 +11,9 @@
   |
  */
 
-Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], "prefix"=>"admin"], function() {
+use GitLab\Ripple\Support\Blade\RippleBlade;
+
+Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], "prefix" => "admin"], function() {
     /*
       |----------------------------------------------------------------------
       |	Admin Route
@@ -44,8 +47,21 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
     })->name('asdf');
     Route::get('/test', "RippleController@index");
     Route::get('/test-ripple', "RippleController@index");
-    
-    Route::get('/testing-facades', function(){
+
+    Route::get('/testing-facades', function() {
         Ripple::help();
+    });
+
+
+
+    Route::get('/testing-abc', function() {
+        $RippleBLADE = new RippleBlade();
+        $class = new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class);
+//        dd($class, $RippleBLADE);
+        foreach ((new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade) {
+            $RippleBLADE->{$RippleBlade->name}();
+//            dd($RippleBlade, $RippleBlade);
+//            dd()
+        }
     });
 });

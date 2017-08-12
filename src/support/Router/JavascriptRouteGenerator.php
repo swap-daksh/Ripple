@@ -34,6 +34,7 @@ EOT;
     }
 
     public function nameKeyedRoutes() {
+        dd($this->router);
         return collect($this->router->getRoutes()->getRoutesByName())
                         ->map(function ($route) {
                             return collect($route)->only(['uri', 'methods'])
