@@ -41,7 +41,7 @@ class RippleServiceProvider extends ServiceProvider {
         #Register Ripple Facade Class to app
         $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
 
-#Load All Aliases to app
+        #Load All Aliases to app
         $this->loadAlias();
     }
 
@@ -79,6 +79,7 @@ class RippleServiceProvider extends ServiceProvider {
         ];
         foreach ($publishes as $tag => $paths):
             $this->publishes($paths, $tag);
+//            dd();
         endforeach;
     }
 
