@@ -11,7 +11,8 @@ if (!function_exists('storeFileAs')) {
      * @param String $path Path where file should be stored
      * @return string File path
      */
-    function storeFileAs($file, $name = null, $path = null) {
+    function storeFileAs($file, $name = null, $path = null)
+    {
         if (request()->hasFile($file)) {
             if (!@$name) {
                 $name = request()->file($file)->getClientOriginalName();
@@ -29,17 +30,22 @@ if (!function_exists('storeFileAs')) {
 
 if (!function_exists('ripple_asset')) {
 
-    function ripple_asset($url) {
+    function ripple_asset($url)
+    {
         return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets').$url);
     }
 
 }
 
+if (!function_exists('ripple_test')) {
+    echo 'this is ripple test function';
+}
+
 if (!function_exists('ripple_flash')) {
 
-    function ripple_flash($key, $message) {
-        dd('asdfasdf');
+    function ripple_flash($key, $message)
+    {
+        dd('asdfasdfasfd');
     }
 
 }
-
