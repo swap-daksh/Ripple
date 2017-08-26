@@ -7,7 +7,7 @@ use GitLab\Ripple\Support\Database\Schema\SchemaManager;
 class Table {
 
     private $table;
-    private $column;
+    private $columns;
 
     public function __construct($table) {
         return $this->table = SchemaManager::schemaTable($table);
@@ -19,23 +19,22 @@ class Table {
     }
 
     public function columns($columns) {
-//        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
+        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
         foreach ($columns as $column) {
-            $this->column((object) $column);
+            $this->columns[] = $this->column((object) $column);
         }
     }
 
     public function column($column) {
-
-        $column = (array) [
+        return (array) [
                     "name" => $column->name,
                     "type" => $column->type,
-                    "options" => self::columnOptions((array) $column)
+                    "options" => self::columnOptions($this->columnNullable($this->columnUnsigned((array) $column)))
         ];
-        $this->column = $column;
+//        $this->column = $column;
 //        dd($column['options']);
 //        dd($this->column);
-        $this->table->addColumn($column['name'], $column['type'], $column['options']);
+//        $this->table->addColumn($column['name'], $column['type'], $column['options']);
     }
 
     public function create() {
@@ -46,6 +45,19 @@ class Table {
     public function columnNullable($columnArray) {
         if (!array_key_exists('nullable', $columnArray)):
             $columnArray['nullable'] = false;
+        endif;
+        return $columnArray;
+    }
+
+    public function columnUnsigned($columnArray) {
+        if (!array_key_exists('unsigned', $columnArray)):
+            $columnArray['unsigned'] = false;
+        endif;
+        return $columnArray;
+    }
+    public function columnAutoIncrement($columnArray) {
+        if (!array_key_exists('unsigned', $columnArray)):
+            $columnArray['unsigned'] = false;
         endif;
         return $columnArray;
     }
@@ -61,7 +73,8 @@ class Table {
             }
             $columnOptions[$key] = $value;
         }
-        dd($columnOptions);
+//        $columnOptions = $this->columnNullable($this->columnUnsigned($columnOptions));
+//        dd($columnOptions);
         return $columnOptions;
     }
 

@@ -30,8 +30,7 @@ if (!function_exists('storeFileAs')) {
 if (!function_exists('ripple_asset')) {
 
     function ripple_asset($url) {
-        $asset_url = config('ripple.assets_url', '/vendor/gitlab/ripple/assets');
-        return $asset_url . $url;
+        return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets').$url);
     }
 
 }

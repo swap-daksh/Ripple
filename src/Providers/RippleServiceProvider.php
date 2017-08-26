@@ -27,6 +27,9 @@ class RippleServiceProvider extends ServiceProvider {
 
         # Load Ripple Blade Directives
         $this->loadBladeDirectives();
+
+        # Load Ripple Helpers
+        $this->loadHelpers();
     }
 
     /**
@@ -87,6 +90,12 @@ class RippleServiceProvider extends ServiceProvider {
         $RippleBlade = new RippleBlade();
         foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod) {
             $RippleBlade->{$BladeMethod->name}();
+        }
+    }
+
+    function loadHelpers(){
+        foreach(glob(__DIR__.'/../Support/*.php') as $file){
+            require_once realpath($file);
         }
     }
 

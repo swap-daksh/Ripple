@@ -89,7 +89,7 @@
                                         <option value="text">TEXT</option>
                                         <option title="">DATE</option>
                                         <optgroup label="Numbers">
-                                            <option value="tinyint">
+        <option value="tinyint">
                                                 TINYINT
                                             </option><option value="smallint">
                                                 SMALLINT
@@ -100,7 +100,7 @@
                                             </option><option value="bigint">
                                                 BIGINT
                                             </option><option value="float">
-                                                FLOAT
+                          FLOAT
                                             </option><option value="double">
                                                 DOUBLE
                                             </option><option value="decimal">
