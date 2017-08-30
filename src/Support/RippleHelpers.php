@@ -11,8 +11,7 @@ if (!function_exists('storeFileAs')) {
      * @param String $path Path where file should be stored
      * @return string File path
      */
-    function storeFileAs($file, $name = null, $path = null)
-    {
+    function storeFileAs($file, $name = null, $path = null) {
         if (request()->hasFile($file)) {
             if (!@$name) {
                 $name = request()->file($file)->getClientOriginalName();
@@ -27,25 +26,33 @@ if (!function_exists('storeFileAs')) {
     }
 
 }
+//i KNOW SOME PEOPLE NOT HAPPY WITH ME BECAUSE I AM NOT SO GOOD BUT FEW PEOPLE SURELY LOVE ME BECAUSE THEY KNOW THAT MY LITTLE GOODNESS IS NOT FAKE
 
 if (!function_exists('ripple_asset')) {
 
-    function ripple_asset($url)
-    {
-        return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets').$url);
+    /**
+     * <b>ripple_asset()</b> locate assets which are moved to via ripple:install command to public directory
+     * @param String $url Specify asset path in public directory.
+     * @return String asset full path.
+     */
+    function ripple_asset($url) {
+        return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets') . $url);
     }
 
 }
 
 if (!function_exists('ripple_test')) {
-    echo 'this is ripple test function';
+//    echo 'this is ripple test function';
 }
 
 if (!function_exists('ripple_flash')) {
 
-    function ripple_flash($key, $message)
-    {
+    /**
+     * 
+     */
+    function ripple_flash($key, $message) {
         dd('asdfasdfasfd');
     }
 
 }
+

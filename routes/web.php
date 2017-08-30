@@ -44,6 +44,13 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
     Route::any('/database', "DatabaseController@database")->name('adminDatabase');
     Route::any('/database/create', "DatabaseController@createTable")->name('adminCreateTable');
 
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                                     Pages
+      |-------------------------------------------------------------------------------------------------------------------
+     */
+    Route::any('/pages', "PageController@pageIndex")->name('adminPageIndex');
+
     Route::get('/ripple', function() {
         return view('Ripple::welcome');
     });

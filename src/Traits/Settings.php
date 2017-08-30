@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Session;
 trait Settings {
 
     public function hasSettings() {
-        return DB::table('settings')->get();
+        return DB::table('settings')->orderBy('id')->get();
     }
 
     private function saveSetting() {
