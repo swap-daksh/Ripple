@@ -3,7 +3,7 @@
 namespace GitLab\Ripple\Http\Controllers;
 
 use GitLab\Ripple\Schema\Table;
-use GitLab\Ripple\Traits\DatabaseTables;
+use GitLab\Ripple\Support\Traits\DatabaseTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 

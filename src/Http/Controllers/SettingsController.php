@@ -3,7 +3,7 @@
 namespace GitLab\Ripple\Http\Controllers;
 
 use GitLab\Ripple\Models\Setting;
-use GitLab\Ripple\Traits\Settings;
+use GitLab\Ripple\Support\Traits\Settings;
 use Illuminate\Http\Request;
 
 class SettingsController extends Controller
