@@ -13,6 +13,7 @@
     "require": {
         "php": ">=7.0.0",
         "doctrine/dbal": "^2.5"
+
     },
     "autoload": {
         "files": ["src/support/RippleHelpers.php"],
