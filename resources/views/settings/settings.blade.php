@@ -88,6 +88,7 @@
                         <textarea class="form-control ripple_text_editor" name="{!! $setting->key !!}" placeholder="{!! ucfirst($setting->display_name) !!}">{!! $setting->value !!}</textarea>
                         @endif
                     </div>
+                    <div class="col-md-12"><hr style="margin-bottom: 0px;"></div>
                 </div>
                 @endforeach
                 <div class="form-group">
@@ -190,7 +191,7 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                <button class="btn btn-sm btn-default" type="button" data-dismiss="modal">Close</button>
+                <button class="btn btn-sm btn-default" type="button" data-dismiss="modal" onclick="document.getElementById('add_new_setting').reset();">Close</button>
                 <button class="btn btn-sm btn-primary" type="button" onclick="document.getElementById('create-setting').click();"><i class="fa fa-check"></i> Save Setting</button>
             </div>
         </div>

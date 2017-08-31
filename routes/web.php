@@ -51,6 +51,13 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
      */
     Route::any('/pages', "PageController@pageIndex")->name('adminPageIndex');
 
+
+
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                                     Other
+      |-------------------------------------------------------------------------------------------------------------------
+     */
     Route::get('/ripple', function() {
         return view('Ripple::welcome');
     });
