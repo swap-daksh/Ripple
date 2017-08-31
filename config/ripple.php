@@ -9,8 +9,8 @@ return [
       | Here you can specify ripple controller settings such as namespace
       |
      */
-    "controllers" => [
-        "namespace" => "GitLab\\Ripple\\Http\\Controllers",
+    'controllers' => [
+        'namespace' => 'GitLab\\Ripple\\Http\\Controllers',
     ],
     /*
       |----------------------------------------------------------------------------
@@ -20,8 +20,8 @@ return [
       | Here you can specify ripple assets path
       |
      */
-    "assets_url" => "/vendor/gitlab/ripple/public",
-    "aliases" => [
-        "Ripple" => GitLab\Ripple\Support\Facades\Ripple::class,
-    ]
+    'assets_url' => '/vendor/gitlab/ripple/public',
+    'aliases'    => [
+        'Ripple' => GitLab\Ripple\Support\Facades\Ripple::class,
+    ],
 ];

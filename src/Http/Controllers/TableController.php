@@ -2,12 +2,12 @@
 
 namespace GitLab\Ripple\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class TableController extends Controller {
-
-    public function database() {
+class TableController extends Controller
+{
+    public function database()
+    {
 //        dd(DB::select('SHOW TABLES'));
         $tables = DB::select('SHOW TABLES');
 //        $array = array('as'=>'adfdfs','ab'=>'ab', 'ac'=>'ac');
@@ -25,12 +25,13 @@ class TableController extends Controller {
         return view('Ripple::database.database-view', compact('tables'));
     }
 
-    public function dashboard() {
+    public function dashboard()
+    {
         return view('Ripple::dashboard');
     }
 
-    public function settings() {
+    public function settings()
+    {
         return view('Ripple::settings.settings');
     }
-
 }

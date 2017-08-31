@@ -2,8 +2,8 @@
 
 namespace GitLab\Ripple\Schema;
 
-class Column {
-    
+class Column
+{
     private $name;
     private $type;
     private $length;
@@ -11,10 +11,8 @@ class Column {
     private $unsigned;
     private $notnull;
     private $autoincrement;
-    
 
-    public function nullable() {
-        
+    public function nullable()
+    {
     }
-
 }
