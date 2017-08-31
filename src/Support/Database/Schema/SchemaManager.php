@@ -2,30 +2,34 @@
 
 namespace GitLab\Ripple\Support\Database\Schema;
 
-use Illuminate\Foundation\ComposerScripts;
 use Illuminate\Support\Facades\DB;
-new \Doctrine\DBAL\Schema\Schema;
 
-abstract class SchemaManager {
+new \Doctrine\DBAL\Schema\Schema();
 
-    public static function databaseManager() {
+abstract class SchemaManager
+{
+    public static function databaseManager()
+    {
         return DB::connection()->getDoctrineSchemaManager();
     }
 
-    public static function make($table) {
+    public static function make($table)
+    {
         return self::databaseManager()->createTable($table);
     }
 
-    public static function getConnection() {
+    public static function getConnection()
+    {
         return DB::connection()->getDoctrineConnection();
     }
-    
-    public static function schemaTable($tableName){
+
+    public static function schemaTable($tableName)
+    {
         return self::schema()->createTable($tableName);
     }
 
-    public static function schema() {
-        return (new \Doctrine\DBAL\Schema\Schema());
+    public static function schema()
+    {
+        return new \Doctrine\DBAL\Schema\Schema();
     }
-
 }

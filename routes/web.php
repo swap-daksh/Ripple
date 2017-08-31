@@ -18,62 +18,57 @@ use Illuminate\Support\Facades\DB;
 //use Doctrine\DBAL\Schema\SchemaException;
 //use Doctrine\DBAL\Schema\Table as DoctrineTable;
 
-Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], "prefix" => "admin"], function() {
+Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], 'prefix' => 'admin'], function () {
     /*
       |----------------------------------------------------------------------
       |	Admin Route
       |----------------------------------------------------------------------
      */
-    Route::any('/', "RippleController@dashboard")->name('dashboard');
+    Route::any('/', 'RippleController@dashboard')->name('dashboard');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                              Settings
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::match(['get', 'post'], '/settings', "SettingsController@settings")->name('adminSettings');
-    Route::any('/setting/create', "SettingsController@createSetting")->name('adminCreateSetting');
-    Route::post('/setting/delete', "SettingsController@deleteSetting")->name('adminDeleteSetting');
-
+    Route::match(['get', 'post'], '/settings', 'SettingsController@settings')->name('adminSettings');
+    Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
+    Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                              Database
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/database', "DatabaseController@database")->name('adminDatabase');
-    Route::any('/database/create', "DatabaseController@createTable")->name('adminCreateTable');
+    Route::any('/database', 'DatabaseController@database')->name('adminDatabase');
+    Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Pages
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/pages', "PageController@pageIndex")->name('adminPageIndex');
-
-
+    Route::any('/pages', 'PageController@pageIndex')->name('adminPageIndex');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Other
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::get('/ripple', function() {
+    Route::get('/ripple', function () {
         return view('Ripple::welcome');
     });
-    Route::get('/asdf/asdf/asdf/asdf/ripple', function() {
+    Route::get('/asdf/asdf/asdf/asdf/ripple', function () {
         return view('Ripple::welcome');
     })->name('asdf');
-    Route::get('/test', "RippleController@index");
-    Route::get('/test-ripple', "RippleController@index");
+    Route::get('/test', 'RippleController@index');
+    Route::get('/test-ripple', 'RippleController@index');
 
-    Route::get('/testing-facades', function() {
+    Route::get('/testing-facades', function () {
         Ripple::help();
     });
 
-
-    Route::get('/get-facade', function() {
-
+    Route::get('/get-facade', function () {
 
 //        $schema = new \Doctrine\DBAL\Schema\Schema();
 //        $myTable = $schema->createTable("my_table");
@@ -104,8 +99,7 @@ Route::group(["as" => "Ripple::", 'namespace' => config('ripple.controllers.name
 //        );
     });
 
-
-    Route::get('/testing-abc', function() {
+    Route::get('/testing-abc', function () {
         $RippleBLADE = new RippleBlade();
         $class = new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class);
 //        dd($class, $RippleBLADE);

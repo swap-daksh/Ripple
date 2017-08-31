@@ -5,23 +5,26 @@ namespace GitLab\Ripple\Support\Router;
 use Illuminate\Routing\Router;
 
 /**
- * Description of JavascriptRouter
+ * Description of JavascriptRouter.
  *
  * @author Yash Pal
  */
-class JsRouter {
-
+class JsRouter
+{
     private $router;
 
-    function __construct(Router $router) {
+    public function __construct(Router $router)
+    {
         $this->router = $router;
     }
 
-    public function jsRoutes() {
+    public function jsRoutes()
+    {
         return $this->script(self::routes(), rtrim(config('app.url'), '/'));
     }
 
-    public function script($routes, $url) {
+    public function script($routes, $url)
+    {
         return <<<EOT
         <script type="text/javascript">
             var routes = JSON.parse('$routes'), baseUrl = '$url';
@@ -42,12 +45,12 @@ class JsRouter {
 EOT;
     }
 
-    public function routes() {
-        return (string) collect($this->router->getRoutes()->getRoutesByName())->map(function($Route) {
-                    return collect($Route)
+    public function routes()
+    {
+        return (string) collect($this->router->getRoutes()->getRoutesByName())->map(function ($Route) {
+            return collect($Route)
                                     ->only('uri', 'methods')
                                     ->put('domain', $Route->domain());
-                });
+        });
     }
-
 }
