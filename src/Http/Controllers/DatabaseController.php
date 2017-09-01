@@ -2,63 +2,69 @@
 
 namespace GitLab\Ripple\Http\Controllers;
 
+use GitLab\Ripple\Schema\Table;
+use GitLab\Ripple\Support\Traits\DatabaseTables;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use GitLab\Ripple\Traits\DatabaseTables;
 use Illuminate\Support\Facades\Schema;
 
-class DatabaseController extends Controller {
-
+class DatabaseController extends Controller
+{
     use DatabaseTables;
 
-    public function database() {
+    public function database()
+    {
         $tables = self::tables();
+
         return view('Ripple::database.database-view', compact('tables'));
     }
 
-    public function createTable() {
-
-
-
+    public function createTable()
+    {
         if (request()->has('create-table')):
-            dd(request()->all(), $this->checkTableColumns());
+
+            dump(request('columns'));
+        $table = new Table(request('table'));
+//            $table->tablxe(request('table'));
+        $table->columns(request('columns'));
+//            $table->create();
+
+        dd($table);
+        dd(request('columns')[1]);
+        dd(request()->all(), request('columns')[1], $this->checkTableColumns());
         endif;
-        return view("Ripple::database.database-create");
+
+        return view('Ripple::database.database-create');
     }
 
-    public function checkTableColumns() {
+    public function checkTableColumns()
+    {
 
 //        dd($column);
         dd(request()->all());
         Schema::create('cars', function ($table) {
-            $column = array();
-            $attributes = array();
+            $column = [];
+            $attributes = [];
             foreach (request('columns') as $columns):
                 $column['name'] = $columns['name'];
-                $column['type'] = strtolower($columns['type']);
-                foreach ($columns['attributes'] as $name => $value):
+            $column['type'] = strtolower($columns['type']);
+            foreach ($columns['attributes'] as $name => $value):
                     if ($name == 'type') {
-                        if($value != ''){
-                        $column['attributes'][strtolower($value)] = true;
+                        if ($value != '') {
+                            $column['attributes'][strtolower($value)] = true;
                         }
                         continue;
                     }
-                    if ($value == 'on') {
-                        $column['attributes'][$name] = true;
-                        continue;
-                    }
-                    $column['attributes'][$name] = $value;
-                endforeach;
-                
+            if ($value == 'on') {
+                $column['attributes'][$name] = true;
+                continue;
+            }
+            $column['attributes'][$name] = $value;
+            endforeach;
+
 //                dd($column);
-                $table->addColumn($column['type'], $column['name'], $column['attributes']);
+            $table->addColumn($column['type'], $column['name'], $column['attributes']);
             endforeach;
 //            dd($column);
-            
-
-
-
-            
 //            $table->bigIncrements('id')->index()->primary()->nullable()->unique()->after('column')->default('')->unsigned();
 //            $table->bigInteger('votes');
 //            $table->binary('data');
@@ -107,5 +113,4 @@ class DatabaseController extends Controller {
             dd($table->getColumns());
         });
     }
-
 }

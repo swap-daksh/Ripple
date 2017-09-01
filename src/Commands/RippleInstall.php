@@ -37,7 +37,7 @@ class RippleInstall extends Command
      */
     public function handle()
     {
-        $this->info('Publishing the Ripple assets, database, and config files'); 
+        $this->info('Publishing the Ripple assets, database, and config files');
 
         $this->info('Moving Ripple Assets to Public Vendor...');
         $this->call('vendor:publish', ['--tag'=>'assets', '--force'=>true]);
@@ -47,7 +47,8 @@ class RippleInstall extends Command
         $this->call('vendor:publish', ['--tag'=>'database', '--force'=>true]);
     }
 
-    protected function getOptions() {
+    protected function getOptions()
+    {
         return [
             ['with-dummy', null, 1, 'Install with dummy data', null],
         ];

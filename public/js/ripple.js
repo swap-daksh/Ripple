@@ -77,7 +77,7 @@ $(document).ready(function () {
                 setting_options = "#setting-options, .setting-options, div[data-id=setting-options]",
                 option_name = 'input.option-name[data-id=option-name][data-name=option-name]',
                 option_value = 'input.option-value[data-id=option-value][data-name=option-value]';
-        if (type === "radio_btn" || type === "select_dropdown") {
+        if (type === "radio" || type === "dropdown") {
             $(setting_options).slideDown(500, function () {
                 $(this).find(option_name).attr('name', 'option-name[]');
                 $(this).find(option_value).attr('name', 'option-value[]');

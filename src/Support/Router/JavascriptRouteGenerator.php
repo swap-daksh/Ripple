@@ -5,23 +5,25 @@ namespace GitLab\Ripple\Support\Router;
 use Illuminate\Routing\Router;
 
 /**
- * Description of JavascriptRouteGenerator
+ * Description of JavascriptRouteGenerator.
  *
  * @author Yash Pal
  */
-class JavascriptRouteGenerator {
-
+class JavascriptRouteGenerator
+{
     private $router;
     public $routes;
 
-    public function __construct(Router $router) {
+    public function __construct(Router $router)
+    {
         $this->router = $router;
     }
 
-    public function generate() {
+    public function generate()
+    {
         $json = (string) $this->nameKeyedRoutes();
-        $appUrl = rtrim(config('app.url'), '/') . '/';
-        $routeFunction = "";
+        $appUrl = rtrim(config('app.url'), '/').'/';
+        $routeFunction = '';
 //        $routeFunction = file_get_contents(__DIR__ . '/js/route.js');
         return <<<EOT
 <script type="text/javascript">
@@ -33,12 +35,14 @@ class JavascriptRouteGenerator {
 EOT;
     }
 
-    public function nameKeyedRoutes() {
+    public function nameKeyedRoutes()
+    {
+        dd($this->router);
+
         return collect($this->router->getRoutes()->getRoutesByName())
                         ->map(function ($route) {
                             return collect($route)->only(['uri', 'methods'])
                                     ->put('domain', $route->domain());
                         });
     }
-
 }

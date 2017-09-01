@@ -20,5 +20,12 @@
         "psr-4": {
             "GitLab\\Ripple\\": "src/"
         }
+    },
+    "extra":{
+    "laravel":{
+            "providers":[
+            "GitLab\\Ripple\\Providers\\RippleServiceProvider"
+            ]
+        }
     }
 }

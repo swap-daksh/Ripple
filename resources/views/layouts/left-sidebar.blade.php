@@ -61,6 +61,9 @@
                     <li>
                         <a class="active" href="{!! url('/admin') !!}"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
+                    <li>
+                        <a class="active" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Pages</span></a>
+                    </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Utility</span></li>
                     <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="javascript:void(0);"><i class="si si-wrench"></i><span class="sidebar-mini-hide">Preferences</span></a>
