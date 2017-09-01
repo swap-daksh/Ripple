@@ -1,6 +1,6 @@
 {
     "name": "gitlab/ripple",
-    "type": "metapackage",
+    "type": "package",
     "license": "MIT",
     "keywords": ["admin-panel", "laravel", "laravel-package", "laravel-admin"],
     "authors": [
