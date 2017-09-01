@@ -9,7 +9,6 @@
             "email": "yashpalmnd@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=7.0.0",
         "doctrine/dbal": "^2.5"
