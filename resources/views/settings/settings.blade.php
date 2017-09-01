@@ -3,10 +3,10 @@
 {{-- Page Content --}}
 <div class="content">
     <div class="block block-themed">
-        <div class="block-header bg-city">
+        <div class="block-header bg-gray-darker">
             <ul class="block-options">
                 <li>
-                    <button data-toggle="modal" data-target="#modal-large" type="button"><i class="si si-settings"></i></button>
+                    <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-circle text-success" style="font-size: 18px"></i></button>
                 </li>
             </ul>
             <h3 class="block-title">Settings</h3>
@@ -101,8 +101,8 @@
     </div>
 </div>
 
-<div class="modal" id="modal-large" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog modal-lg">
+<div class="modal fade" id="modal-large" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg modal-dialog-popout">
         <div class="modal-content">
             <div class="block block-themed block-transparent remove-margin-b">
                 <div class="block-header bg-primary-dark">
@@ -191,8 +191,8 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                <button class="btn btn-sm btn-default" type="button" data-dismiss="modal" onclick="document.getElementById('add_new_setting').reset();">Close</button>
-                <button class="btn btn-sm btn-primary" type="button" onclick="document.getElementById('create-setting').click();"><i class="fa fa-check"></i> Save Setting</button>
+                <button class="btn btn-sm btn-default btn-rounded" type="button" data-dismiss="modal" onclick="document.getElementById('add_new_setting').reset();">Close</button>
+                <button class="btn btn-sm btn-primary btn-rounded" type="button" onclick="document.getElementById('create-setting').click();"><i class="fa fa-check"></i> Save Setting</button>
             </div>
         </div>
     </div>

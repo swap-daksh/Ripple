@@ -62,7 +62,13 @@
                         <a class="active" href="{!! url('/admin') !!}"><i class="si si-speedometer"></i><span class="sidebar-mini-hide">Dashboard</span></a>
                     </li>
                     <li>
-                        <a class="active" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Pages</span></a>
+                        <a class="" href="{!! route('Ripple::adminUserIndex') !!}"><i class="fa fa-users"></i><span class="sidebar-mini-hide">Users</span></a>
+                    </li>
+                    <li>
+                        <a class="" href="{!! route('Ripple::adminPostIndex') !!}"><i class="fa fa-file-text"></i><span class="sidebar-mini-hide">Posts</span></a>
+                    </li>
+                    <li>
+                        <a class="" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Pages</span></a>
                     </li>
                     <li class="nav-main-heading"><span class="sidebar-mini-hide">Utility</span></li>
                     <li>
