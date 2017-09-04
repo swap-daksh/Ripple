@@ -49,18 +49,21 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::any('/pages', 'PageController@pageIndex')->name('adminPageIndex');
+    Route::any('/page/add', 'PageController@pageAdd')->name('adminPageAdd');
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Posts
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::any('/posts', 'PostController@postIndex')->name('adminPostIndex');
+    Route::any('/post/add', 'PostController@postAdd')->name('adminPostAdd');
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Users
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::any('/users', 'UserController@userIndex')->name('adminUserIndex');
+    Route::any('/user/profile', 'UserController@userProfile')->name('adminUserProfile');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------

@@ -19,7 +19,7 @@ $(document).ready(function () {
     tinymce.init({
         menubar: false,
         selector: 'textarea.ripple_text_editor',
-        skin: 'lightgray',
+        skin: 'ripple',
         plugins: 'link, image, code, youtube, giphy',
         extended_valid_elements: 'input[onclick|value|style|type]',
         file_browser_callback: function (field_name, url, type, win) {

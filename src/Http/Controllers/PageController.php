@@ -8,4 +8,9 @@ class PageController extends Controller
     {
         return view('Ripple::pages.pageIndex');
     }
+    
+    public function pageAdd()
+    {
+        return view('Ripple::pages.pageAdd');
+    }
 }

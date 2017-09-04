@@ -1,6 +1,7 @@
 {
     "name": "gitlab/ripple",
-    "type": "metapackage",
+    "type": "package",
+    "description": "The Laravel Framework Admin Panel.",
     "license": "MIT",
     "keywords": ["admin-panel", "laravel", "laravel-package", "laravel-admin"],
     "authors": [

@@ -69,20 +69,44 @@
                 </div>
                 <div class="block-content">
                     <div class="row">
-                        <form method="post" action="" id="add_new_setting">
+                        <form method="post" action="" id="add_new_user">
                             {!! csrf_field() !!}
-                            <input type="hidden" name="setting-create" value="zzz">
-                            <input type="submit" value="&nbsp;" hidden id="create-setting">
+                            <input type="hidden" name="user-create" value="zzz">
+                            <input type="submit" value="&nbsp;" hidden id="create-user">
                             <div class="col-md-6">
                                 <div class="form-group clearfix">
-                                    <label>Setting Key</label>
+                                    <label>Full Name</label>
+                                    <input class="form-control setting-key" id="setting-key" required name="setting-key" type="text">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label>Email</label>
+                                    <input class="form-control setting-key" id="setting-key" required name="setting-key" type="text">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label>Password</label>
+                                    <input class="form-control setting-key" id="setting-key" required name="setting-key" type="text">
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label>Mobile No</label>
                                     <input class="form-control setting-key" id="setting-key" required name="setting-key" type="text">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group clearfix">
-                                    <label>Setting Name</label>
-                                    <input class="form-control setting-name" id="setting-name" required name="setting-name" type="text">
+                                <div class="animated fadeIn col-sm-11 pull-right no-padding">
+                                    <div class="img-container">
+                                        <div id="data-preview-dp">
+                                            <img class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="" width="150" height="100">
+                                        </div>
+                                        <div class="img-options">
+                                            <div class="img-options-content">
+                                                <h3 class="font-w400 text-white push-5">dfsdfgsdfg</h3>
+                                                <h4 class="h6 font-w400 text-white-op push-15"></h4>
+                                                <label class="btn btn-sm btn-default" for="1-input"><i class="fa fa-pencil"></i> Change</label>
+                                                <input type="file" class="image-preview file-input" id="1-input" data-preview='data-preview-dp' name="" style="display: none">
+                                                <a class="btn btn-sm btn-default" href="javascript:void(0)"><i class="fa fa-times"></i> Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -90,8 +114,8 @@
                 </div>
             </div>
             <div class="modal-footer text-center">
-                <button class="btn btn-sm btn-default btn-rounded" type="button" data-dismiss="modal" onclick="document.getElementById('add_new_setting').reset();">Close</button>
-                <button class="btn btn-sm btn-primary btn-rounded" type="button" onclick="document.getElementById('create-setting').click();"><i class="fa fa-check"></i> Save Setting</button>
+                <button class="btn btn-sm btn-default btn-rounded" type="button" data-dismiss="modal" onclick="document.getElementById('add_new_user').reset();">Close</button>
+                <button class="btn btn-sm btn-primary btn-rounded" type="button" onclick="document.getElementById('create-setting').click();"><i class="fa fa-check"></i> Save User</button>
             </div>
         </div>
     </div>
