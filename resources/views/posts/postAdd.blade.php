@@ -47,7 +47,7 @@
                     </div>
                     <div class="block-content" style="min-height: 200px;">
                         <p><i class="fa fa-flag"></i> Status: <b id="current-status">Draft</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
-                        <input type="hidden" value="draft" name="post-status">
+                        <input type="hidden" value="draft" name="post-status" id="post-status">
                         <p><i class="fa fa-eye"></i> Visibility: <b id="current-status">Public</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
                         <input type="hidden" value="public" name="post-visibility">
                         <p><i class="fa fa-comments"></i> Comments: <b id="current-status">Open</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
@@ -56,7 +56,7 @@
                     <div class="block-content bg-gray-lighter">
                         <p class="text-center">
                             <button class="btn btn-primary btn-rounded" type="submit">Save as Draft</button>
-                            <button class="btn btn-primary btn-rounded" type="submit">Publish</button>
+                            <button class="btn btn-primary btn-rounded" type="submit" onclick="document.getElementById('post-status').value ='published';">Publish</button>
                         </p>
                     </div>
                 </div>

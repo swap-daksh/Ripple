@@ -16,7 +16,7 @@
         "hideEasing": "linear",
         "showMethod": "fadeIn",
         "hideMethod": "fadeOut"
-    }
+    };
 </script>
 @if(session()->has('setting-success'))
 <script id="toast-notify">
@@ -26,5 +26,15 @@
 @if(session()->has('setting-warning'))
 <script id="toast-notify">
     toastr.error('{!! session("setting-warning") !!}', 'ERROR!');
+</script>
+@endif
+@if(session()->has('success'))
+<script id="toast-notify">
+    toastr.success('{!! session("success") !!}', "SUCCESS!");
+</script>
+@endif
+@if(session()->has('error'))
+<script id="toast-notify">
+    toastr.error('{!! session("error") !!}', 'ERROR!');
 </script>
 @endif

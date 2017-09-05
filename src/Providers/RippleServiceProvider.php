@@ -100,7 +100,7 @@ class RippleServiceProvider extends ServiceProvider
 
     public function loadHelpers()
     {
-        foreach (glob(__DIR__.'/../Support/*.php') as $file) {
+        foreach (glob(__DIR__.'/../Support/Helpers/*.php') as $file) {
             require_once realpath($file);
         }
     }

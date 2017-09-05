@@ -16,9 +16,7 @@ class PostController extends Controller {
     public function postAdd() {
         $categories = Ripple::allCategories();
         $tags = Ripple::allTags();
-        if (request()->has('post-create')) {
-            dd(request()->all());
-        }
+        self::createPost();
         return view('Ripple::posts.postAdd', compact('categories', 'tags'));
     }
 

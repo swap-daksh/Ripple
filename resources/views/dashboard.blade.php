@@ -43,7 +43,7 @@
             <h3 class="block-title">My Block</h3>
         </div>
         <div class="block-content">
-            <p>...</p>
+            <p></p>
         </div>
     </div>
     {{-- END My Block --}}

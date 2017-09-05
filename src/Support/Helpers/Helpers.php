@@ -26,10 +26,11 @@ if (!function_exists('storeFileAs')) {
             }
 
             return request()->file($file)->storeAs($path, $name);
+        }else{
+            return request($file);
         }
     }
 }
-//i KNOW SOME PEOPLE NOT HAPPY WITH ME BECAUSE I AM NOT SO GOOD BUT FEW PEOPLE SURELY LOVE ME BECAUSE THEY KNOW THAT MY LITTLE GOODNESS IS NOT FAKE
 
 if (!function_exists('ripple_asset')) {
 
@@ -55,4 +56,27 @@ if (!function_exists('ripple_flash')) {
     {
         dd('asdfasdfasfd');
     }
+}
+
+
+if (!function_exists('DBinsert')) {
+
+    /**
+     * Save Request Data to Database 
+     * @return boolean or {object}
+     * @parems instance, $array, Object
+     */
+    function DBinsert($model, $properties, $return = "OBJ") {
+        foreach ($properties as $column => $value) {
+            $model->$column = $value;
+        }
+        if ($return === "OBJ") {
+            $model->save();
+            $get = $model;
+        } else {
+            $get = $model->save();
+        }
+        return $get;
+    }
+
 }
