@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 
 class RippleServiceProvider extends ServiceProvider
 {
+
     /**
      * Bootstrap the application services.
      *
@@ -16,19 +17,19 @@ class RippleServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // Load routes from "routes/web.php"...
-        $this->loadRoutesFrom(realpath(__DIR__.'/../../routes/web.php'));
+        #Load routes from "routes/web.php"...
+        $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
 
-        // Load Package Views...
-        $this->loadViewsFrom(realpath(__DIR__.'/../../resources/views'), 'Ripple');
+        #Load Package Views...
+        $this->loadViewsFrom(realpath(__DIR__ . '/../../resources/views'), 'Ripple');
 
-        // Load Ripple Publishes
+        #Load Ripple Publishes
         $this->loadPublishableResources();
 
-        // Load Ripple Blade Directives
-        $this->loadBladeDirectives();
+        #Load Ripple Blade Directives
+        $this->loadBladeDirectives(new RippleBlade());
 
-        // Load Ripple Helpers
+        #Load Ripple Helpers
         $this->loadHelpers();
     }
 
@@ -39,13 +40,13 @@ class RippleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //Register Ripple commands
+        #Register Ripple commands
         $this->loadCommands();
 
-        //Register Ripple Facade Class to app
+        #Register Ripple Facade Class to app
         $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
 
-        //Load All Aliases to app
+        #Load All Aliases to app
         $this->loadAlias();
     }
 
@@ -58,7 +59,7 @@ class RippleServiceProvider extends ServiceProvider
         if (!is_null(config('ripple.aliases'))):
             foreach (config('ripple.aliases') as $abstract => $class):
                 $loadAlias->alias($abstract, $class);
-        endforeach;
+            endforeach;
         endif;
     }
 
@@ -73,35 +74,36 @@ class RippleServiceProvider extends ServiceProvider
     public function loadPublishableResources()
     {
         $publishes = [
-            //Publishable Assets
-            'assets' => [realpath(__DIR__.'/../../public') => public_path('vendor/gitlab/ripple/public/')],
-            //Publishable Configuration
-            'config' => [realpath(__DIR__.'/../../config') => config_path('/')],
-            //Publishable Database
-            'database' => [realpath(__DIR__.'/../../database/migrations') => database_path('/migrations')],
-            //Publishable CSS
-            'css' => [realpath(__DIR__.'/../../public/css') => public_path('vendor/gitlab/ripple/public/css/')],
-            //Publishable JS
-            'js' => [realpath(__DIR__.'/../../public/js') => public_path('vendor/gitlab/ripple/public/js/')],
+            #Publishable Assets
+            'assets' => [realpath(__DIR__ . '/../../public') => public_path('vendor/gitlab/ripple/public/')],
+            #Publishable Configuration
+            'config' => [realpath(__DIR__ . '/../../config') => config_path('/')],
+            #Publishable Database
+            'database' => [realpath(__DIR__ . '/../../database/migrations') => database_path('/migrations')],
+            #Publishable CSS
+            'css' => [realpath(__DIR__ . '/../../public/css') => public_path('vendor/gitlab/ripple/public/css/')],
+            #Publishable JS
+            'js' => [realpath(__DIR__ . '/../../public/js') => public_path('vendor/gitlab/ripple/public/js/')],
         ];
         foreach ($publishes as $tag => $paths):
             $this->publishes($paths, $tag);
-//            dd();
         endforeach;
     }
 
-    public function loadBladeDirectives()
+    public function loadBladeDirectives($RippleBlade)
     {
-        $RippleBlade = new RippleBlade();
-        foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod) {
+        foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod)
+        {
             $RippleBlade->{$BladeMethod->name}();
         }
     }
 
     public function loadHelpers()
     {
-        foreach (glob(__DIR__.'/../Support/Helpers/*.php') as $file) {
+        foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file)
+        {
             require_once realpath($file);
         }
     }
+
 }

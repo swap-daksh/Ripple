@@ -57,6 +57,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
      */
     Route::any('/posts', 'PostController@postIndex')->name('adminPostIndex');
     Route::any('/post/add', 'PostController@postAdd')->name('adminPostAdd');
+    Route::any('/post/edit', 'PostController@postEdit')->name('adminPostEdit');
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Users

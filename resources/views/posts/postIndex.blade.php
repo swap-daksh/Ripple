@@ -5,7 +5,7 @@
         <div class="block-header bg-gray-darker">
             <ul class="block-options">
                 <li>
-                    <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-circle text-success" style="font-size: 18px"></i> New Post</button>
+                    <a href="{!! route('Ripple::adminPostAdd') !!}"><i class="fa fa-circle text-success" style="font-size: 18px"></i> New Post</a>
                 </li>
             </ul>
             <h3 class="block-title">Posts</h3>
