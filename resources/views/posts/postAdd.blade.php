@@ -17,7 +17,7 @@
             </div>
             <div class="block-content">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-9">
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <input class="form-control" id="login1-username" name="post-title" placeholder="Post Title" type="text">
@@ -28,124 +28,101 @@
                                 <textarea name="post-content" class="ripple_text_editor" id="" cols="30" rows="10"></textarea>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <textarea name="post-excerpt" class="form-control" id="" rows="4" placeholder="Excerpt"></textarea>
+                            </div>
+                        </div>
                         <!--<div id="editor" style="min-height: 400px;width: 100%;"></div>-->
                         <!--<textarea name="post-code" id="code-editor" cols="30" rows="10"></textarea>-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-6 col-lg-3">
-                <div class="block block-themed">
-                    <div class="block-header bg-gray-darker">
-                        <ul class="block-options">
-                            <li>
-                                <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-circle text-success" style="font-size: 18px"></i></button>
-                            </li>
-                        </ul>
-                        <h3 class="block-title">Publish</h3>
-                    </div>
-                    <div class="block-content" style="min-height: 200px;">
-                        <p><i class="fa fa-flag"></i> Status: <b id="current-status">Draft</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
-                        <input type="hidden" value="draft" name="post-status" id="post-status">
-                        <p><i class="fa fa-eye"></i> Visibility: <b id="current-status">Public</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
-                        <input type="hidden" value="public" name="post-visibility">
-                        <p><i class="fa fa-comments"></i> Comments: <b id="current-status">Open</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
-                        <input type="hidden" value="open" name="post-comments">
-                    </div>
-                    <div class="block-content bg-gray-lighter">
-                        <p class="text-center">
-                            <button class="btn btn-primary btn-rounded" type="submit">Save as Draft</button>
-                            <button class="btn btn-primary btn-rounded" type="submit" onclick="document.getElementById('post-status').value ='published';">Publish</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="block block-themed">
-                    <div class="block-header bg-gray-darker">
-                        <ul class="block-options">
-                            <li>
-                                <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-folder-open text-primary" style="font-size: 18px"></i></button>
-                            </li>
-                        </ul>
-                        <h3 class="block-title">Categories</h3>
-                    </div>
-                    <div class="block-content scrollable200" style="min-height: 200px;max-height: 200px;">
-                        @foreach($categories as $category)
-                        @if($category->parent === 0)
-                        <div class="col-md-12 remove-padding post-categories">
-                            <label for="category-{!! $category->id !!}" class="css-input css-checkbox css-checkbox-primary">
-                                <input id="category-{!! $category->id !!}" name="post-category[]" value="{!! $category->id !!}" type="checkbox">
-                                <span></span> 
-                                {!! $category->name !!}
-                            </label>
-                            @foreach($categories as $child)
-                            @if($child->parent === $category->id)
-                            <div class="col-md-12" style="padding: 0px 20px;">
-                                <label for="category-{!! $child->id !!}" class="css-input css-checkbox css-checkbox-success">
-                                    <input id="category-{!! $child->id !!}" name="post-category[]" value="{!! $child->id !!}" type="checkbox">
-                                    <span></span> 
-                                    {!! $child->name !!}
-                                </label>
+                        <div class="block block-bordered">
+                            <ul class="nav nav-tabs" data-toggle="tabs">
+                                <li class="active">
+                                    <a href="#btabs-post-categories"><i class="fa fa-folder-open"></i> Categories</a>
+                                </li>
+                                <li class="">
+                                    <a href="#btabs-post-tags"><i class="fa fa-tags"></i> Tags</a>
+                                </li>
+                                <li class="pull-right">
+                                    <a href="#btabs-post-settings" data-toggle="tooltip" title="" data-original-title="Settings"><i class="si si-settings"></i> Settings</a>
+                                </li>
+                            </ul>
+                            <div class="block-content tab-content">
+                                <div class="tab-pane fade fade-left active in" id="btabs-post-categories">
+                                    <div class="row block-content-row">
+                                        <div class="col-md-12">
+                                            @foreach(Ripple::allCategories() as $category)
+                                            <label for="category-{!! $category->id !!}" class="css-input btn checkbox-category btn-default css-checkbox css-checkbox-primary">
+                                                <input id="category-{!! $category->id !!}" name="post-category[]" value="{!! $category->id !!}" type="checkbox">
+                                                <span></span> 
+                                                {!! $category->name !!}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade fade-left" id="btabs-post-tags">
+                                    <div class="row block-content-row">
+                                        <div class="col-md-12">
+                                            @foreach(Ripple::allTags() as $tag)
+                                            <label for="tag-{!! $tag->id !!}" class="btn btn-default checkbox-tag css-input css-checkbox css-checkbox-info">
+                                                <input id="tag-{!! $tag->id !!}" name="post-tag[]" value="{!! $tag->id !!}" type="checkbox">
+                                                <span></span> 
+                                                {!! $tag->name !!}
+                                            </label>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade fade-left" id="btabs-post-settings">
+                                    <h4 class="font-w300 push-15">Settings Tab</h4>
+                                    <p>Content slides in to the left..</p>
+                                </div>
                             </div>
-                            @endif
-                            @endforeach
                         </div>
-                        @endif
-                        @endforeach
+
                     </div>
-                    <div class="block-content bg-gray-lighter text-center clearfix">
-                        <p>
-                            <button class="btn btn-success btn-rounded" type="button">Add Category</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="block block-themed">
-                    <div class="block-header bg-gray-darker">
-                        <ul class="block-options">
-                            <li>
-                                <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-tags text-primary" style="font-size: 18px"></i></button>
-                            </li>
-                        </ul>
-                        <h3 class="block-title">Tags</h3>
-                    </div>
-                    <div class="block-content scrollable200" style="min-height: 200px;max-height: 200px;">
-                        @foreach($tags as $tag)
-                        <label for="tag-{!! $tag->id !!}" class="checkbox-tag css-input css-checkbox css-checkbox-info">
-                            <input id="tag-{!! $tag->id !!}" name="post-tag[]" value="{!! $tag->id !!}" type="checkbox">
-                            <span></span> 
-                            {!! $tag->name !!}
-                        </label>
-                        @endforeach
-                    </div>
-                    <div class="block-content bg-gray-lighter text-center clearfix">
-                        <p>
-                            <button class="btn btn-success btn-rounded" type="button">Add Tag</button>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6 col-lg-3">
-                <div class="block block-themed">
-                    <div class="block-header bg-gray-darker">
-                        <ul class="block-options">
-                            <li>
-                                <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-photo text-primary" style="font-size: 18px"></i></button>
-                            </li>
-                        </ul>
-                        <h3 class="block-title">Featured Image</h3>
-                    </div>
-                    <div class="block-content text-center " style="min-height: 200px;max-height: 200px;">
-                        <div class="clearfix" id="featured-image"><img width="200" class="img-thumbnail" src="{!! ripple_asset('/img/default/default.png') !!}" alt=""></div>
-                    </div>
-                    <div class="block-content bg-gray-lighter text-center clearfix">
-                        <p>
-                            <input type="file" class="image-preview" name="post-image" id="post-image" data-preview='featured-image' style="display:none;">
-                            <button class="btn btn-success btn-rounded" type="button" onclick="document.getElementById('post-image').click();">Change Image</button>
-                        </p>
+                    <div class="col-lg-3">
+                        <div class="block block-themed block-bordered block-rounded" style="border-color: #999999;">
+                            <div class="block-header bg-muted">
+                                <h3 class="block-title">Publish</h3>
+                            </div>
+                            <div class="block-content" >
+                                <p><i class="fa fa-flag"></i> Status: <b id="current-status">Draft</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
+                                <input type="hidden" value="draft" name="post-status" id="post-status">
+                                <p><i class="fa fa-eye"></i> Visibility: <b id="current-status">Public</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
+                                <input type="hidden" value="public" name="post-visibility">
+                                <p><i class="fa fa-comments"></i> Comments: <b id="current-status">Open</b> <a href="javascript:void(0);" class="pull-right"><i class="fa fa-pencil-square-o"></i></a></p>
+                                <input type="hidden" value="open" name="post-comments">
+                            </div>
+                            <div class="block-content bg-gray-lighter">
+                                <p class="text-center">
+                                    <button class="btn btn-primary btn-rounded" type="submit">Save as Draft</button>
+                                    <button class="btn btn-primary btn-rounded" type="submit" onclick="document.getElementById('post-status').value = 'published';">Publish</button>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="block block-themed block-bordered block-rounded" style="border-color: #70B9EB;">
+                            <div class="block-header bg-info">
+                                <ul class="block-options">
+                                    <li>
+                                        <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-photo" style="font-size: 18px"></i></button>
+                                    </li>
+                                </ul>
+                                <h3 class="block-title">Featured Image</h3>
+                            </div>
+                            <div class="block-content text-center " style="min-height: 200px;max-height: 200px;">
+                                <div class="clearfix" id="featured-image">
+                                    <img width="200" height="200" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
+                                </div>
+                            </div>
+                            <div class="block-content bg-gray-lighter text-center clearfix">
+                                <p>
+                                    <input type="file" class="image-preview" name="post-image" id="post-image" data-preview='featured-image' style="display:none;">
+                                    <button class="btn btn-success btn-rounded" type="button" onclick="document.getElementById('post-image').click();">Change Image</button>
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -299,28 +276,7 @@
     </div>
 </div>
 @stop
-@push('page-script')
-<style>
-    .checkbox-tag {
-        margin: 7px;
-        border: 1px solid #DDDDDD;
-        padding: 5px 15px 5px 5px;
-        border-radius: 5px;
-    }
-    .checkbox-tag span {
-        border-radius: 11px;
-    }
-    .checkbox-tag input + span::after {
-        content: "\f02b"; 
-    }
-    .post-categories .css-checkbox, .post-categories .css-radio{
-        width: 100%;
-    }
-    .post-categories .css-checkbox:hover, .post-categories .css-radio:hover{
-
-        background: #F5F5F5;
-    }
-</style>
+@push('page-script') 
 <link rel="stylesheet" href="{!! ripple_asset('/lib/css/select2/select2.min.css') !!}"/>
 <script src="{!! ripple_asset('/lib/js/select2/select2.min.js') !!}" type="text/javascript" charset="utf-8"></script>
 <script src="{!! ripple_asset('/lib/js/slimscroll/slimscroll.min.js') !!}" type="text/javascript" charset="utf-8"></script>

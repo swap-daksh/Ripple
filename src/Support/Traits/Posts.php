@@ -11,8 +11,10 @@ trait Posts
     private function createPost()
     {
         if (request()->has('post-create')):
+            $category = json_encode((request('post-category') ? request('post-category') : array()));
+            $tag = json_encode((request('post-tag') ? request('post-tag') : array()));
             $slug = $this->post_slug(str_slug(request('post-title'), '-'));
-            $createPost = ['title' => request('post-title'), 'slug' => $slug, 'content' => request('post-content'), 'image' => storeFileAs('post-image', $slug), 'author' => request('post-author'), 'comments' => request('post-comments'), 'categories' => json_encode(request('post-category')), 'tags' => json_encode(request('post-tag')), 'type' => request('post-type'), 'status' => request('post-status'), 'visibility' => request('post-visibility')];
+            $createPost = ['title' => request('post-title'), 'slug' => $slug, 'content' => request('post-content'), 'excerpt' => request('post-excerpt'), 'image' => storeFileAs('post-image', $slug), 'author' => request('post-author'), 'comments' => request('post-comments'), 'categories' => $category, 'tags' => $tag, 'type' => request('post-type'), 'status' => request('post-status'), 'visibility' => request('post-visibility')];
             $DBinsert = DBinsert(new Post(), $createPost);
             if ($DBinsert):
                 session()->flash('post', $DBinsert->id);
@@ -24,11 +26,12 @@ trait Posts
     private function updatePost()
     {
         if (request()->has('post-update')):
-            $updatePost = ['title' => request('post-title'), 'content' => request('post-content'), 'comments' => request('post-comments'), 'categories' => json_encode(request('post-category')), 'tags' => json_encode(request('post-tag')), 'status' => request('post-status'), 'visibility' => request('post-visibility')];
-            $DBinsert = DB::table('posts')->update($updatePost);
-            if ($DBinsert):
-                session()->flash('post', $DBinsert->id);
-                return $DBinsert;
+            $category = json_encode((request('post-category') ? request('post-category') : array()));
+            $tag = json_encode((request('post-tag') ? request('post-tag') : array()));
+            $updatePost = ['title' => request('post-title'), 'content' => request('post-content'), 'excerpt' => request('post-excerpt'), 'comments' => request('post-comments'), 'categories' => $category, 'tags' => $tag, 'status' => request('post-status'), 'visibility' => request('post-visibility')];
+            if (DB::table('posts')->where('id', request('post-id'))->update($updatePost)):
+                session()->flash('post', request('post-title') . " successfully updated...");
+                return true;
             endif;
         endif;
     }
@@ -54,6 +57,11 @@ trait Posts
     public function post($post, $column = 'id')
     {
         return DB::table('posts')->where($column, $post)->first();
+    }
+
+    public function posts($column = 'status', $value = 'published')
+    {
+        return DB::table('posts')->where($column, $value)->get();
     }
 
 }

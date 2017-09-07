@@ -1,3 +1,23 @@
+/*Block 
+*/
+.block-content-row{
+    margin-bottom: 20px;
+}
+
+
+/*
+Checkbox
+*/
+.checkbox-tag span, .checkbox-category span {
+    border-radius: 11px;
+}
+.checkbox-tag input + span::after {
+    content: "\f02b"; 
+}
+.checkbox-category input + span::after {
+    content: "\f07c"; 
+}
+
 
 /*
  * Toaster Notification

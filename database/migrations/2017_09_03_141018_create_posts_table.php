@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->longText('content')->nullable();
+            $table->text('excerpt')->nullable();
             $table->string('image')->nullable();
             $table->integer('author');
             $table->string('comments')->default('open');
@@ -28,6 +29,7 @@ class CreatePostsTable extends Migration
             $table->string('type')->default('post');
             $table->string('status');
             $table->string('visibility')->default('public')->nullable();
+            $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });
     }

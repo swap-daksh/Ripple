@@ -16,35 +16,46 @@
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 120px;"><i class="si si-user"></i></th>
-                            <th>Name</th>
-                            <th style="width: 30%;">Email</th>
-                            <th style="width: 15%;">Access</th>
-                            <th style="width: 15%;">Publishes</th>
-                            <th class="text-center" style="width: 100px;">Actions</th>
+                            <th>Title</th>
+                            <th style="width: 30%;">Description</th>
+                            <th style="width: 120px;" class="text-center">Publisher</th>
+                            <th style="width: 15%;">Status</th>
+                            <th class="text-center" style="width: 15%;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @for($i=0; $i<5;$i++)
+                        @foreach(Ripple::posts() as $post)
                         <tr>
                             <td class="text-center">
+                                @if(is_null($post->image))
                                 <img class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
+                                @else
+                                <img class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
+                                @endif
                             </td>
-                            <td class="font-w600">Julia Cole</td>
-                            <td>client1@example.com</td>
-                            <td>
-                                <span class="label label-info">Business</span>
+                            <td class="font-w600">{!! $post->title !!}</td>
+                            <td>{!! $post->excerpt !!}</td>
+                            <td class="text-center">
+                                <a href="javascript:void({!! $post->author !!});">
+                                    @if(is_null($post->image))
+                                    <img class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
+                                    @else
+                                    <img class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
+                                    @endif
+                                </a>
                             </td>
                             <td>
-                                <span class="badge badge-info">25</span>
+                                <span class="label label-info">{!! $post->status !!}</span>
                             </td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Edit Client"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
+                                    <a class="btn btn-xs btn-default" href="{!! route('Ripple::adminPostEdit',['post'=>$post->id]) !!}" data-toggle="tooltip" title="" data-original-title="Edit Client"><i class="fa fa-pencil"></i> Edit</a>
+                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Remove Client"><i class="fa fa-trash"></i> Trash</button>
                                 </div>
                             </td>
                         </tr>
-                        @endfor
+                        @endforeach
+
 
                     </tbody>
                 </table>
@@ -121,3 +132,8 @@
     </div>
 </div>
 @stop
+@push('page-script')
+<script>
+    console.log(route('Ripple::adminPostEdit', {'post':'11'}));
+</script>
+@endpush

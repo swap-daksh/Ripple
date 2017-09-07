@@ -3,11 +3,11 @@
 namespace GitLab\Ripple;
 
 use Illuminate\Support\Facades\DB;
-use GitLab\Ripple\Support\Traits\Categories;
 
 class Ripple {
 
-    use Categories;
+    use \GitLab\Ripple\Support\Traits\Categories;
+    use \GitLab\Ripple\Support\Traits\Posts;
 
     public static function settings() {
         return DB::table('settings')->get();
