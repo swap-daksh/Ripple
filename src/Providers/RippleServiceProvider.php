@@ -31,6 +31,9 @@ class RippleServiceProvider extends ServiceProvider
 
         #Load Ripple Helpers
         $this->loadHelpers();
+
+        #Register Doctorine Custom Datatypes
+        $this->registerCustomDataTypes();
     }
 
     /**
@@ -43,8 +46,8 @@ class RippleServiceProvider extends ServiceProvider
         #Register Ripple commands
         $this->loadCommands();
 
-        #Register Ripple Facade Class to app
-        $this->app->bind('ripple', \GitLab\Ripple\Ripple::class);
+        #Register Ripple Facades to app
+        $this->bindFacades();
 
         #Load All Aliases to app
         $this->loadAlias();
@@ -63,12 +66,23 @@ class RippleServiceProvider extends ServiceProvider
         endif;
     }
 
-    public function loadCommands()
+    public function bindFacades()
     {
-        $this->commands([
-            \GitLab\Ripple\Commands\RippleInstall::class,
-            \GitLab\Ripple\Commands\RippleCssJs::class,
-        ]);
+        if (!is_null(config('ripple.facades'))):
+            foreach (config('ripple.facades') as $facade => $class):
+                $this->app->bind($facade, $class);
+            endforeach;
+        endif;
+    }
+
+    public function loadCommands($commands = array())
+    {
+        #Load All Commands
+        foreach (glob(__DIR__ . '/../Commands/*.php') as $command):
+            $commands[] = '\GitLab\Ripple\Commands\\' . basename($command, '.php');
+        endforeach;
+        #Register All Commands
+        $this->commands($commands);
     }
 
     public function loadPublishableResources()
@@ -104,6 +118,13 @@ class RippleServiceProvider extends ServiceProvider
         {
             require_once realpath($file);
         }
+    }
+
+    public function registerCustomDataTypes()
+    {
+        foreach (\GitLab\Ripple\Support\Database\DataTypes\Type::$register as $datatype => $class):
+            \Doctrine\DBAL\Types\Type::addType($datatype, $class);
+        endforeach;
     }
 
 }

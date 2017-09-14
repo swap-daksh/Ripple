@@ -6,6 +6,7 @@ use GitLab\Ripple\Support\Database\Schema\SchemaManager;
 
 class Table
 {
+
     private $table;
     private $columns;
 
@@ -21,23 +22,27 @@ class Table
 
     public function columns($columns)
     {
-        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
-        foreach ($columns as $column) {
-            $this->columns[] = $this->column((object) $column);
+        foreach ($columns as $column)
+        {
+            $column = $this->column((object) $column);
+            $this->addColumn($column)->columns[] = $column;
         }
+        return $this;
     }
 
     public function column($column)
     {
         return (array) [
-                    'name'    => $column->name,
-                    'type'    => $column->type,
+                    'name' => $column->name,
+                    'type' => $column->type,
                     'options' => self::columnOptions($this->columnNullable($this->columnUnsigned((array) $column))),
         ];
-//        $this->column = $column;
-//        dd($column['options']);
-//        dd($this->column);
-//        $this->table->addColumn($column['name'], $column['type'], $column['options']);
+    }
+
+    public function addColumn($column)
+    {
+        $this->table->addColumn($column['name'], $column['type'], $column['options']);
+        return $this;
     }
 
     public function create()
@@ -76,17 +81,16 @@ class Table
     private static function columnOptions($options)
     {
         $listOptions = array_diff_key($options, collect($options)->only('name', 'type', 'index')->toArray());
-//        $listOptions = $this->columnNullable($listOptions);
         $columnOptions = (array) [];
-        foreach ($listOptions as $key => $value) {
+        foreach ($listOptions as $key => $value)
+        {
             if ($value === 'on') {
                 $columnOptions[$key] = true;
                 continue;
             }
             $columnOptions[$key] = $value;
         }
-//        $columnOptions = $this->columnNullable($this->columnUnsigned($columnOptions));
-//        dd($columnOptions);
         return $columnOptions;
     }
+
 }

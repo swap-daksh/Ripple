@@ -6,9 +6,14 @@ use GitLab\Ripple\Schema\Table;
 use GitLab\Ripple\Support\Traits\DatabaseTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use GitLab\Ripple\Support\Database\Schema\SchemaManager;
+
+use GitLab\Ripple\Support\Database\DataTypes\MediumInt;
+use Doctrine\DBAL\Types\Type;
 
 class DatabaseController extends Controller
 {
+
     use DatabaseTables;
 
     public function database()
@@ -20,17 +25,15 @@ class DatabaseController extends Controller
 
     public function createTable()
     {
+//        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
         if (request()->has('create-table')):
 
             dump(request('columns'));
-        $table = new Table(request('table'));
-//            $table->tablxe(request('table'));
-        $table->columns(request('columns'));
-//            $table->create();
+            $table = (new Table(request('table')))->columns(request('columns'))->create();
 
-        dd($table);
-        dd(request('columns')[1]);
-        dd(request()->all(), request('columns')[1], $this->checkTableColumns());
+//        dd($table);
+//        dd(request('columns')[1]);
+//        dd(request()->all(), request('columns')[1], $this->checkTableColumns());
         endif;
 
         return view('Ripple::database.database-create');
@@ -46,23 +49,23 @@ class DatabaseController extends Controller
             $attributes = [];
             foreach (request('columns') as $columns):
                 $column['name'] = $columns['name'];
-            $column['type'] = strtolower($columns['type']);
-            foreach ($columns['attributes'] as $name => $value):
+                $column['type'] = strtolower($columns['type']);
+                foreach ($columns['attributes'] as $name => $value):
                     if ($name == 'type') {
                         if ($value != '') {
                             $column['attributes'][strtolower($value)] = true;
                         }
                         continue;
                     }
-            if ($value == 'on') {
-                $column['attributes'][$name] = true;
-                continue;
-            }
-            $column['attributes'][$name] = $value;
-            endforeach;
+                    if ($value == 'on') {
+                        $column['attributes'][$name] = true;
+                        continue;
+                    }
+                    $column['attributes'][$name] = $value;
+                endforeach;
 
 //                dd($column);
-            $table->addColumn($column['type'], $column['name'], $column['attributes']);
+                $table->addColumn($column['type'], $column['name'], $column['attributes']);
             endforeach;
 //            dd($column);
 //            $table->bigIncrements('id')->index()->primary()->nullable()->unique()->after('column')->default('')->unsigned();
@@ -113,4 +116,5 @@ class DatabaseController extends Controller
             dd($table->getColumns());
         });
     }
+
 }

@@ -23,13 +23,25 @@ return [
     'assets_url' => '/vendor/gitlab/ripple/public',
     /*
       |----------------------------------------------------------------------------
-      |	Aliases
+      |	Facades Aliases
       |----------------------------------------------------------------------------
       |
-      | Here you can specify ripple Facades
+      | Here you can specify ripple Facades Aliases
       |
      */
     'aliases' => [
         'Ripple' => GitLab\Ripple\Support\Facades\Ripple::class,
+    ],
+    
+    /*
+      |----------------------------------------------------------------------------
+      |	Facades Classes
+      |----------------------------------------------------------------------------
+      |
+      | Here you can specify ripple Facades Classes
+      |
+     */
+    'facades' => [
+        'ripple' => \GitLab\Ripple\Ripple::class
     ],
 ];

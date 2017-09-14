@@ -2,9 +2,7 @@
 
 namespace GitLab\Ripple\Support\Database\Schema;
 
-use Illuminate\Support\Facades\DB;
-
-new \Doctrine\DBAL\Schema\Schema();
+use Illuminate\Support\Facades\DB; 
 
 abstract class SchemaManager
 {
