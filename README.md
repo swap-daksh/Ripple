@@ -14,7 +14,7 @@ Ripple Admin Panel & BREAD System, made for laravel 5.3 to 5.5.
 
 After creating your laravel application you can add Ripple Admin Panel to your Application with the following command
 ```
-composer require gitlab/ripple:"dev-master"
+composer require gitlab/ripple:"dev-dev"
 ```
 
 After installing Ripple Make sure you have running database connection that you can create by setting up your database details in your <code>.env</code> file
