@@ -1,11 +1,54 @@
-[![Latest Stable Version](https://poser.pugx.org/gitlab/ripple/v/stable)](https://packagist.org/packages/gitlab/ripple)
-[![Latest Unstable Version](https://poser.pugx.org/gitlab/ripple/v/unstable)](https://packagist.org/packages/gitlab/ripple)
-[![License](https://poser.pugx.org/gitlab/ripple/license)](https://packagist.org/packages/gitlab/ripple)
-[![composer.lock](https://poser.pugx.org/gitlab/ripple/composerlock)](https://packagist.org/packages/gitlab/ripple)
+<p align="center"><h1>Ripple Admin Package</h1></p>
+<p align="center">
+<a href="https://packagist.org/packages/gitlab/ripple"><img src="https://poser.pugx.org/gitlab/ripple/v/stable" alt=""></a>
+<a href="https://packagist.org/packages/gitlab/ripple"><img src="https://poser.pugx.org/gitlab/ripple/v/unstable" alt=""></a>
+<a href="https://packagist.org/packages/gitlab/ripple"><img src="https://poser.pugx.org/gitlab/ripple/downloads" alt=""></a>
+<a href="https://packagist.org/packages/gitlab/ripple"><img src="https://poser.pugx.org/gitlab/ripple/license" alt=""></a>
+</p>
 
-# Downloads
-[![Total Downloads](https://poser.pugx.org/gitlab/ripple/downloads)](https://packagist.org/packages/gitlab/ripple)
-[![Monthly Downloads](https://poser.pugx.org/gitlab/ripple/d/monthly)](https://packagist.org/packages/gitlab/ripple)
-[![Daily Downloads](https://poser.pugx.org/gitlab/ripple/d/daily)](https://packagist.org/packages/gitlab/ripple)
 # Ripple
+
+<strong>Ripple</strong> is a <strong>Laravel Admin Package</strong> that includes BREAD(CRUD), Operations, View Generator, Executing Artisan Commands and much more.
+<hr>
+Ripple Admin Panel & BREAD System, made for laravel 5.3 to 5.5.
+
+After creating your laravel application you can add Ripple Admin Panel to your Application with the following command
+```
+composer require gitlab/ripple:"dev-master"
+```
+
+After installing Ripple Make sure you have running database connection that you can create by setting up your database details in your <code>.env</code> file
+
+If you are running below laravel v5.5 then you have to add <strong>Ripple Service Provider</strong> in your <code>config/app.php</code> file in the <code>providers</code> array.
+
+```php
+
+'providers' => [
+    // Laravel Framework Service Providers...
+    //...
+    
+    // Package Service Providers
+    GitLab\Ripple\Providers\RippleServiceProvider::class,
+    // ...
+    
+    // Application Service Providers
+    // ...
+],
+
+```
+
+If your Laravel version is 5.5 then don't follow above process Laravel will auto discover the Ripple Admin Package.
+
+Before using Ripple Admin Package we suggest you to run these commands : -
+
+```
+php artisan ripple:install
+```
+
+<code>ripple:install</code> command will copy all neccessary config files and assets to your public and config directory that will help to run our Admin Package without any errors.
+
+<pre>
+as now Ripple is under development process so we suggest you not to install it in your Laravel Application we are releasing it's first beta version very soon.
+</pre>
+
 

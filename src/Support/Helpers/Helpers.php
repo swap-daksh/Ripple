@@ -64,7 +64,7 @@ if (!function_exists('DBinsert')) {
     /**
      * Save Request Data to Database 
      * @return boolean or {object}
-     * @parems instance, $array, Object
+     * @parems instance, property array, return type
      */
     function DBinsert($model, $properties, $return = "OBJ") {
         foreach ($properties as $column => $value) {

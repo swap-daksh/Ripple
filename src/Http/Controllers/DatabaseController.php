@@ -27,8 +27,6 @@ class DatabaseController extends Controller
     {
 //        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
         if (request()->has('create-table')):
-
-            dump(request('columns'));
             $table = (new Table(request('table')))->columns(request('columns'))->create();
 
 //        dd($table);
