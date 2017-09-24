@@ -43,6 +43,8 @@
             <h3 class="block-title">Create New Table</h3>
         </div>
         <div class="block-content clearfix">
+            <div id="testselect"></div>
+            <select class="datatypes" ></select>
             <form method="post" action="">
                 {!! csrf_field() !!}
                 <input type="hidden" value="zzz" name="create-table">
@@ -312,6 +314,7 @@
                     <button class="btn btn-primary" type="button"><i class="fa fa-plus"></i> Add Soft Deletes</button>
                 </div>
                 <div class="col-md-12 text-center margin-bottom no-padding">
+                    
                     <hr>
                     <div class="col-md-6 no-padding">
                         <input type="text" name="table" class="form-control" placeholder="Table Name">
@@ -333,13 +336,21 @@
         min-width: 150px !important;
     }
 </style>
+
 <script>
-    var options = {
-        'numeric': {}
-    };
+
+
     $(document).ready(function () {
-        "use strict";
+        "use strict";$('#testselect').html($.dataTypeDropdown());
+        $('.datatypes').dataTypeDropdown();
         var tr = $('tr');
     });
+    function strReplaceAll(string, Find, Replace) {
+    try {
+        return string.replace(new RegExp(Find, "gi"), Replace);
+    } catch (ex) {
+        return string;
+    }
+}
 </script>
 @endpush

@@ -67,6 +67,7 @@
 
         {{-- JS Scripts --}}
         <script src="{!! ripple_asset('/js/app.js') !!}"></script>
+        <script src="{!! ripple_asset('/js/functions.js') !!}"></script>
         @include('Ripple::layouts.scripts')
 
     </body>
