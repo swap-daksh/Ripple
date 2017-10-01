@@ -35,25 +35,18 @@
                         @elseif($setting->type === 'file')
                         <input  name="{!! $setting->key !!}" type="file">
                         @elseif($setting->type === 'image')
-                        <div class="animated fadeIn col-md-3 no-padding">
-                            <div class="img-container">
-                                <div id="data-preview-{!! $setting->key !!}">
-                                    @if(!is_null($setting->value))
-                                    <img class="img-responsive" src="{!! url(Storage::url($setting->value)) !!}" alt="" width="150" height="100">
-                                    @else
-                                    <img class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="" width="150" height="100">
-                                    @endif
-                                </div>
-                                <div class="img-options">
-                                    <div class="img-options-content">
-                                        <h3 class="font-w400 text-white push-5">{!! strtoupper($setting->display_name) !!}</h3>
-                                        <h4 class="h6 font-w400 text-white-op push-15"></h4>
-                                        <label class="btn btn-sm btn-default" for="{!! $setting->key !!}-input"><i class="fa fa-pencil"></i> Change</label>
-                                        <input type="file" class="image-preview file-input" id="{!! $setting->key !!}-input" data-preview='data-preview-{!! $setting->key !!}' name="{!! $setting->key !!}" style="display: none">
-                                        <a class="btn btn-sm btn-default" href="javascript:void(0)"><i class="fa fa-times"></i> Delete</a>
-                                    </div>
-                                </div>
+                        <div class="col-md-3">
+                            <div id="data-preview-{!! $setting->key !!}">
+                                @if(!is_null($setting->value))
+                                <img class="img-responsive" src="{!! url(Storage::url($setting->value)) !!}" alt="" width="150" height="100">
+                                @else
+                                <img class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="" width="150" height="100">
+                                @endif
                             </div>
+                        </div>
+                        <div class="col-md-12">
+                        <label class="btn btn-sm btn-default" for="{!! $setting->key !!}-input"><i class="fa fa-pencil"></i> Change</label>
+                            <input type="file" class="image-preview file-input" id="{!! $setting->key !!}-input" data-preview='data-preview-{!! $setting->key !!}' name="{!! $setting->key !!}" style="display: none">
                         </div>
                         @elseif($setting->type === 'radio')
                         <p class="items-push">
