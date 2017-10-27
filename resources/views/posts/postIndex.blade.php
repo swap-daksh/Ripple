@@ -1,16 +1,11 @@
 @extends('Ripple::layouts.app')
 @section('page-content')
+<div class="page-header" style="margin: 0px;border-bottom: 1px solid gray;">
+    <h1  style="margin: 0px;">Posts<small>...</small> <a  href="{!! route('Ripple::adminPostAdd') !!}" class="btn btn-success btn-sm">Create Setting</a></h1>
+</div>
 <div class="content">
-    <div class="block block-themed">
-        <div class="block-header bg-gray-darker">
-            <ul class="block-options">
-                <li>
-                    <a href="{!! route('Ripple::adminPostAdd') !!}"><i class="fa fa-circle text-success" style="font-size: 18px"></i> New Post</a>
-                </li>
-            </ul>
-            <h3 class="block-title">Posts</h3>
-        </div>
-        <div class="block-content">
+    <div class="panel">
+        <div class="panel-body">
             <div class="table-responsive">
                 <table class="table table-striped table-vcenter table-header-bg option-wrappers">
                     <thead>
@@ -28,9 +23,9 @@
                         <tr>
                             <td class="text-center">
                                 @if(is_null($post->image))
-                                <img class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
+                                <img class="img-avatar img-avatar48" width="115" height="115" src="assets/img/avatars/avatar6.jpg" alt="">
                                 @else
-                                <img class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
+                                <img class="img-avatar img-avatar48" width="115" height="115" src="{!! url(Storage::url($post->image)) !!}" alt="">
                                 @endif
                             </td>
                             <td class="font-w600">{!! $post->title !!}</td>
@@ -38,9 +33,9 @@
                             <td class="text-center">
                                 <a href="javascript:void({!! $post->author !!});">
                                     @if(is_null($post->image))
-                                    <img class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
+                                    <img width="115" height="115" class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
                                     @else
-                                    <img class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
+                                    <img width="115" height="115" class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
                                     @endif
                                 </a>
                             </td>
@@ -55,8 +50,6 @@
                             </td>
                         </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
             </div>
@@ -134,6 +127,6 @@
 @stop
 @push('page-script')
 <script>
-    console.log(route('Ripple::adminPostEdit', {'post':'11'}));
+    console.log(route('Ripple::adminPostEdit', {'post': '11'}));
 </script>
 @endpush

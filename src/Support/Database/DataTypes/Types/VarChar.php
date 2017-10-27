@@ -8,21 +8,22 @@ use Doctrine\DBAL\Types\Type;
 class VarChar extends Type
 {
 
-    const VARCHAR = 'varchar';
+    const VARCHAR = 'VARCHAR';
 
     public function getSQLDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return 'VarChar';
+        $length = $fieldDeclaration['length'] === null ? 255 : $fieldDeclaration['length'];
+        return "VARCHAR({$length})";
     }
 
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-        //return (null === $value) ? null : (int) $value;
+        return (null === $value) ? null : (int) $value;
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
-        //return $value->toDecimal();
+        return null === $value || '' === $value ? null : (string) $value;
     }
 
     public function getName()

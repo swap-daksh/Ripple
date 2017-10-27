@@ -29,8 +29,11 @@ trait Posts
             $category = json_encode((request('post-category') ? request('post-category') : array()));
             $tag = json_encode((request('post-tag') ? request('post-tag') : array()));
             $updatePost = ['title' => request('post-title'), 'content' => request('post-content'), 'excerpt' => request('post-excerpt'), 'comments' => request('post-comments'), 'categories' => $category, 'tags' => $tag, 'status' => request('post-status'), 'visibility' => request('post-visibility')];
+            if (request()->hasFile('post-image')):
+                $updatePost['image'] = storeFileAs('post-image', $this->post(request('post-id'))->slug);
+            endif;
             if (DB::table('posts')->where('id', request('post-id'))->update($updatePost)):
-                session()->flash('post', request('post-title') . " successfully updated...");
+                session()->flash('success', request('post-title') . " successfully updated...");
                 return true;
             endif;
         endif;

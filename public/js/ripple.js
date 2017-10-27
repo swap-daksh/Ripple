@@ -1,3 +1,11 @@
+//Sidebar
+(function () {
+    setInterval(function () {
+        
+        $('.side-bar-left').height($('.content-wrapper').outerHeight());
+    }, 10);
+}(jQuery));
+
 $(document).ready(function () {
     "use strict";
 
@@ -45,7 +53,7 @@ $(document).ready(function () {
      |	Page content height
      |----------------------------------------------------------------------
      */
-    $('.image-preview').previewImage({id: 'asdfasfd'});
+    $('.image-preview').previewImage({ id: 'asdfasfd' });
 
 
 
@@ -74,9 +82,9 @@ $(document).ready(function () {
     var setting_type = "#setting-type, .setting-type, select[name=setting-type], select[data-id=setting-type]";
     $(document).on('change', setting_type, function (e) {
         var type = $(this).val(),
-                setting_options = "#setting-options, .setting-options, div[data-id=setting-options]",
-                option_name = 'input.option-name[data-id=option-name][data-name=option-name]',
-                option_value = 'input.option-value[data-id=option-value][data-name=option-value]';
+            setting_options = "#setting-options, .setting-options, div[data-id=setting-options]",
+            option_name = 'input.option-name[data-id=option-name][data-name=option-name]',
+            option_value = 'input.option-value[data-id=option-value][data-name=option-value]';
         if (type === "radio" || type === "dropdown") {
             $(setting_options).slideDown(500, function () {
                 $(this).find(option_name).attr('name', 'option-name[]');
@@ -94,8 +102,8 @@ $(document).ready(function () {
     });
     $(document).on('click', '[data-dismiss="modal"]', function () {
         var setting_options = "#setting-options, .setting-options, div[data-id=setting-options]",
-                option_name = 'input.option-name[data-id=option-name][data-name=option-name]',
-                option_value = 'input.option-value[data-id=option-value][data-name=option-value]';
+            option_name = 'input.option-name[data-id=option-name][data-name=option-name]',
+            option_value = 'input.option-value[data-id=option-value][data-name=option-value]';
         $(setting_options).slideUp(500, function () {
             $(this).find(option_name + ', ' + option_value).removeAttr('name').val('');
             $('.setting-option-group.option-group').each(function (index, ele) {
@@ -107,7 +115,7 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.add-options, #add-options', function () {
-//        var new_option = $('.option-group.setting-option-group:first').clone(true, true);
+        //        var new_option = $('.option-group.setting-option-group:first').clone(true, true);
         $('#option-wrappers.option-wrappers').append($('.option-group.setting-option-group:first').clone(true, true));
         $('.option-group.setting-option-group:last').find('input').val('');
         $('.option-group.setting-option-group:last').find('input:first').val('').trigger('focus');
@@ -137,7 +145,7 @@ $(document).ready(function () {
         items: '.setting-option-group',
         opacity: .75,
         handle: '.draggable-handler',
-//        placeholder: 'draggable-placeholder',
+        //        placeholder: 'draggable-placeholder',
         tolerance: 'pointer',
         start: function (e, ui) {
             ui.placeholder.css({
@@ -146,7 +154,7 @@ $(document).ready(function () {
             });
         }
     });
-    
+
 
     /*
      * ------------------------------------------------------------------------------------------------------------------
@@ -200,7 +208,7 @@ $(document).ready(function () {
 
 
 });
- 
+
 /*
  * Function Declarations
  */
@@ -208,18 +216,19 @@ $(document).ready(function () {
 $.fn.extend({
     previewImage: function (o) {
         this.on('change', function () {
-            var options = $.extend({'class': 'img-responsive', id: '', height: 'auto', width: 'auto', alt: '', wrapInto: '#' + $(this).attr('data-preview')}, o);
+            var options = $.extend({ 'class': 'img-responsive', id: '', height: '200', width: 'auto', alt: '', wrapInto: '#' + $(this).attr('data-preview') }, o);
 
             $(options.wrapInto)
-                    //Setting up img wrapper height to prevent toggle div height
-                    .css('height', $(options.wrapInto).children('img').height() + 'px')
-                    .html('');
+                //Setting up img wrapper height to prevent toggle div height
+                .css('height', $(options.wrapInto).children('img').height() + 'px')
+                .html('');
             if (typeof (FileReader) !== 'undefined') {
                 for (var i in this.files) {
                     if (typeof this.files[i] === 'object' && this.files[i].type === 'image/jpeg' || this.files[i].type === 'image/png' || this.files[i].type === 'image/gif' || this.files[i].type === 'image/svg' || this.files[i].type === 'image/jpg') {
                         var image = new FileReader();
                         image.onload = function (e) {
-                            $('<img/>', {src: e.target.result, class: options.class, width: options.width, height: options.height, alt: options.alt, id: options.id
+                            $('<img/>', {
+                                src: e.target.result, class: options.class, width: options.width, height: options.height, alt: options.alt, id: options.id
                             }).appendTo(options.wrapInto);
                         };
                         image.readAsDataURL(this.files[i]);

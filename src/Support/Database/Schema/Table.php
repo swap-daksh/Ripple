@@ -2,95 +2,40 @@
 
 namespace GitLab\Ripple\Schema;
 
+use Doctrine\DBAL\Schema\Table as DoctrineTable;
 use GitLab\Ripple\Support\Database\Schema\SchemaManager;
+use GitLab\Ripple\Schema\Column;
+use GitLab\Ripple\Schema\Index;
 
 class Table
 {
 
     private $table;
-    private $columns;
 
-    public function __construct($table)
+    public function make($table)
     {
-        return $this->table = SchemaManager::schemaTable($table);
-    }
+        $name = (string) $table['table'];
+        $columns = [];
+        $indexes = [];
+        foreach (json_decode($table['columns'], true) as $column):
+            if (strlen($column['index']) >= 1):
+                $index = (new Index())->make($column);
+                $indexes[$index->getName()] = $index;
+            endif;
+            $column = (new Column())->make($column);
+            $columns[$column->getName()] = $column;
 
-    public function table($table)
-    {
-        return $this;
-    }
-
-    public function columns($columns)
-    {
-        foreach ($columns as $column)
-        {
-            $column = $this->column((object) $column);
-            $this->addColumn($column)->columns[] = $column;
-        }
-        return $this;
-    }
-
-    public function column($column)
-    {
-        return (array) [
-                    'name' => $column->name,
-                    'type' => $column->type,
-                    'options' => self::columnOptions($this->columnNullable($this->columnUnsigned((array) $column))),
-        ];
-    }
-
-    public function addColumn($column)
-    {
-        $this->table->addColumn($column['name'], $column['type'], $column['options']);
+        endforeach;
+        $foreignKeys = [];
+        $options = isset($table['options']) ? $table['options'] : [];
+        $this->table = (new DoctrineTable($name, $columns, $indexes, $foreignKeys, false, $options));
         return $this;
     }
 
     public function create()
     {
-        $this->table->setPrimaryKey(['id']);
         SchemaManager::databaseManager()->createTable($this->table);
-    }
-
-    public function columnNullable($columnArray)
-    {
-        if (!array_key_exists('nullable', $columnArray)):
-            $columnArray['nullable'] = false;
-        endif;
-
-        return $columnArray;
-    }
-
-    public function columnUnsigned($columnArray)
-    {
-        if (!array_key_exists('unsigned', $columnArray)):
-            $columnArray['unsigned'] = false;
-        endif;
-
-        return $columnArray;
-    }
-
-    public function columnAutoIncrement($columnArray)
-    {
-        if (!array_key_exists('unsigned', $columnArray)):
-            $columnArray['unsigned'] = false;
-        endif;
-
-        return $columnArray;
-    }
-
-    private static function columnOptions($options)
-    {
-        $listOptions = array_diff_key($options, collect($options)->only('name', 'type', 'index')->toArray());
-        $columnOptions = (array) [];
-        foreach ($listOptions as $key => $value)
-        {
-            if ($value === 'on') {
-                $columnOptions[$key] = true;
-                continue;
-            }
-            $columnOptions[$key] = $value;
-        }
-        return $columnOptions;
+        return true;
     }
 
 }

@@ -1,52 +1,89 @@
 @extends('Ripple::layouts.app')
 @section('page-content')
-{{-- Page Header --}}
-<div class="content bg-gray-lighter" >
-    <div class="row items-push">
-        <div class="col-sm-7">
-            <h1 class="page-heading">
-                Title <small>Subtitle.</small>
-            </h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Create New Post</div>
+                <div class="panel-body">
+                    <a class="btn btn-primary btn-sm" href="create-post.php">Create</a>
+                </div>
+            </div>
         </div>
-        <div class="col-sm-5 text-right hidden-xs">
-            <ol class="breadcrumb push-10-t">
-                <li>Category</li>
-                <li><a class="link-effect" href="">Page</a></li>
-            </ol>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">Panel heading without title</div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div></div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Panel title</h3>
+                </div>
+                <div class="panel-body">
+                    Panel content
+                </div>
+            </div>
         </div>
     </div>
 </div>
-{{-- END Page Header --}}
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+</button>
 
-{{-- Page Content --}}
-<div class="content">
-    {{-- My Block --}}
-    <div class="block">
-        <div class="block-header">
-            <ul class="block-options">
-                <li>
-                    <button type="button"><i class="si si-settings"></i></button>
-                </li>
-                <li>
-                    <button type="button" data-toggle="block-option" data-action="fullscreen_toggle"></button>
-                </li>
-                <li>
-                    <button type="button" data-toggle="block-option" data-action="refresh_toggle" data-action-mode="demo"><i class="si si-refresh"></i></button>
-                </li>
-                <li>
-                    <button type="button" data-toggle="block-option" data-action="content_toggle"></button>
-                </li>
-                <li>
-                    <button type="button" data-toggle="block-option" data-action="close"><i class="si si-close"></i></button>
-                </li>
-            </ul>
-            <h3 class="block-title">My Block</h3>
-        </div>
-        <div class="block-content">
-            <p></p>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-sm">Save changes</button>
+            </div>
         </div>
     </div>
-    {{-- END My Block --}}
 </div>
-{{-- END Page Content --}}
 @stop

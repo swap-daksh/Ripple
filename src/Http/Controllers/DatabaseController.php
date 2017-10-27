@@ -7,7 +7,6 @@ use GitLab\Ripple\Support\Traits\DatabaseTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use GitLab\Ripple\Support\Database\Schema\SchemaManager;
-
 use GitLab\Ripple\Support\Database\DataTypes\MediumInt;
 use Doctrine\DBAL\Types\Type;
 
@@ -25,15 +24,9 @@ class DatabaseController extends Controller
 
     public function createTable()
     {
-//        dd(\Doctrine\DBAL\Types\Type::getTypesMap());
-        if (request()->has('create-table')):
-            $table = (new Table(request('table')))->columns(request('columns'))->create();
-
-//        dd($table);
-//        dd(request('columns')[1]);
-//        dd(request()->all(), request('columns')[1], $this->checkTableColumns());
+        if (request()->has('table')) :
+            (new Table(request()->all()))->make(request()->all())->create();
         endif;
-
         return view('Ripple::database.database-create');
     }
 
@@ -45,10 +38,10 @@ class DatabaseController extends Controller
         Schema::create('cars', function ($table) {
             $column = [];
             $attributes = [];
-            foreach (request('columns') as $columns):
+            foreach (request('columns') as $columns) :
                 $column['name'] = $columns['name'];
                 $column['type'] = strtolower($columns['type']);
-                foreach ($columns['attributes'] as $name => $value):
+                foreach ($columns['attributes'] as $name => $value) :
                     if ($name == 'type') {
                         if ($value != '') {
                             $column['attributes'][strtolower($value)] = true;
