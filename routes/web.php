@@ -42,6 +42,17 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
      */
     Route::any('/database', 'DatabaseController@database')->name('adminDatabase');
     Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
+    Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
+
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                              CRUD/BREAD
+      |-------------------------------------------------------------------------------------------------------------------
+     */
+    Route::any('/bread/{table}/create', 'BreadController@createBread')->name('adminCreateBread');
+    Route::any('/bread/{table}/edit', 'BreadController@editBread')->name('adminEditBread');
+    Route::any('/bread/edit/{table}/rows', 'BreadController@editRowsBread')->name('adminEditRowsBread');
+    Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -65,6 +76,19 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
      */
     Route::any('/users', 'UserController@userIndex')->name('adminUserIndex');
     Route::any('/user/profile', 'UserController@userProfile')->name('adminUserProfile');
+
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                                     all Crud Operation
+      |-------------------------------------------------------------------------------------------------------------------
+     */
+    $abc = \Illuminate\Support\Facades\DB::table('breads')->get();
+    foreach ($abc as $key => $bread):
+        Route::any($bread->slug, function() use($bread) {
+            echo 'Hello this is ' . $bread->display_singular.' page';
+        });
+//        dd($bread);
+    endforeach;
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -119,7 +143,8 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         $RippleBLADE = new RippleBlade();
         $class = new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class);
 //        dd($class, $RippleBLADE);
-        foreach ((new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade) {
+        foreach ((new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade)
+        {
             $RippleBLADE->{$RippleBlade->name}();
 //            dd($RippleBlade, $RippleBlade);
 //            dd()

@@ -15,9 +15,10 @@
         </div>
         <div id="{!! $table.'_'.$loop->index !!}" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
             <div class="panel-body">
-                <a class="btn btn-sm btn-success" href="javascript:void(0);"><i class="fa fa-eye"></i> View</a>
+                <a class="btn btn-sm btn-success" href="{!! route('Ripple::adminViewTable', ['table'=>$table]) !!}"><i class="fa fa-eye"></i> View</a>
                 <a class="btn btn-sm btn-info" href="javascript:void(0);"><i class="fa fa-edit"></i> Edit</a>
                 <a class="btn btn-sm btn-danger" href="javascript:void(0);"><i class="fa fa-trash"></i> Delete</a>
+                <a class="btn btn-sm btn-danger" href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}"><i class="fa fa-pencil"></i> Bread</a>
             </div>
         </div>
     </div>

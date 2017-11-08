@@ -1,5 +1,7 @@
 <?php
 
+use GitLab\Ripple\Support\Database\Schema\SchemaManager;
+
 if (!function_exists('storeFileAs')) {
 
     /**
@@ -19,17 +21,31 @@ if (!function_exists('storeFileAs')) {
             if (!@$name) {
                 $name = request()->file($file)->getClientOriginalName();
             } else {
-                $name .= '.'.request()->file($file)->extension();
+                $name .= '.' . request()->file($file)->extension();
             }
             if (!@$path) {
                 $path = 'public';
             }
 
             return request()->file($file)->storeAs($path, $name);
-        }else{
+        } else {
             return request($file);
         }
     }
+
+}
+
+if (!function_exists('dbal_db')) {
+    /**
+     * returns Doctorine Dbal2 connection
+     * @return Object
+     */
+
+    function dbal_db()
+    {
+        return SchemaManager::databaseManager();
+    }
+
 }
 
 if (!function_exists('ripple_asset')) {
@@ -43,8 +59,9 @@ if (!function_exists('ripple_asset')) {
      */
     function ripple_asset($url)
     {
-        return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets').$url);
+        return url(config('ripple.assets_url', '/vendor/gitlab/ripple/assets') . $url);
     }
+
 }
 
 if (!function_exists('ripple_test')) {
@@ -52,10 +69,12 @@ if (!function_exists('ripple_test')) {
 }
 
 if (!function_exists('ripple_flash')) {
+
     function ripple_flash($key, $message)
     {
         dd('asdfasdfasfd');
     }
+
 }
 
 
@@ -66,8 +85,10 @@ if (!function_exists('DBinsert')) {
      * @return boolean or {object}
      * @parems instance, property array, return type
      */
-    function DBinsert($model, $properties, $return = "OBJ") {
-        foreach ($properties as $column => $value) {
+    function DBinsert($model, $properties, $return = "OBJ")
+    {
+        foreach ($properties as $column => $value)
+        {
             $model->$column = $value;
         }
         if ($return === "OBJ") {

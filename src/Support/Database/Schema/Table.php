@@ -11,6 +11,7 @@ class Table
 {
 
     private $table;
+    private $table_name;
 
     public function make($table)
     {
@@ -28,14 +29,27 @@ class Table
         endforeach;
         $foreignKeys = [];
         $options = isset($table['options']) ? $table['options'] : [];
+        $this->table_name = $name;
         $this->table = (new DoctrineTable($name, $columns, $indexes, $foreignKeys, false, $options));
         return $this;
     }
 
     public function create()
     {
-        SchemaManager::databaseManager()->createTable($this->table);
-        return true;
+        if (!$this->hasTable()):
+            dbal_db()->createTable($this->table);
+            return $this->hasTable(true);
+        endif;
+        session()->flash('table', $this->table_name);
+        return false;
+    }
+
+    public function hasTable($session = false)
+    {
+        if ($session):
+            session()->flash('table', $this->table_name);
+        endif;
+        return dbal_db()->tablesExist([$this->table_name]);
     }
 
 }
