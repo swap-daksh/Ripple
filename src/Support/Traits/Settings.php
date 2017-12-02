@@ -71,4 +71,6 @@ trait Settings
         return json_encode($option_json);
         endif;
     }
+    
+    
 }

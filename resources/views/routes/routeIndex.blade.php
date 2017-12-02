@@ -1,55 +1,51 @@
 @extends('Ripple::layouts.app')
 @section('page-content')
-<div class="page-header" style="margin: 0px;border-bottom: 1px solid gray;">
-    <h1  style="margin: 0px;">Posts<small>...</small> <a  href="{!! route('Ripple::adminPostAdd') !!}" class="btn btn-success btn-sm">Create Setting</a></h1>
-</div>
 <div class="content">
-    <div class="panel">
-        <div class="panel-body">
+    <div class="block block-themed">
+        <div class="block-header bg-gray-darker">
+            <ul class="block-options">
+                <li>
+                    <button data-toggle="modal" data-target="#modal-large" type="button"><i class="fa fa-circle text-success" style="font-size: 18px"></i> New Page</button>
+                </li>
+            </ul>
+            <h3 class="block-title">Pages</h3>
+        </div>
+        <div class="block-content">
             <div class="table-responsive">
                 <table class="table table-striped table-vcenter table-header-bg option-wrappers">
                     <thead>
                         <tr>
                             <th class="text-center" style="width: 120px;"><i class="si si-user"></i></th>
-                            <th>Title</th>
-                            <th style="width: 30%;">Description</th>
-                            <th style="width: 120px;" class="text-center">Publisher</th>
-                            <th style="width: 15%;">Status</th>
-                            <th class="text-center" style="width: 15%;">Actions</th>
+                            <th>Name</th>
+                            <th style="width: 30%;">Email</th>
+                            <th style="width: 15%;">Access</th>
+                            <th style="width: 15%;">Publishes</th>
+                            <th class="text-center" style="width: 100px;">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(Ripple::posts('status', 'draft') as $post)
+                        @for($i=0; $i<5;$i++)
                         <tr>
                             <td class="text-center">
-                                @if(is_null($post->image))
-                                <img class="img-avatar img-avatar48" width="115" height="115" src="assets/img/avatars/avatar6.jpg" alt="">
-                                @else
-                                <img class="img-avatar img-avatar48" width="115" height="115" src="{!! url(Storage::url($post->image)) !!}" alt="">
-                                @endif
+                                <img class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
                             </td>
-                            <td class="font-w600">{!! $post->title !!}</td>
-                            <td>{!! $post->excerpt !!}</td>
-                            <td class="text-center">
-                                <a href="javascript:void({!! $post->author !!});">
-                                    @if(is_null($post->image))
-                                    <img width="115" height="115" class="img-avatar img-avatar48" src="assets/img/avatars/avatar6.jpg" alt="">
-                                    @else
-                                    <img width="115" height="115" class="img-avatar img-avatar48" src="{!! url(Storage::url($post->image)) !!}" alt="">
-                                    @endif
-                                </a>
+                            <td class="font-w600">Julia Cole</td>
+                            <td>client1@example.com</td>
+                            <td>
+                                <span class="label label-info">Business</span>
                             </td>
                             <td>
-                                <span class="label label-info">{!! $post->status !!}</span>
+                                <span class="badge badge-info">25</span>
                             </td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a class="btn btn-xs btn-default" href="{!! route('Ripple::adminPostEdit',['post'=>$post->id]) !!}" data-toggle="tooltip" title="" data-original-title="Edit Client"><i class="fa fa-pencil"></i> Edit</a>
-                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Remove Client"><i class="fa fa-trash"></i> Trash</button>
+                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Edit Client"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-xs btn-default" type="button" data-toggle="tooltip" title="" data-original-title="Remove Client"><i class="fa fa-times"></i></button>
                                 </div>
                             </td>
                         </tr>
-                        @endforeach
+                        @endfor
+
                     </tbody>
                 </table>
             </div>
@@ -127,6 +123,5 @@
 @stop
 @push('page-script')
 <script>
-    console.log(route('Ripple::adminPostEdit', {'post': '11'}));
 </script>
 @endpush

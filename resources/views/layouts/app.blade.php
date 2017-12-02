@@ -16,7 +16,7 @@
         @jsRoutes
     </head>
     <body class="home">
-        <div id="app">
+        <div id="app" >
             {{-- Header --}}
             @include('Ripple::layouts.header')
             <main class="clearfix " >

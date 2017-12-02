@@ -2,14 +2,16 @@
 
 namespace GitLab\Ripple\Http\Controllers;
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
-    public function userIndex() {
+    public function userIndex()
+    {
         return view('Ripple::users.userIndex');
     }
 
-    public function userProfile() {
+    public function userProfile()
+    {
         return view('Ripple::users.userProfile');
     }
-
 }

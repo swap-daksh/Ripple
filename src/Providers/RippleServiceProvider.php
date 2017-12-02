@@ -90,6 +90,8 @@ class RippleServiceProvider extends ServiceProvider
         $publishes = [
             #Publishable Assets
             'assets' => [realpath(__DIR__ . '/../../public') => public_path('vendor/gitlab/ripple/public/')],
+            #Publishable Images
+            'images' => [realpath(__DIR__ . '/../../public/img') => public_path('vendor/gitlab/ripple/public/img/')],
             #Publishable Configuration
             'config' => [realpath(__DIR__ . '/../../config') => config_path('/')],
             #Publishable Database

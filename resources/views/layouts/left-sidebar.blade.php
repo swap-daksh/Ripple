@@ -15,6 +15,12 @@
                 <a class="" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Pages</span></a>
             </li>
             <li>
+                <a class="" href="{!! route('Ripple::adminRouteIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Routing</span></a>
+            </li>
+            <li>
+                <a class="" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Menus</span></a>
+            </li>
+            <li>
                 <a href="{!! route('Ripple::adminSettings') !!}"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Settings</span></a>
             </li>
             <li>

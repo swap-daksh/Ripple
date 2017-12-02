@@ -53,7 +53,14 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/bread/{table}/edit', 'BreadController@editBread')->name('adminEditBread');
     Route::any('/bread/edit/{table}/rows', 'BreadController@editRowsBread')->name('adminEditRowsBread');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
+    Route::any('/bread/update/status', 'BreadController@updateBreadStatus')->name('updateBreadStatus');
 
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                                     Routing
+      |-------------------------------------------------------------------------------------------------------------------
+     */
+    Route::any('/routes', 'RouteController@routeIndex')->name('adminRouteIndex');
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Pages
@@ -74,20 +81,38 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     Users
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/users', 'UserController@userIndex')->name('adminUserIndex');
+    Route::any('/users/list', 'UserController@userIndex')->name('adminUserIndex');
     Route::any('/user/profile', 'UserController@userProfile')->name('adminUserProfile');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
-      |                                     all Crud Operation
+      |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
     $abc = \Illuminate\Support\Facades\DB::table('breads')->get();
-    foreach ($abc as $key => $bread):
-        Route::any($bread->slug, function() use($bread) {
-            echo 'Hello this is ' . $bread->display_singular.' page';
-        });
+    foreach ($abc as $key => $bread) :
 //        dd($bread);
+        Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse');
+        Route::any($bread->slug.'/browse', function () use ($bread) {
+            echo base64_encode('asdfasdf').'<br>';
+            echo 'Hello this is ' . $bread->display_singular . ' page';
+        });
+        Route::any($bread->slug.'/add', function () use ($bread) {
+            echo base64_encode('asdfasdf').'<br>';
+            echo 'Hello this is ' . $bread->display_singular . ' page';
+        });
+        Route::any($bread->slug.'/edit/{id}', function ($id) use ($bread) {
+            $encoded = base64_encode($id);
+            echo $encoded .'<br>';
+            echo base64_decode($encoded).'<br>';
+            echo 'Hello this is ' . $bread->display_singular . ' Edit page id';
+        });
+        Route::any($bread->slug.'/view/{id}', function ($id) use ($bread) {
+            $encoded = base64_encode($id);
+            echo $encoded .'<br>';
+            echo base64_decode($encoded).'<br>';
+            echo 'Hello this is ' . $bread->display_singular . ' View page id';
+        });
     endforeach;
 
     /*
@@ -101,6 +126,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::get('/asdf/asdf/asdf/asdf/ripple', function () {
         return view('Ripple::welcome');
     })->name('asdf');
+
     Route::get('/test', 'RippleController@index');
     Route::get('/test-ripple', 'RippleController@index');
 

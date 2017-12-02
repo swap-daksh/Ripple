@@ -6,10 +6,10 @@
 {{-- Page Content --}}
 <div class="content" id="create-table" ng-app="editTableBread">
     <br>
-    <br>
-    @php $array = array('abc'=>'hello') @endphp
-    <form action="" method="post" ng-controller="EditBread" ng-submit="makeColumns();" ng-init="breadInit();">
-        <input type="hidden" value="" name="columns"  id="columns">
+    <br> 
+    <form action="" method="post" ng-controller="EditBread" ng-submit="submit();" ng-init="breadInit();">
+        <input type="hidden" value="{!! $breadDetails->id !!}" name="bread[detail][id]">
+        <input type="hidden" value="" name="bread[columns]"  id="bread-columns">
         {!! csrf_field() !!}
         <input type="hidden" name="edit-bread"  value="{!! $breadDetails->id !!}">
         <div class="panel panel-primary panel-bordered">
@@ -22,38 +22,38 @@
                 <div class="row clearfix">
                     <div class="col-md-6 form-group">
                         <label for="email">Display Name (Singular)</label>
-                        <input class="form-control input-sm" ng-model="Bread.detail.display_singular" id="display_name_singular" placeholder="Display Name (Singular)" type="text">
+                        <input class="form-control input-sm" name="bread[detail][display_singular]" value="{!! $breadDetails->display_singular !!}" id="display_name_singular" placeholder="Display Name (Singular)" type="text">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="email">Display Name (Plural)</label>
-                        <input class="form-control input-sm" ng-model="Bread.detail.display_plural" id="display_name_plural" placeholder="Display Name (Plural)" type="text">
+                        <input class="form-control input-sm" id="display_name_plural" name="bread[detail][display_plural]" value="{!! $breadDetails->display_plural !!}" placeholder="Display Name (Plural)" type="text">
                     </div>
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-6 form-group">
                         <label for="email">URL Slug (must be unique)</label>
-                        <input class="form-control input-sm" name="slug" ng-model="Bread.detail.slug" placeholder="URL slug (ex. posts)" type="text">
+                        <input class="form-control input-sm" name="bread[detail][slug]" value="{!! $breadDetails->slug !!}" placeholder="URL slug (ex. posts)" type="text">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="email">Icon (optional) Use a <a href="//fontawesome.io/icons/" target="_blank">Font Awesome Class</a></label>
-                        <input class="form-control input-sm" ng-model="Bread.detail.icon" name="icon" placeholder="Icon to use for this Table" type="text">
+                        <input class="form-control input-sm" name="bread[detail][icon]" value="{!! $breadDetails->icon !!}" placeholder="Icon to use for this Table" type="text">
                     </div>
                 </div>
                 <div class="row clearfix">
                     <div class="col-md-6 form-group">
                         <label for="email">Model Name</label>
                         <span class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="" data-original-title="ex. \App\User, if left empty will try and use the table name"></span>
-                        <input class="form-control input-sm" name="model" ng-model="Bread.detail.model" placeholder="Model Class Name" type="text">
+                        <input class="form-control input-sm" name="bread[detail][model]" value="{!! $breadDetails->model !!}" placeholder="Model Class Name" type="text">
                     </div>
                     <div class="col-md-6 form-group">
                         <label for="email">Controller Name</label>
                         <span class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-placement="right" title="" data-original-title="ex. PageController, if left empty will use the BREAD Controller"></span>
-                        <input class="form-control input-sm" name="controller" ng-model="Bread.detail.controller" placeholder="Controller Name" type="text">
+                        <input class="form-control input-sm" name="bread[detail][controller]" value="{!! $breadDetails->controller !!}" placeholder="Controller Name" type="text">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea class="form-control input-sm" name="description" ng-model="Bread.detail.description" placeholder="Description"></textarea>
+                    <textarea class="form-control input-sm" name="bread[detail][description]" placeholder="Description">{!! $breadDetails->description !!}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="description">Bread Rows:</label>
@@ -77,7 +77,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr ng-repeat="column in Bread.columns">
+                                            <tr ng-repeat="column in columns">
                                                 <td class="">
                                                     <strong>[!! column.column !!]</strong>
                                                 </td>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="form-group text-center">
-                    <button class="btn btn-primary btn-sm" type="submit">Save BREAD</button>
+                    <button class="btn btn-primary btn-sm" type="submit"><i class="fa fa-save"></i> Update BREAD</button>
                 </div>
             </div><!-- .panel-body -->
         </div>
@@ -153,31 +153,23 @@
     Bread.controller('EditBread', ['$scope', function ($scope) {
 
             $scope.breadInit = function () {
-                var columns = '{!! $breadTableRows->toJson() !!}';
-                $scope.columns = (JSON.parse(columns)).reverse();
-                $scope.Bread = {
-                    detail: {
-                        id: '{!! $breadDetails->id !!}',
-                        table: '{!! $breadDetails->table !!}',
-                        display_singular: '{!! $breadDetails->display_singular !!}',
-                        display_plural: '{!! $breadDetails->display_plural !!}',
-                        slug: '{!! $breadDetails->slug !!}',
-                        icon: '{!! $breadDetails->icon !!}',
-                        model: '{!! $breadDetails->model !!}',
-                        controller: '{!! $breadDetails->controller !!}',
-                        description: '{!! $breadDetails->description !!}'
-                    },
-                    columns: (JSON.parse('{!! $breadTableRows->toJson() !!}')).reverse()
-                };
+                $scope.columns = (JSON.parse('{!! $breadTableRows->toJson() !!}')).reverse();
             };
-            $scope.makeColumns = function () {
-                $('#columns').val(JSON.stringify($scope.Bread));
-            };
-            $scope.columnsInit = function () {
-                var columns = '{!! $breadTableRows->toJson() !!}';
-                $scope.columns = (JSON.parse(columns)).reverse();
-                console.log($scope.columns);
+            $scope.submit = function () {
+                $('#bread-columns').val(JSON.stringify($scope.columns));
             };
         }]);
+
+    /*
+     * @functionDeclarations
+     */
+
+    function strReplaceAll(string, Find, Replace) {
+        try {
+            return string.replace(new RegExp(Find, "gi"), Replace);
+        } catch (ex) {
+            return string;
+        }
+    }
 </script>
 @endpush
