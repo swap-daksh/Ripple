@@ -27,7 +27,7 @@ class SettingsController extends Controller
         elseif (request()->has('setting-delete')):
             return self::deleteSetting();
         endif;
-        $settings = self::hasSettings();
+        $settings = self::hasGeneralSettings();
         return view('Ripple::settings.settings', compact('settings'));
     }
 

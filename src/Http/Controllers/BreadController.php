@@ -88,15 +88,14 @@ class BreadController extends Controller
     {
         $breadMeta = DB::table('bread_meta');
         if ($breadMeta->where('table', request('table'))->where('key', 'status')->exists()) :
-            
-            $status = DB::table('bread_meta')->where('table', request('table'))->where('key', 'status')->first()->value;
-            if (DB::table('bread_meta')->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])):
+            $status = DB::table('bread_meta')->where('table', request('table'))->where('key', 'status')->value('value');
+            if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])):
                 return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
             else:
                 return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
             endif;
         else:
-            if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'updated_at' => date('Y-m-d h:i:s')])):
+            if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'created_at'=>date('Y-m-d h:i:s'),  'updated_at' => date('Y-m-d h:i:s')])):
                 return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
             else:
                 return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);

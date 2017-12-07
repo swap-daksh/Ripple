@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Session;
  */
 trait Settings
 {
-    public function hasSettings()
+    public function hasGeneralSettings()
     {
-        return DB::table('settings')->orderBy('id')->get();
+        return DB::table('settings')->where('group', 'general')->orderBy('id')->get();
     }
 
     private function saveSetting()
@@ -23,7 +23,7 @@ trait Settings
             session()->flash('setting-warning', 'Oops! Setting "'.request('setting-key').'" already exists!!');
 
         return false; else:
-            DB::table('settings')->insert(['key' => request('setting-key'), 'display_name' => request('setting-name'), 'value' => '', 'options' => self::settingOptions(request('option-name'), request('option-value')), 'type' => request('setting-type'), 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
+            DB::table('settings')->insert(['key' => request('setting-key'), 'display_name' => request('setting-name'), 'value' => '', 'options' => self::settingOptions(request('option-name'), request('option-value')), 'type' => request('setting-type'), 'group'=>request('group'), 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
         session()->flash('setting-success', 'Setting "'.request('setting-key').'"  saved!!');
         endif;
     }

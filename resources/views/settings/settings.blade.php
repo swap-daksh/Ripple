@@ -13,7 +13,7 @@
                         <a href="#bread-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> Bread Settings</strong></a>
                     </li> 
                     <li role="presentation" class="">
-                        <a href="#-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> SEO Settings</strong></a>
+                        <a href="#seo-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> SEO Settings</strong></a>
                     </li> 
                     <li role="presentation" class="">
                         <a href="#-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> Social Settings</strong></a>
@@ -42,7 +42,6 @@
                                             <a class="pull-right accordion-toggle collapsed"  href="javascript:void(0);">
                                                 <code>Ripple::setting('title')</code>
                                                 <i class="fa fa-plus"></i>
-
                                             </a>
                                         </h4>
                                     </div>
@@ -126,6 +125,7 @@
                                 <form method="post" action="" id="add_new_setting">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="setting-create" value="zzz">
+                                    <input type="hidden" name="group" value="general">
                                     <input type="submit" value="&nbsp;" hidden id="create-setting">
                                     <div class="form-group clearfix">
                                         <input class="form-control input-sm setting-key" id="setting-key" required name="setting-key" type="text" placeholder="Setting Key">
@@ -229,6 +229,11 @@
                                 </div>
                             </div> 
                         </div> 
+                    </div>
+                </div>
+                <div class="tab-pane fade in clearfix" role="tabpanel" id="seo-setting" aria-labelledby="general-setting">
+                    <div class="block block-default" data-example-id="togglable-tabs"> 
+                        <div class="block-heading"><strong style="text-transform: uppercase;">SEO Settings</strong></div>
                     </div>
                 </div>
             </div>

@@ -114,7 +114,7 @@ a:focus, a:hover {
     padding: 10.4px 15px;
 }
 .nav-tabs > li.pull-right > a {
-	 margin-right: 0px; 
+    margin-right: 0px; 
 }
 .nav-tabs > li > a:hover {
     border-color: #ecf0f1;
@@ -123,6 +123,25 @@ a:focus, a:hover {
 }
 .nav-tabs{
     border: none;
+}
+
+.tabs-vertical > ul.nav-tabs > li {
+	border: 1px solid #ECF0F1;
+	padding: 0px;
+	width: 100%;
+        background: #ECF0F1;
+}
+.tabs-vertical > ul.nav-tabs > li a {
+    margin: 0px;
+}
+.vertical-tab-content > .tab-pane {
+    padding: 15px;
+}
+.tab-content{
+    border: 1px solid #ECF0F1;
+}
+.tabs-vertical > ul.nav-tabs > li a {
+	color: #2C3E50;
 }
 
 
@@ -174,5 +193,24 @@ a:focus, a:hover {
     margin-top: 3px;
 }
 .modal-footer {
-	padding: 6px 15px;
+    padding: 6px 15px;
+}
+
+/*=====Box-block========*/
+.box-block{
+    border: 1px solid #ECF0F1;
+    padding: 0px;
+}
+.box-head {
+    padding: 10px 15px;
+}
+.box-title {
+    margin: 0px;
+    font-size: 20px;
+}
+.box-body {
+    padding: 15px;
+}
+.box-default .box-head {
+    background: #ECF0F1;
 }

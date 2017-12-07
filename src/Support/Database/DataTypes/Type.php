@@ -57,6 +57,4 @@ abstract class Type extends DBALTYPES
         self::POINT => \GitLab\Ripple\Support\Database\DataTypes\Types\Point::class,
         self::POLYGON => \GitLab\Ripple\Support\Database\DataTypes\Types\Polygon::class,
     ];
-
-    //put your code here
 }
