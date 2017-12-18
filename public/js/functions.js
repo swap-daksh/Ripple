@@ -185,3 +185,22 @@ function strReplaceAll(string, Find, Replace) {
         return string;
     }
 }
+
+function initSlimScroll() {
+    window.attempt = 1;
+    var timeInterval = setInterval(function () {
+        var height = {
+            contentWrapper: $(window).height() - ($('.navbar').outerHeight() + $('#footer').outerHeight()),
+            contentOutlet: $('.content-wrapper').innerHeight(),
+            outletContent: $('.content-outlet').prop('scrollHeight')
+        };
+        $('.content-wrapper').css('height', height.contentWrapper);
+        $('.content-outlet').css('height', height.outletContent);
+        console.log(height);
+        if (window.attempt > 50) {
+            clearTimeout(timeInterval);
+        }
+        window.attempt++;
+    }, 100);
+
+}

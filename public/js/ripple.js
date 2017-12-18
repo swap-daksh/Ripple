@@ -23,6 +23,14 @@ $(document).ready(function () {
         }
     }, 10);
 
+  // init Slim scroll on load
+    initSlimScroll();
+    // init Slim scroll on window resize
+    $(window).on('resize', function () {
+        initSlimScroll();
+    });
+ 
+    
     //TinyMCE Text Editor.......
     tinymce.init({
         menubar: false,

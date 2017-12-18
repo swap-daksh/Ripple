@@ -16,7 +16,7 @@
                         <a href="#seo-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> SEO Settings</strong></a>
                     </li> 
                     <li role="presentation" class="">
-                        <a href="#-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> Social Settings</strong></a>
+                        <a href="#social-setting" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> Social Settings</strong></a>
                     </li> 
                 </ul> 
             </div>
@@ -234,6 +234,11 @@
                 <div class="tab-pane fade in clearfix" role="tabpanel" id="seo-setting" aria-labelledby="general-setting">
                     <div class="block block-default" data-example-id="togglable-tabs"> 
                         <div class="block-heading"><strong style="text-transform: uppercase;">SEO Settings</strong></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade in clearfix" role="tabpanel" id="social-setting" aria-labelledby="social-setting">
+                    <div class="block block-default" data-example-id="togglable-tabs"> 
+                        <div class="block-heading"><strong style="text-transform: uppercase;">Social Settings</strong></div>
                     </div>
                 </div>
             </div>

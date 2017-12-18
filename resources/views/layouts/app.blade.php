@@ -23,8 +23,10 @@
                 {{-- Right Sidebar --}}
                 @include('Ripple::layouts.left-sidebar')
                 {{-- Main Container --}}
-                <div class="col-md-10 content-wrapper">
+                <div class="col-md-10 content-wrapper no-padding">
+                    <div class="content-outlet" >
                     @yield('page-content')
+                    </div>
                 </div>
             </main>
             @include('Ripple::layouts.footer')
