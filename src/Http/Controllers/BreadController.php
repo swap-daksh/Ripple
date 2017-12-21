@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Http\Controllers;
+namespace YPC\Ripple\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Routing\Router;

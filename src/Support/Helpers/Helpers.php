@@ -1,6 +1,6 @@
 <?php
 
-use GitLab\Ripple\Support\Database\Schema\SchemaManager;
+use YPC\Ripple\Support\Database\Schema\SchemaManager;
 
 if (!function_exists('storeFileAs')) {
 

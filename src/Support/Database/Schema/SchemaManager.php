@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Support\Database\Schema;
+namespace YPC\Ripple\Support\Database\Schema;
 
 use Illuminate\Support\Facades\DB; 
 

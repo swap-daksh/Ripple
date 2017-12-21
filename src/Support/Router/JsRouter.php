@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Support\Router;
+namespace YPC\Ripple\Support\Router;
 
 use Illuminate\Routing\Router;
 

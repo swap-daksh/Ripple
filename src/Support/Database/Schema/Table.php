@@ -1,11 +1,11 @@
 <?php
 
-namespace GitLab\Ripple\Schema;
+namespace YPC\Ripple\Schema;
 
 use Doctrine\DBAL\Schema\Table as DoctrineTable;
-use GitLab\Ripple\Support\Database\Schema\SchemaManager;
-use GitLab\Ripple\Schema\Column;
-use GitLab\Ripple\Schema\Index;
+use YPC\Ripple\Support\Database\Schema\SchemaManager;
+use YPC\Ripple\Schema\Column;
+use YPC\Ripple\Schema\Index;
 
 class Table
 {

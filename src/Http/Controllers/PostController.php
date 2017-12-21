@@ -1,9 +1,9 @@
 <?php
 
-namespace GitLab\Ripple\Http\Controllers;
+namespace YPC\Ripple\Http\Controllers;
 
-use GitLab\Ripple\Support\Facades\Ripple;
-use GitLab\Ripple\Support\Traits\Posts;
+use YPC\Ripple\Support\Facades\Ripple;
+use YPC\Ripple\Support\Traits\Posts;
 
 class PostController extends Controller
 {

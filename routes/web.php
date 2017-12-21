@@ -11,14 +11,14 @@
   |
  */
 
-use GitLab\Ripple\Support\Blade\RippleBlade;
+use YPC\Ripple\Support\Blade\RippleBlade;
 use Illuminate\Support\Facades\DB;
 
 //use Illuminate\Database\DatabaseManager;
 //use Doctrine\DBAL\Schema\SchemaException;
 //use Doctrine\DBAL\Schema\Table as DoctrineTable;
 
-Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'GitLab\Ripple\Http\Controllers'), 'middleware' => ['web'], 'prefix' => 'admin'], function () {
+Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'YPC\Ripple\Http\Controllers'), 'middleware' => ['web'], 'prefix' => 'admin'], function () {
     /*
       |----------------------------------------------------------------------
       |	Admin Route
@@ -167,9 +167,9 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 
     Route::get('/testing-abc', function () {
         $RippleBLADE = new RippleBlade();
-        $class = new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class);
+        $class = new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class);
 //        dd($class, $RippleBLADE);
-        foreach ((new ReflectionClass(GitLab\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade)
+        foreach ((new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade)
         {
             $RippleBLADE->{$RippleBlade->name}();
 //            dd($RippleBlade, $RippleBlade);

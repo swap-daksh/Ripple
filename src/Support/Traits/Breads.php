@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Support\Traits;
+namespace YPC\Ripple\Support\Traits;
 
 use Illuminate\Support\Facades\DB;
 

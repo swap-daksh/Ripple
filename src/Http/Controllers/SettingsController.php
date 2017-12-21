@@ -1,12 +1,12 @@
 <?php
 
-namespace GitLab\Ripple\Http\Controllers;
+namespace YPC\Ripple\Http\Controllers;
 
-use GitLab\Ripple\Models\Setting;
-use GitLab\Ripple\Support\Traits\Settings;
+use YPC\Ripple\Models\Setting;
+use YPC\Ripple\Support\Traits\Settings;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use GitLab\Ripple\Support\Facades\Ripple;
+use YPC\Ripple\Support\Facades\Ripple;
 
 class SettingsController extends Controller
 {

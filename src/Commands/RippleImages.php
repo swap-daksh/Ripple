@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Commands;
+namespace YPC\Ripple\Commands;
 
 use Illuminate\Console\Command;
 

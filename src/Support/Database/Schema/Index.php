@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Schema;
+namespace YPC\Ripple\Schema;
 
 use Doctrine\DBAL\Schema\Index as DbalIndex;
 

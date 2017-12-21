@@ -1,17 +1,17 @@
 <?php
 
-namespace GitLab\Ripple;
+namespace YPC\Ripple;
 
 use Illuminate\Support\Facades\DB;
 
 class Ripple
 {
 
-    use \GitLab\Ripple\Support\Traits\Posts;
-    use \GitLab\Ripple\Support\Traits\Breads;
-    use \GitLab\Ripple\Support\Traits\Categories;
-    use \GitLab\Ripple\Support\Traits\Settings;
-    use \GitLab\Ripple\Support\Traits\DatabaseTables;
+    use \YPC\Ripple\Support\Traits\Posts;
+    use \YPC\Ripple\Support\Traits\Breads;
+    use \YPC\Ripple\Support\Traits\Categories;
+    use \YPC\Ripple\Support\Traits\Settings;
+    use \YPC\Ripple\Support\Traits\DatabaseTables;
 
     public static function settings()
     {

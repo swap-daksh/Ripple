@@ -1,8 +1,8 @@
 <?php
 
-namespace GitLab\Ripple\Support\Traits;
+namespace YPC\Ripple\Support\Traits;
 
-use GitLab\Ripple\Models\Post;
+use YPC\Ripple\Models\Post;
 use Illuminate\Support\Facades\DB;
 
 trait Posts

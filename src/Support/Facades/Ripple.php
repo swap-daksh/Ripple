@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Support\Facades;
+namespace YPC\Ripple\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

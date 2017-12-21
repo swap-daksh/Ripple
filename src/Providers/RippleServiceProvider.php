@@ -1,8 +1,8 @@
 <?php
 
-namespace GitLab\Ripple\Providers;
+namespace YPC\Ripple\Providers;
 
-use GitLab\Ripple\Support\Blade\RippleBlade;
+use YPC\Ripple\Support\Blade\RippleBlade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
@@ -79,7 +79,7 @@ class RippleServiceProvider extends ServiceProvider
     {
         #Load All Commands
         foreach (glob(__DIR__ . '/../Commands/*.php') as $command):
-            $commands[] = '\GitLab\Ripple\Commands\\' . basename($command, '.php');
+            $commands[] = '\YPC\Ripple\Commands\\' . basename($command, '.php');
         endforeach;
         #Register All Commands
         $this->commands($commands);
@@ -124,7 +124,7 @@ class RippleServiceProvider extends ServiceProvider
 
     public function registerCustomDataTypes()
     {
-        foreach (\GitLab\Ripple\Support\Database\DataTypes\Type::$register as $datatype => $class):
+        foreach (\YPC\Ripple\Support\Database\DataTypes\Type::$register as $datatype => $class):
             \Doctrine\DBAL\Types\Type::addType($datatype, $class);
         endforeach;
     }

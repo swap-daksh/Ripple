@@ -10,7 +10,7 @@ return [
       |
      */
     'controllers' => [
-        'namespace' => 'GitLab\\Ripple\\Http\\Controllers',
+        'namespace' => 'YPC\\Ripple\\Http\\Controllers',
     ],
     /*
       |----------------------------------------------------------------------------
@@ -30,7 +30,7 @@ return [
       |
      */
     'aliases' => [
-        'Ripple' => GitLab\Ripple\Support\Facades\Ripple::class,
+        'Ripple' => YPC\Ripple\Support\Facades\Ripple::class,
     ],
     
     /*
@@ -42,6 +42,6 @@ return [
       |
      */
     'facades' => [
-        'ripple' => \GitLab\Ripple\Ripple::class
+        'ripple' => \YPC\Ripple\Ripple::class
     ],
 ];

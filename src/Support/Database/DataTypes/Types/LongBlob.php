@@ -1,6 +1,6 @@
 <?php
 
-namespace GitLab\Ripple\Support\Database\DataTypes\Types;
+namespace YPC\Ripple\Support\Database\DataTypes\Types;
 
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Types\Type;

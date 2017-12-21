@@ -1,8 +1,8 @@
 <?php
 
-namespace GitLab\Ripple\Support\Traits;
+namespace YPC\Ripple\Support\Traits;
 
-use GitLab\Ripple\Models\Category;
+use YPC\Ripple\Models\Category;
 use Illuminate\Support\Facades\DB;
 
 trait Categories {

@@ -1,9 +1,9 @@
 <?php
 
-namespace GitLab\Ripple\Http\Controllers;
+namespace YPC\Ripple\Http\Controllers;
 
-use GitLab\Ripple\Schema\Table;
-use GitLab\Ripple\Support\Traits\DatabaseTables;
+use YPC\Ripple\Schema\Table;
+use YPC\Ripple\Support\Traits\DatabaseTables;
 
 class DatabaseController extends Controller
 {

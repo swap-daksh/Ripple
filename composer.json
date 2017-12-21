@@ -1,5 +1,5 @@
 {
-    "name": "gitlab/ripple",
+    "name": "yp-code/ripple",
     "type": "package",
     "description": "The Laravel Framework Admin Panel.",
     "license": "MIT",
@@ -19,13 +19,13 @@
     "autoload": {
         "files": ["src/support/RippleHelpers.php"],
         "psr-4": {
-            "GitLab\\Ripple\\": "src/"
+            "YPC\\Ripple\\": "src/"
         }
     },
     "extra":{
     "laravel":{
             "providers":[
-            "GitLab\\Ripple\\Providers\\RippleServiceProvider"
+            "YPC\\Ripple\\Providers\\RippleServiceProvider"
             ]
         }
     }
