@@ -36,11 +36,11 @@
                         <button class="btn btn-block btn-danger btn-sm" ng-click="deletedAt()"><i class="fa fa-plus"></i> Add Soft Deletes</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-success btn-block btn-sm" type="submit"><i class="fa fa-save"></i> Create Table</button>
+                        <button class="btn btn-success btn-block btn-sm" onclick="document.getElementById('create-table').submit()" type="submit"><i class="fa fa-save"></i> Create Table</button>
                     </div>
                 </div>
                 <div class="col-md-8" style="padding-left: 0px;"  >
-                    <form method="post" action="" ng-submit="saveTable()">
+                    <form id="create-table" method="post" action="" ng-submit="saveTable()">
                         {!! csrf_field() !!}
                         <input type="hidden" value="" name="columns">
                         <div class="table-responsive">
