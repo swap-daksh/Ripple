@@ -1,10 +1,10 @@
 <p align="center"><h1 align="center">Ripple Admin Package</h1></p>
 <p align="center">
 
-<a href="https://packagist.org/packages/yp-code/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/stable" alt=""></a>
-<a href="https://packagist.org/packages/yp-code/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/unstable" alt=""></a>
-<a href="https://packagist.org/packages/yp-code/ripple"><img src="https://poser.pugx.org/yp-code/ripple/downloads" alt=""></a>
-<a href="https://packagist.org/packages/yp-code/ripple"><img src="https://poser.pugx.org/yp-code/ripple/license" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/stable" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/unstable" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/downloads" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/license" alt=""></a>
 </p>
 
 # Ripple
@@ -15,7 +15,7 @@ Ripple Admin Panel & BREAD System, made for laravel 5.3 to 5.5.
 
 After creating your laravel application you can add Ripple Admin Panel to your Application with the following command
 ```
-composer require yp-code/ripple:"dev-dev"
+composer require ypc/ripple:"dev-dev"
 ```
 
 After installing Ripple Make sure you have running database connection that you can create by setting up your database details in your <code>.env</code> file

@@ -127,26 +127,26 @@
                             <div class="form-group clearfix">
                                 <input class="form-control input-sm " id="" ng-model="insertColumn.default" type="text" placeholder="Default Value">
                             </div>
-                            <div class="form-group clearfix">
+<!--                            <div class="form-group clearfix">
                                 <select name="" class="form-control input-sm" id="" ng-model="insertColumn.index">
                                     <option value="">No Index</option> 
                                     <option value="INDEX">INDEX</option> 
                                     <option value="UNIQUE">UNIQUE</option> 
                                     <option value="PRIMARY">PRIMARY</option>
                                 </select>
-                            </div>
-                            <div class="form-group clearfix">
+                            </div>-->
+<!--                            <div class="form-group clearfix">
                                 <select class="form-control input-sm" id="" ng-model="insertColumn.notnull">
-                                    <option  value="1">Nullable</option>
-                                    <option value="0">Not Null</option>
+                                    <option  value="true">Nullable</option>
+                                    <option value="false">Not Null</option>
                                 </select>
                             </div>
                             <div class="form-group clearfix">
                                 <select class="form-control input-sm" id="" ng-model="insertColumn.unsigned">
-                                    <option value="1">Signed</option>
-                                    <option value="0">Unsigned</option>
+                                    <option value="true">Signed</option>
+                                    <option value="false">Unsigned</option>
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="form-group clearfix">
                                 <button class="btn btn-block btn-info btn-sm" ng-click="addColumn(insertColumn)"><i class="fa fa-plus-square"></i>  Add Column</button>
                             </div>
