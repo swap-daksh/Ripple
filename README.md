@@ -1,10 +1,10 @@
 <p align="center"><h1 align="center">Ripple Admin Package</h1></p>
 <p align="center">
 
-<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/stable" alt=""></a>
-<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/v/unstable" alt=""></a>
-<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/downloads" alt=""></a>
-<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/yp-code/ripple/license" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/ypc/ripple/v/stable" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/ypc/ripple/v/unstable" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/ypc/ripple/downloads" alt=""></a>
+<a href="https://packagist.org/packages/ypc/ripple"><img src="https://poser.pugx.org/ypc/ripple/license" alt=""></a>
 </p>
 
 # Ripple
