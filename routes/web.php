@@ -89,14 +89,16 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
-    $abc = \Illuminate\Support\Facades\DB::table('breads')->get();
+    $abc = \Illuminate\Support\Facades\DB::table('breads')->join('bread_meta', function($bread_meta){
+        $bread_meta->on('breads.table', '=', 'bread_meta.table')->where('bread_meta.key', 'status')->where('bread_meta.value', '1');
+    })->get();
+//    dd($abc);
     foreach ($abc as $key => $bread) :
-//        dd($bread);
         Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse');
-        Route::any($bread->slug.'/browse', function () use ($bread) {
-            echo base64_encode('asdfasdf').'<br>';
-            echo 'Hello this is ' . $bread->display_singular . ' page';
-        });
+//        Route::any($bread->slug.'/browse', function () use ($bread) {
+//            echo base64_encode('asdfasdf').'<br>';
+//            echo 'Hello this is ' . $bread->display_singular . ' page';
+//        });
         Route::any($bread->slug.'/add', function () use ($bread) {
             echo base64_encode('asdfasdf').'<br>';
             echo 'Hello this is ' . $bread->display_singular . ' page';
