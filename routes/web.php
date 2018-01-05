@@ -89,32 +89,38 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
-    $abc = \Illuminate\Support\Facades\DB::table('breads')->join('bread_meta', function($bread_meta){
-        $bread_meta->on('breads.table', '=', 'bread_meta.table')->where('bread_meta.key', 'status')->where('bread_meta.value', '1');
-    })->get();
-//    dd($abc);
-    foreach ($abc as $key => $bread) :
-        Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse');
+//    $abc = \Illuminate\Support\Facades\DB::table('breads')->join('bread_meta', function($bread_meta){
+//        $bread_meta->on('breads.table', '=', 'bread_meta.table')->where('bread_meta.key', 'status')->where('bread_meta.value', '1');
+//    })->get();
+    foreach (\Illuminate\Support\Facades\DB::table('breads')->get() as $key => $bread) :
+        Route::any('{table}/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse'.ucfirst($bread->slug));
+        Route::any('{table}/add', 'BreadController@breadAdd')->name('adminBreadAdd'.ucfirst($bread->slug));
+        Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->name('adminBreadEdit'.ucfirst($bread->slug));
+        Route::any('{table}/view/{id}', 'BreadController@breadView')->name('adminBreadView'.ucfirst($bread->slug));
+//        Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse'.ucfirst($bread->slug));
+//        Route::any($bread->slug.'/add', 'BreadController@breadAdd')->name('adminBreadAdd'.ucfirst($bread->slug));
+//        Route::any($bread->slug.'/edit/{id}', 'BreadController@breadEdit')->name('adminBreadEdit'.ucfirst($bread->slug));
+//        Route::any($bread->slug.'/view/{id}', 'BreadController@breadView')->name('adminBreadView'.ucfirst($bread->slug));
 //        Route::any($bread->slug.'/browse', function () use ($bread) {
 //            echo base64_encode('asdfasdf').'<br>';
 //            echo 'Hello this is ' . $bread->display_singular . ' page';
 //        });
-        Route::any($bread->slug.'/add', function () use ($bread) {
-            echo base64_encode('asdfasdf').'<br>';
-            echo 'Hello this is ' . $bread->display_singular . ' page';
-        });
-        Route::any($bread->slug.'/edit/{id}', function ($id) use ($bread) {
-            $encoded = base64_encode($id);
-            echo $encoded .'<br>';
-            echo base64_decode($encoded).'<br>';
-            echo 'Hello this is ' . $bread->display_singular . ' Edit page id';
-        });
-        Route::any($bread->slug.'/view/{id}', function ($id) use ($bread) {
-            $encoded = base64_encode($id);
-            echo $encoded .'<br>';
-            echo base64_decode($encoded).'<br>';
-            echo 'Hello this is ' . $bread->display_singular . ' View page id';
-        });
+//        Route::any($bread->slug.'/add', function () use ($bread) {
+//            echo base64_encode('asdfasdf').'<br>';
+//            echo 'Hello this is ' . $bread->display_singular . ' page';
+//        });
+//        Route::any($bread->slug.'/edit/{id}', function ($id) use ($bread) {
+//            $encoded = base64_encode($id);
+//            echo $encoded .'<br>';
+//            echo base64_decode($encoded).'<br>';
+//            echo 'Hello this is ' . $bread->display_singular . ' Edit page id';
+//        });
+//        Route::any($bread->slug.'/view/{id}', function ($id) use ($bread) {
+//            $encoded = base64_encode($id);
+//            echo $encoded .'<br>';
+//            echo base64_decode($encoded).'<br>';
+//            echo 'Hello this is ' . $bread->display_singular . ' View page id';
+//        });
     endforeach;
 
     /*

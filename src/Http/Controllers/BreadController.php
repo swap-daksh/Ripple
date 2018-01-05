@@ -105,17 +105,18 @@ class BreadController extends Controller
 
     public function breadBrowse()
     {
+        abort(404);
         return view('Ripple::bread.breadBrowse');
     }
 
-    public function breadRead()
+    public function breadView($id)
     {
-        return view('Ripple::bread.breadRead');
+        return view('Ripple::bread.breadView', compact('id'));
     }
 
-    public function breadEdit()
+    public function breadEdit($id)
     {
-        return view('Ripple::bread.breadEdit');
+        return view('Ripple::bread.breadEdit', compact('id'));
     }
 
     // function to add record

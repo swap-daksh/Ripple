@@ -5,6 +5,7 @@ namespace YPC\Ripple\Providers;
 use YPC\Ripple\Support\Blade\RippleBlade;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\Router;
 
 class RippleServiceProvider extends ServiceProvider
 {
@@ -51,6 +52,21 @@ class RippleServiceProvider extends ServiceProvider
 
         #Load All Aliases to app
         $this->loadAlias();
+    }
+
+    /**
+     * Register Middlewares to the admin panel
+     */
+    public function loadMiddlewares(Router $Router)
+    {
+        foreach (config('ripple.middlewares') as $name => $class)
+        {
+            if (app()->version() >= 5.4) {
+                $Router->aliasMiddleware($name, $class);
+            } else {
+                $Router->middleware($name, $class);
+            }
+        }
     }
 
     /**
