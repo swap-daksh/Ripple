@@ -198,17 +198,20 @@
                         <div class="tabs-vertical" data-example-id="togglable-tabs"> 
                             <ul class="nav nav-tabs" id="breadSettingTabs" role="tablist"> 
                                 <li role="presentation" class="active">
-                                    <a href="#enable-bread" id="enable-bread-tab" role="tab" data-toggle="tab" aria-controls="enabled" aria-expanded="true"><strong><i class="fa fa-check-square-o"></i>  Enabled</strong></a>
+                                    <a href="#disable-bread" id="enable-bread-tab" role="tab" data-toggle="tab" aria-controls="enabled" aria-expanded="true"><strong><i class="fa fa-square-o"></i>  Disable Bread</strong></a>
                                 </li> 
                                 <li role="presentation" class="">
-                                    <a href="#disable-bread" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-square-o"></i> Disabled</strong></a>
+                                    <a href="#enable-bread" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-check-square-o"></i> Enable Bread</strong></a>
+                                </li> 
+                                <li role="presentation" class="">
+                                    <a href="#browse-columns" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-check-square-o"></i> Browse Columns</strong></a>
                                 </li> 
                             </ul> 
                         </div>
                     </div> 
                     <div class="col-md-10" style="padding-right: 0px; ">
                         <div class="tab-content vertical-tab-content"> 
-                            <div class="tab-pane fade active in clearfix" role="tabpanel" id="enable-bread" aria-labelledby="enable-bread"> 
+                            <div class="tab-pane fade active in clearfix" role="tabpanel" id="disable-bread" aria-labelledby="enable-bread"> 
                                 <div class="col-md-6 no-padding" ng-repeat="bread in breadTables" ng-if="(bread.status)" >
                                     <div class="well well-sm " style="margin: 7px;">
                                         <i class="fa fa-list-alt"></i>   [!! (bread.table).substr(0,1).toUpperCase() + (bread.table).substr(1).toLowerCase() !!]
@@ -218,12 +221,35 @@
                                     </div>
                                 </div>
                             </div> 
-                            <div class="tab-pane fade clearfix" role="tabpanel" id="disable-bread" aria-labelledby="disable-bread"> 
+                            <div class="tab-pane fade clearfix" role="tabpanel" id="enable-bread" aria-labelledby="disable-bread"> 
                                 <div class="col-md-6 no-padding" ng-repeat="bread in breadTables" ng-if="!(bread.status)" >
                                     <div class="well well-sm text-danger" style="margin: 7px;">
                                         <i class="fa fa-list-alt"></i>   [!! (bread.table).substr(0,1).toUpperCase() + (bread.table).substr(1).toLowerCase() !!]
                                         <div class="pull-right">
                                             <i class="fa fa-square-o [!! (bread.table) !!]-status-icon text-danger" style="cursor: pointer" ng-click="updateStatus((bread.table), $index);"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                            <div class="tab-pane fade clearfix" role="tabpanel" id="browse-columns" aria-labelledby="browse-columns"> 
+                                <div id="accordionone" class="panel-group">
+                                    <div class="col-md-12 no-padding" ng-repeat="bread in breadTables" ng-if="(bread.status)">
+                                        <div class="panel panel-default" style="border-radius: 0px;">
+                                            <div class="panel-heading" style="border-radius: 0px;">
+                                                <h4 class="panel-title" style="cursor: pointer" data-toggle="collapse" data-parent="#accordionone" href="#[!! bread.table !!]-column" aria-expanded="false">
+                                                    <a class="accordion-toggle collapsed"  href="javascript:void(0);">
+                                                        <i class="fa fa-cogs"></i>&nbsp;  [!! (bread.table).substr(0,1).toUpperCase() + (bread.table).substr(1).toLowerCase() !!]
+                                                    </a>
+                                                    <a class="pull-right accordion-toggle collapsed"  href="javascript:void(0);">
+                                                        <i class="fa fa-plus"></i>
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div id="[!! bread.table !!]-column" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
+                                                <div class="panel-body">
+                                                    <button class="btn btn-xs btn-default" style="margin-right: 5px" ng-repeat="column in bread.columns">[!! column !!]</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

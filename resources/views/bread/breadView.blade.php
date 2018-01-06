@@ -8,6 +8,15 @@
 ?>
 @section('page-content')
 <div class="row">
-    <h1>{!! $id !!}</h1>
+    <div class="col-md-12">
+        <div class="block block-default" data-example-id="togglable-tabs"> 
+            <div class="block-heading"><strong style="text-transform: uppercase;">All Settings</strong></div>
+            <div class="block-body">
+                asdfasdfasdf
+            </div>
+        </div>
+    </div>
+
+    <h1>View {!! $table !!}</h1>
 </div>
 @stop

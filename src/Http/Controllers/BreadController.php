@@ -95,7 +95,7 @@ class BreadController extends Controller
                 return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
             endif;
         else:
-            if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'created_at'=>date('Y-m-d h:i:s'),  'updated_at' => date('Y-m-d h:i:s')])):
+            if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')])):
                 return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
             else:
                 return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
@@ -103,25 +103,31 @@ class BreadController extends Controller
         endif;
     }
 
-    public function breadBrowse()
+    public function breadBrowse($table)
     {
-        return view('Ripple::bread.breadBrowse');
+        $records = DB::table($table)->get();
+        $columns = dbal_db()->listTableColumns($table);
+        
+        dd(array_keys($columns));
+        dd(dbal_db()->listTableColumns($table));
+        //dump($data);
+        return view('Ripple::bread.breadBrowse', compact('table', 'records'));
     }
 
-    public function breadView($id)
+    public function breadView($table, $id)
     {
-        return view('Ripple::bread.breadView', compact('id'));
+        return view('Ripple::bread.breadView', compact('table', 'id'));
     }
 
-    public function breadEdit($id)
+    public function breadEdit($table, $id)
     {
-        return view('Ripple::bread.breadEdit', compact('id'));
+        return view('Ripple::bread.breadEdit', compact('table', 'id'));
     }
 
     // function to add record
-    public function breadAdd()
+    public function breadAdd($table)
     {
-        return view('Ripple::bread.breadAdd');
+        return view('Ripple::bread.breadAdd', compact('table'));
     }
 
     // function to add record
