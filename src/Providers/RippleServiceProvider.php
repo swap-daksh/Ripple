@@ -15,7 +15,7 @@ class RippleServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Router $Router)
     {
 
         #Load routes from "routes/web.php"...
@@ -35,6 +35,9 @@ class RippleServiceProvider extends ServiceProvider
 
         #Register Doctorine Custom Datatypes
         $this->registerCustomDataTypes();
+        
+         #Load All Middlewares to app
+        $this->loadMiddlewares($Router);
     }
 
     /**

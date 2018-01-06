@@ -32,7 +32,6 @@ return [
     'aliases' => [
         'Ripple' => YPC\Ripple\Support\Facades\Ripple::class,
     ],
-    
     /*
       |----------------------------------------------------------------------------
       |	Facades Classes
@@ -43,5 +42,16 @@ return [
      */
     'facades' => [
         'ripple' => \YPC\Ripple\Ripple::class
+    ],
+    /*
+      |----------------------------------------------------------------------------
+      |	Middlewares Classes
+      |----------------------------------------------------------------------------
+      |
+      | Here you can specify ripple Middleware Classes
+      |
+     */
+    'middlewares' => [
+        "hasBreadEnabled" => \YPC\Ripple\Http\Middleware\HasBreadEnabled::class
     ],
 ];

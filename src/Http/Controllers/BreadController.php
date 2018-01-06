@@ -105,7 +105,6 @@ class BreadController extends Controller
 
     public function breadBrowse()
     {
-        abort(404);
         return view('Ripple::bread.breadBrowse');
     }
 

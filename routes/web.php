@@ -93,10 +93,10 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //        $bread_meta->on('breads.table', '=', 'bread_meta.table')->where('bread_meta.key', 'status')->where('bread_meta.value', '1');
 //    })->get();
     foreach (\Illuminate\Support\Facades\DB::table('breads')->get() as $key => $bread) :
-        Route::any('{table}/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse'.ucfirst($bread->slug));
-        Route::any('{table}/add', 'BreadController@breadAdd')->name('adminBreadAdd'.ucfirst($bread->slug));
-        Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->name('adminBreadEdit'.ucfirst($bread->slug));
-        Route::any('{table}/view/{id}', 'BreadController@breadView')->name('adminBreadView'.ucfirst($bread->slug));
+        Route::any('{table}/browse', 'BreadController@breadBrowse')->middleware('hasBreadEnabled')->name('adminBreadBrowse'.ucfirst($bread->slug));
+        Route::any('{table}/add', 'BreadController@breadAdd')->middleware('hasBreadEnabled')->name('adminBreadAdd'.ucfirst($bread->slug));
+        Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->middleware('hasBreadEnabled')->name('adminBreadEdit'.ucfirst($bread->slug));
+        Route::any('{table}/view/{id}', 'BreadController@breadView')->middleware('hasBreadEnabled')->name('adminBreadView'.ucfirst($bread->slug));
 //        Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse'.ucfirst($bread->slug));
 //        Route::any($bread->slug.'/add', 'BreadController@breadAdd')->name('adminBreadAdd'.ucfirst($bread->slug));
 //        Route::any($bread->slug.'/edit/{id}', 'BreadController@breadEdit')->name('adminBreadEdit'.ucfirst($bread->slug));
