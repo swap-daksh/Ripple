@@ -18,9 +18,14 @@ trait Breads
 
     public function hasBreadSlug()
     {
-        return implode('|', collect(DB::table(prefix('breads'))->get())->map(function($bread) {
-                    return $bread->slug;
-                })->toArray());
+        $collect = collect(DB::table(prefix('breads'))->get());
+        if ($collect->isNotEmpty()) {
+            return implode('|', $collect->map(function($bread) {
+                        return $bread->slug;
+                    })->toArray());
+        } else {
+            return '.';
+        }
     }
 
 }
