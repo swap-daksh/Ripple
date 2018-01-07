@@ -11,8 +11,10 @@
   |
  */
 
-use YPC\Ripple\Support\Blade\RippleBlade;
+//use YPC\Ripple\Support\Blade\RippleBlade;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\DatabaseManager;
+use Illuminate\Database\Schema\MySqlBuilder;
 
 //use Illuminate\Database\DatabaseManager;
 //use Doctrine\DBAL\Schema\SchemaException;
@@ -89,39 +91,15 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
-//    $abc = \Illuminate\Support\Facades\DB::table('breads')->join('bread_meta', function($bread_meta){
-//        $bread_meta->on('breads.table', '=', 'bread_meta.table')->where('bread_meta.key', 'status')->where('bread_meta.value', '1');
-//    })->get();
-    foreach (\Illuminate\Support\Facades\DB::table('breads')->get() as $key => $bread) :
-        Route::any('{table}/browse', 'BreadController@breadBrowse')->middleware('hasBreadEnabled')->name('adminBreadBrowse'.ucfirst($bread->slug));
-        Route::any('{table}/add', 'BreadController@breadAdd')->middleware('hasBreadEnabled')->name('adminBreadAdd'.ucfirst($bread->slug));
-        Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->middleware('hasBreadEnabled')->name('adminBreadEdit'.ucfirst($bread->slug));
-        Route::any('{table}/view/{id}', 'BreadController@breadView')->middleware('hasBreadEnabled')->name('adminBreadView'.ucfirst($bread->slug));
-//        Route::any($bread->slug.'/browse', 'BreadController@breadBrowse')->name('adminBreadBrowse'.ucfirst($bread->slug));
-//        Route::any($bread->slug.'/add', 'BreadController@breadAdd')->name('adminBreadAdd'.ucfirst($bread->slug));
-//        Route::any($bread->slug.'/edit/{id}', 'BreadController@breadEdit')->name('adminBreadEdit'.ucfirst($bread->slug));
-//        Route::any($bread->slug.'/view/{id}', 'BreadController@breadView')->name('adminBreadView'.ucfirst($bread->slug));
-//        Route::any($bread->slug.'/browse', function () use ($bread) {
-//            echo base64_encode('asdfasdf').'<br>';
-//            echo 'Hello this is ' . $bread->display_singular . ' page';
-//        });
-//        Route::any($bread->slug.'/add', function () use ($bread) {
-//            echo base64_encode('asdfasdf').'<br>';
-//            echo 'Hello this is ' . $bread->display_singular . ' page';
-//        });
-//        Route::any($bread->slug.'/edit/{id}', function ($id) use ($bread) {
-//            $encoded = base64_encode($id);
-//            echo $encoded .'<br>';
-//            echo base64_decode($encoded).'<br>';
-//            echo 'Hello this is ' . $bread->display_singular . ' Edit page id';
-//        });
-//        Route::any($bread->slug.'/view/{id}', function ($id) use ($bread) {
-//            $encoded = base64_encode($id);
-//            echo $encoded .'<br>';
-//            echo base64_decode($encoded).'<br>';
-//            echo 'Hello this is ' . $bread->display_singular . ' View page id';
-//        });
-    endforeach;
+    if (Schema::hasTable('breads')) {
+        foreach (DB::table('breads')->get() as $key => $bread) :
+            Route::any('{table}/browse', 'BreadController@breadBrowse')->middleware('hasBreadEnabled')->name('adminBreadBrowse' . ucfirst($bread->slug));
+            Route::any('{table}/add', 'BreadController@breadAdd')->middleware('hasBreadEnabled')->name('adminBreadAdd' . ucfirst($bread->slug));
+            Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->middleware('hasBreadEnabled')->name('adminBreadEdit' . ucfirst($bread->slug));
+            Route::any('{table}/view/{id}', 'BreadController@breadView')->middleware('hasBreadEnabled')->name('adminBreadView' . ucfirst($bread->slug));
+        endforeach;
+    }
+
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -159,7 +137,8 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //
 //        $queries = $schema->toSql(); // get queries to create this schema.
 //        dump('asdf');
-        $class = get_class(Mail::getFacadeRoot());
+
+        $class = get_class(Schema::getFacadeRoot());
         dump($class);
 //        $schema = (new \Doctrine\DBAL\Schema\Schema())->createTable('demo_testing');
 //        $schema->addColumn("id", "integer", array('unsigned' => true));

@@ -3,6 +3,7 @@
 namespace YPC\Ripple\Providers;
 
 use YPC\Ripple\Support\Blade\RippleBlade;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
@@ -17,6 +18,8 @@ class RippleServiceProvider extends ServiceProvider
      */
     public function boot(Router $Router)
     {
+        #Setting up default string length
+        Schema::defaultStringLength(191);
 
         #Load routes from "routes/web.php"...
         $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
@@ -35,8 +38,8 @@ class RippleServiceProvider extends ServiceProvider
 
         #Register Doctorine Custom Datatypes
         $this->registerCustomDataTypes();
-        
-         #Load All Middlewares to app
+
+        #Load All Middlewares to app
         $this->loadMiddlewares($Router);
     }
 
@@ -62,7 +65,7 @@ class RippleServiceProvider extends ServiceProvider
      */
     public function loadMiddlewares(Router $Router)
     {
-        foreach (config('ripple.middlewares') as $name => $class)
+        foreach (config('ripple.middlewares', []) as $name => $class)
         {
             if (app()->version() >= 5.4) {
                 $Router->aliasMiddleware($name, $class);
@@ -78,20 +81,16 @@ class RippleServiceProvider extends ServiceProvider
     public function loadAlias()
     {
         $loadAlias = AliasLoader::getInstance();
-        if (!is_null(config('ripple.aliases'))):
-            foreach (config('ripple.aliases') as $abstract => $class):
-                $loadAlias->alias($abstract, $class);
-            endforeach;
-        endif;
+        foreach (config('ripple.aliases', []) as $abstract => $class):
+            $loadAlias->alias($abstract, $class);
+        endforeach;
     }
 
     public function bindFacades()
     {
-        if (!is_null(config('ripple.facades'))):
-            foreach (config('ripple.facades') as $facade => $class):
-                $this->app->bind($facade, $class);
-            endforeach;
-        endif;
+        foreach (config('ripple.facades', []) as $facade => $class):
+            $this->app->bind($facade, $class);
+        endforeach;
     }
 
     public function loadCommands($commands = array())
