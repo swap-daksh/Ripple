@@ -196,7 +196,7 @@ function initSlimScroll() {
         };
         $('.content-wrapper').css('height', height.contentWrapper);
         $('.content-outlet').css('height', height.outletContent);
-        console.log(height);
+//        console.log(height);
         if (window.attempt > 50) {
             clearTimeout(timeInterval);
         }

@@ -105,19 +105,20 @@ class RippleServiceProvider extends ServiceProvider
 
     public function loadPublishableResources()
     {
+        
         $publishes = [
             #Publishable Assets
-            'assets' => [realpath(__DIR__ . '/../../public') => public_path('vendor/gitlab/ripple/public/')],
+            'assets' => [realpath(__DIR__ . '/../../public') => public_path('vendor/ypc/ripple/public/')],
             #Publishable Images
-            'images' => [realpath(__DIR__ . '/../../public/img') => public_path('vendor/gitlab/ripple/public/img/')],
+            'images' => [realpath(__DIR__ . '/../../public/img') => public_path('vendor/ypc/ripple/public/img/')],
             #Publishable Configuration
             'config' => [realpath(__DIR__ . '/../../config') => config_path('/')],
             #Publishable Database
             'database' => [realpath(__DIR__ . '/../../database/migrations') => database_path('/migrations')],
             #Publishable CSS
-            'css' => [realpath(__DIR__ . '/../../public/css') => public_path('vendor/gitlab/ripple/public/css/')],
+            'css' => [realpath(__DIR__ . '/../../public/css') => public_path('vendor/ypc/ripple/public/css/')],
             #Publishable JS
-            'js' => [realpath(__DIR__ . '/../../public/js') => public_path('vendor/gitlab/ripple/public/js/')],
+            'js' => [realpath(__DIR__ . '/../../public/js') => public_path('vendor/ypc/ripple/public/js/')],
         ];
         foreach ($publishes as $tag => $paths):
             $this->publishes($paths, $tag);

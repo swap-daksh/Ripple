@@ -20,7 +20,7 @@ return [
       | Here you can specify ripple assets path
       |
      */
-    'assets_url' => '/vendor/gitlab/ripple/public',
+    'assets_url' => '/vendor/ypc/ripple/public',
     /*
       |----------------------------------------------------------------------------
       |	Facades Aliases
