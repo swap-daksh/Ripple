@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBreadMetaTable extends Migration
+class CreateRplUsersTable extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,11 +13,12 @@ class CreateBreadMetaTable extends Migration
      */
     public function up()
     {
-        Schema::create('bread_meta', function (Blueprint $table) {
+        Schema::create('rpl_users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('table');
-            $table->string('key');
-            $table->string('value');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -30,7 +30,6 @@ class CreateBreadMetaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bread_statuses');
+        Schema::dropIfExists('rpl_users');
     }
-
 }
