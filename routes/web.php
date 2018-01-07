@@ -12,9 +12,7 @@
  */
 
 //use YPC\Ripple\Support\Blade\RippleBlade;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Database\DatabaseManager;
-use Illuminate\Database\Schema\MySqlBuilder;
+use YPC\Ripple\Support\Facades\Ripple;
 
 //use Illuminate\Database\DatabaseManager;
 //use Doctrine\DBAL\Schema\SchemaException;
@@ -91,14 +89,12 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
-    if (Schema::hasTable('breads')) {
-        foreach (DB::table('breads')->get() as $key => $bread) :
-            Route::any('{table}/browse', 'BreadController@breadBrowse')->middleware('hasBreadEnabled')->name('adminBreadBrowse' . ucfirst($bread->slug));
-            Route::any('{table}/add', 'BreadController@breadAdd')->middleware('hasBreadEnabled')->name('adminBreadAdd' . ucfirst($bread->slug));
-            Route::any('{table}/edit/{id}', 'BreadController@breadEdit')->middleware('hasBreadEnabled')->name('adminBreadEdit' . ucfirst($bread->slug));
-            Route::any('{table}/view/{id}', 'BreadController@breadView')->middleware('hasBreadEnabled')->name('adminBreadView' . ucfirst($bread->slug));
-        endforeach;
-    }
+    Route::group(['middleware' => ['hasBreadEnabled']], function() {
+        Route::any('{slug}/browse', 'BreadController@breadBrowse')->where('slug', Ripple::hasBreadSlug())->name('adminBreadBrowse');
+        Route::any('{slug}/add', 'BreadController@breadAdd')->where('slug', Ripple::hasBreadSlug())->name('adminBreadAdd');
+        Route::any('{slug}/edit/{id}', 'BreadController@breadEdit')->where('slug', Ripple::hasBreadSlug())->name('adminBreadEdit');
+        Route::any('{slug}/view/{id}', 'BreadController@breadView')->where('slug', Ripple::hasBreadSlug())->name('adminBreadView');
+    });
 
 
     /*

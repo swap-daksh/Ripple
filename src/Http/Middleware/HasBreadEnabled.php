@@ -17,7 +17,8 @@ class HasBreadEnabled
      */
     public function handle($request, Closure $next)
     {
-        if (DB::table('rpl_breads_meta')->where('table', $request->table)->where('key', 'status')->where('value', '1')->exists()) {
+        $bread = DB::table(prefix('breads'))->where('slug', $request->slug)->first();
+        if (DB::table('rpl_breads_meta')->where('table', $bread->table)->where('key', 'status')->where('value', '1')->exists()) {
             return $next($request);
         } else {
             abort(404);

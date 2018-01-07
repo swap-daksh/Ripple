@@ -17,7 +17,9 @@
                         <thead>
                             <tr>
                                 @foreach($columns as $column)
-                                <th>{!! $column !!}</th>
+                                @if($column->browse)
+                                <th>{!! $column->display_name !!}</th>
+                                @endif
                                 @endforeach
                             </tr>
                         </thead>
@@ -25,7 +27,9 @@
                             @forelse($records as $record)
                             <tr>
                                 @foreach($columns as $column)
-                                <th>{!! $record->{$column} !!}</th>
+                                @if($column->browse)
+                                <th>{!! $record->{$column->column} !!}</th>
+                                @endif
                                 @endforeach
                             </tr>
                             @empty

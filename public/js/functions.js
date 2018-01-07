@@ -1,6 +1,6 @@
 /*
  |---------------------------------------------------------------------------------------------
- |								Extent jQuery Object
+ |		Extent jQuery Object
  |---------------------------------------------------------------------------------------------
  */
 $.extend({
@@ -11,7 +11,7 @@ $.extend({
 
 /*
  |---------------------------------------------------------------------------------------------
- |								Extent jQuery Functions
+ |                                  Extent jQuery Functions
  |---------------------------------------------------------------------------------------------
  */
 $.fn.extend({
@@ -194,8 +194,7 @@ function initSlimScroll() {
             contentOutlet: $('.content-wrapper').innerHeight(),
             outletContent: $('.content-outlet').prop('scrollHeight')
         };
-        $('.content-wrapper').css('height', height.contentWrapper);
-        $('.content-outlet').css('height', height.outletContent);
+        $('.content-wrapper, .content-outlet').css('height', height.contentWrapper);
 //        console.log(height);
         if (window.attempt > 50) {
             clearTimeout(timeInterval);

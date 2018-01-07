@@ -286,15 +286,14 @@
     Setting.controller('UpdateBreadStatus', ['$scope', '$http', function ($scope, $http) {
             $scope.breadTables = JSON.parse('{!! json_encode(Ripple::tablesBreadWithStatus()) !!}');
             $scope.updateStatus = function (table, index) {
-                $scope.tableStatusIcon = $('.' + table + '-status-icon');
-                $scope.tableStatusIcon.remove('fa-check-square-o fa-square-o').toggleClass('fa-spinner fa-spin');
+                $('.' + table + '-status-icon').removeClass('fa-check-square-o fa-square-o').toggleClass('fa-spinner fa-spin');
                 $http.post('{!! route("Ripple::updateBreadStatus") !!}', {_token: '{!! csrf_token() !!}', table: table}).then(function (response, status) {
                     let data = response.data;
                     if (data.status === 'OK') {
                         $scope.breadTables[index].status = (!$scope.breadTables[index].status);
                         toastr.success(data.msg, 'SUCCESS!');
-                    } else {
-                        $scope.tableStatusIcon.remove('fa-spinner fa-spin').toggleClass('fa-check-square-o fa-square-o');
+                    } else { 
+                        $('.' + table + '-status-icon').removeClass('fa-spinner fa-spin').toggleClass('fa-check-square-o fa-square-o');
                         toastr.error(data.msg, 'ERROR!');
                         
                     }

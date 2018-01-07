@@ -46,13 +46,15 @@
                                 <td><code>{!! $table !!}</code></td>
                                 <td>
                                     @if(Ripple::hasEnabledBread($table))
-                                    @if(DB::table('breads')->where('table', $table)->exists())
+                                    @if(DB::table('rpl_breads')->where('table', $table)->exists())
                                     <a class="btn btn-xs btn-info btn-block" href="{!! route('Ripple::adminEditBread', ['table' => $table]) !!}"><i class="fa fa-pencil-square-o"></i> Update</a>
                                     @else
                                     <a class="btn btn-xs btn-success btn-block" href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}"><i class="fa fa-pencil"></i> Create</a>
                                     @endif
                                     @else
-                                    <a class="btn btn-xs btn-warning disabled btn-block" href="javascript:void(0);"><i class="fa fa-ban "></i> Disabled</a>
+                                    <div data-toggle="tooltip" data-placement="left" data-original-title="This can be enable from Settings>Bread Settings > Enable Bread">
+                                        <a  class="btn btn-xs btn-warning disabled btn-block" href="javascript:void(0);"><i class="fa fa-ban "></i> Disabled</a>
+                                    </div>
                                     @endif
                                 </td>
                                 <td class="text-center">
@@ -203,7 +205,7 @@
                     </div>
                 </div> 
             </div>
-            
+
             <div class="tab-pane fade in clearfix " role="tabpanel" id="seo-setting" aria-labelledby="general-setting">
                 <div class="block block-default" data-example-id="togglable-tabs"> 
                     <div class="block-heading"><strong style="text-transform: uppercase;">SEO Settings</strong></div>

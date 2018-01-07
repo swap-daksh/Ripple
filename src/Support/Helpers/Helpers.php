@@ -36,11 +36,11 @@ if (!function_exists('storeFileAs')) {
 }
 
 if (!function_exists('dbal_db')) {
+
     /**
      * returns Doctorine Dbal2 connection
      * @return Object
      */
-
     function dbal_db()
     {
         return SchemaManager::databaseManager();
@@ -98,6 +98,16 @@ if (!function_exists('DBinsert')) {
             $get = $model->save();
         }
         return $get;
+    }
+
+}
+
+
+if (!function_exists('prefix')) {
+
+    function prefix($name)
+    {
+        return config('ripple.tablePrefix', 'rpl') . '_' . $name;
     }
 
 }

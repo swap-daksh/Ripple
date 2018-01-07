@@ -28,6 +28,7 @@ class JsRouter
         return <<<EOT
         <script type="text/javascript">
             var routes = JSON.parse('$routes'), baseUrl = '$url';
+                console.log(routes);
             function route(name, params = {}, absolute = true){
                 var url = (routes[name].domain || baseUrl).replace(/\/+$/, '')+'/';
                 url = (absolute ? url : '') + routes[name].uri;

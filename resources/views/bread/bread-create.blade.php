@@ -4,10 +4,10 @@
     <h1  style="margin: 0px;">Create BREAD/CRUD for <small></small></h1>
 </div>
 {{-- Page Content --}}
-<div class="content" ng-app="Bread" >
+<div class="content"  >
     <br>
     <br>
-    <form action="" method="post" ng-controller="CreateNewBread" ng-init="">
+    <form action="" method="post">
         {!! csrf_field() !!}
         <input type="hidden" name="create-bread"  value="{!! $table !!}">
         <div class="panel panel-primary panel-bordered">

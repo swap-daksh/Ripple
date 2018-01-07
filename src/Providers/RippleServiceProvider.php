@@ -21,6 +21,9 @@ class RippleServiceProvider extends ServiceProvider
         #Setting up default string length
         Schema::defaultStringLength(191);
 
+        #Load Ripple Helpers
+        $this->loadHelpers();
+        
         #Load routes from "routes/web.php"...
         $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
 
@@ -32,9 +35,6 @@ class RippleServiceProvider extends ServiceProvider
 
         #Load Ripple Blade Directives
         $this->loadBladeDirectives(new RippleBlade());
-
-        #Load Ripple Helpers
-        $this->loadHelpers();
 
         #Register Doctorine Custom Datatypes
         $this->registerCustomDataTypes();
