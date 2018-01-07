@@ -14,7 +14,7 @@ trait Settings
 {
     public function hasGeneralSettings()
     {
-        return DB::table('settings')->where('group', 'general')->orderBy('id')->get();
+        return DB::table('rpl_settings')->where('group', 'general')->orderBy('id')->get();
     }
 
     private function saveSetting()
@@ -23,7 +23,7 @@ trait Settings
             session()->flash('setting-warning', 'Oops! Setting "'.request('setting-key').'" already exists!!');
 
         return false; else:
-            DB::table('settings')->insert(['key' => request('setting-key'), 'display_name' => request('setting-name'), 'value' => '', 'options' => self::settingOptions(request('option-name'), request('option-value')), 'type' => request('setting-type'), 'group'=>request('group'), 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
+            DB::table('rpl_settings')->insert(['key' => request('setting-key'), 'display_name' => request('setting-name'), 'value' => '', 'options' => self::settingOptions(request('option-name'), request('option-value')), 'type' => request('setting-type'), 'group'=>request('group'), 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
         session()->flash('setting-success', 'Setting "'.request('setting-key').'"  saved!!');
         endif;
     }
@@ -31,14 +31,14 @@ trait Settings
     private static function updateSetting()
     {
         foreach (array_keys(request()->all()) as $setting):
-            DB::table('settings')->where('key', $setting)->update(['value' => self::settingFile($setting)]);
+            DB::table('rpl_settings')->where('key', $setting)->update(['value' => self::settingFile($setting)]);
         endforeach;
         session()->flash('setting-success', 'Success! Settings are saved!');
     }
 
     private static function deleteSetting()
     {
-        if (DB::table('settings')
+        if (DB::table('rpl_settings')
                         ->where('key', request('key'))
                         ->where('id', request('id'))
                         ->delete()):
@@ -58,7 +58,7 @@ trait Settings
 
     private function hasSetting($hasSetting)
     {
-        return DB::table('settings')->where('key', $hasSetting)->exists();
+        return DB::table('rpl_settings')->where('key', $hasSetting)->exists();
     }
 
     private function settingOptions($option_name, $option_value)

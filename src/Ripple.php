@@ -15,12 +15,12 @@ class Ripple
 
     public static function settings()
     {
-        return DB::table('settings')->get();
+        return DB::table('rpl_settings')->get();
     }
 
     public static function setting($key, $default = null)
     {
-        $setting = DB::table('settings')->where('key', $key)->first();
+        $setting = DB::table('rpl_settings')->where('key', $key)->first();
         if (isset($setting->id)) {
             return $setting->value;
         }

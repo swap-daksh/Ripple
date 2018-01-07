@@ -86,9 +86,9 @@ class BreadController extends Controller
 
     public function updateBreadStatus()
     {
-        $breadMeta = DB::table('bread_meta');
+        $breadMeta = DB::table('rpl_breads_meta');
         if ($breadMeta->where('table', request('table'))->where('key', 'status')->exists()) :
-            $status = DB::table('bread_meta')->where('table', request('table'))->where('key', 'status')->value('value');
+            $status = DB::table('rpl_breads_meta')->where('table', request('table'))->where('key', 'status')->value('value');
             if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])):
                 return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
             else:
