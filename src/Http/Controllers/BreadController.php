@@ -106,12 +106,9 @@ class BreadController extends Controller
     public function breadBrowse($table)
     {
         $records = DB::table($table)->get();
-        $columns = dbal_db()->listTableColumns($table);
-        
-        dd(array_keys($columns));
-        dd(dbal_db()->listTableColumns($table));
+        $columns = array_keys(dbal_db()->listTableColumns($table));
         //dump($data);
-        return view('Ripple::bread.breadBrowse', compact('table', 'records'));
+        return view('Ripple::bread.breadBrowse', compact('table', 'records', 'columns'));
     }
 
     public function breadView($table, $id)

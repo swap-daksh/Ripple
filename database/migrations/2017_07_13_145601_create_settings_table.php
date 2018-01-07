@@ -21,6 +21,7 @@ class CreateSettingsTable extends Migration
             $table->longText('options')->nullable();
             $table->string('type');
             $table->integer('order')->default(1);
+            $table->string('group');
             $table->timestamps();
         });
     }

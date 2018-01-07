@@ -16,14 +16,24 @@
                     <table class="table table-striped table-borderless table-header-bg option-wrappers" id="option-wrappers" style="margin-bottom: 0px;">
                         <thead>
                             <tr>
-                                <th></th>
-                                <th>Name</th>
-                                <th>Value</th>
-                                <th class="text-center">
-                                    <i class="fa fa-plus add-options text-info" style="cursor: pointer" id="add-options" data-id="add-options"></i>
-                                </th>
+                                @foreach($columns as $column)
+                                <th>{!! $column !!}</th>
+                                @endforeach
                             </tr>
                         </thead>
+                        <tbody>
+                            @forelse($records as $record)
+                            <tr>
+                                @foreach($columns as $column)
+                                <th>{!! $record->{$column} !!}</th>
+                                @endforeach
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="{!! count($columns) !!}">{!! $table !!} has no records yet.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
                     </table>
                 </div>
             </div>
