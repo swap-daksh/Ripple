@@ -1,6 +1,6 @@
 <?php
 
-namespace YPC\Ripple;
+namespace YPC\Ripple\Support\Core;
 
 use Illuminate\Support\Facades\DB;
 

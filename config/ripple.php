@@ -41,7 +41,8 @@ return [
       |
      */
     'facades' => [
-        'ripple' => \YPC\Ripple\Ripple::class
+        'ripple' => \YPC\Ripple\Support\Core\Ripple::class,
+        'database'=> \YPC\Ripple\Support\Database\Database::class
     ],
     /*
       |----------------------------------------------------------------------------

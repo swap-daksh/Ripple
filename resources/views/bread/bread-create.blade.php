@@ -92,13 +92,13 @@
                                         <tr>
                                             <td class="">
                                                 {!! $column->getName() !!}
-                                                <input type="hidden" ng-init="(tblColums['{!! $loop->index !!}'].column = '{!! $column->getName() !!}' )" ng-model="tblColums['{!! $loop->index !!}'].column" name="bread[{!! $loop->index !!}][column]">
+                                                <input type="hidden" ng-model="tblColums['{!! $loop->index !!}'].column" name="bread[{!! $loop->index !!}][column]">
                                                 @if($column->getAutoincrement())
                                                 <span class="text-success">(Autoincrement)</span>
                                                 @endif
                                             </td>
                                             <td class="">
-                                                <input type="hidden" ng-init="(tblColums['{!! $loop->index !!}'].data_type = '{!! $column->getType() !!}' )" value="{!! $column->getType() !!}" name="bread[{!! $loop->index !!}][data_type]">
+                                                <input type="hidden"  value="{!! $column->getType() !!}" name="bread[{!! $loop->index !!}][data_type]">
                                                 {!! $column->getType() !!}
                                             </td>
                                             <td>
@@ -132,60 +132,28 @@
                                             </td>
                                             <td class="text-center">
                                                 <select name="bread[{!! $loop->index !!}][type]" ng-model="tblColums['{!! $loop->index !!}'].type" name="" id="" class="form-control input-sm">
-                                                    <option value="checkbox">
-                                                        Checkbox
-                                                    </option>
-                                                    <option value="date">
-                                                        Date
-                                                    </option>
-                                                    <option value="file">
-                                                        File
-                                                    </option>
-                                                    <option value="image">
-                                                        Image
-                                                    </option>
-                                                    <option value="multiple_images">
-                                                        Multiple Images
-                                                    </option>
-                                                    <option value="number">
-                                                        Number
-                                                    </option>
-                                                    <option value="password">
-                                                        Password
-                                                    </option>
-                                                    <option value="radio_btn">
-                                                        Radio Button
-                                                    </option>
-                                                    <option value="rich_text_box">
-                                                        Rich Text Box
-                                                    </option>
-                                                    <option value="select_dropdown">
-                                                        Select Dropdown
-                                                    </option>
-                                                    <option value="select_multiple">
-                                                        Select Multiple
-                                                    </option>
-                                                    <option value="text" selected="">
-                                                        Text
-                                                    </option>
-                                                    <option value="text_area">
-                                                        Text Area
-                                                    </option>
-                                                    <option value="timestamp">
-                                                        Timestamp
-                                                    </option>
-                                                    <option value="hidden">
-                                                        Hidden
-                                                    </option>
-                                                    <option value="code_editor">
-                                                        Code Editor
-                                                    </option>
+                                                    <option value="checkbox">Checkbox</option>
+                                                    <option value="date">Date</option>
+                                                    <option value="file">File</option>
+                                                    <option value="image">Image</option>
+                                                    <option value="multiple_images">Multiple Images</option>
+                                                    <option value="number">Number</option>
+                                                    <option value="password">Password</option>
+                                                    <option value="radio_btn">Radio Button</option>
+                                                    <option value="rich_text_box">Rich Text Box</option>
+                                                    <option value="select_dropdown">Select Dropdown</option>
+                                                    <option value="select_multiple">Select Multiple</option>
+                                                    <option value="text" selected="">Text</option>
+                                                    <option value="text_area">Text Area</option>
+                                                    <option value="timestamp">Timestamp</option>
+                                                    <option value="hidden">Hidden</option>
+                                                    <option value="code_editor">Code Editor</option>
                                                 </select>
                                             </td>
                                             <td class="text-center">
-                                                <input  ng-init="tblColums['{!! $loop->index !!}'].display_name = `{!! ucwords(str_replace('-', ' ', preg_replace('/[^a-zA-Z0-9\. -]/', ' ', $column->getName()))); !!}`;" name="bread[{!! $loop->index !!}][display_name]" type="text" class="form-control input-sm" value="{!! ucwords(str_replace('-', ' ', preg_replace('/[^a-zA-Z0-9\. -]/', ' ', $column->getName()))); !!}" style="width:200px;margin: auto">
-                                                <input type="hidden" ng-init="tblColums['{!! $loop->index !!}'].created_at = '{!! date(`Y-m-d h:i:s`) !!}'" ng-model="tblColums['{!! $loop->index !!}'].created_at" >
-                                                <input type="hidden" ng-init="tblColums['{!! $loop->index !!}'].updated_at = '{!! date(`Y-m-d h:i:s`) !!}'" ng-model="tblColums['{!! $loop->index !!}'].updated_at" >
+                                                <input   name="bread[{!! $loop->index !!}][display_name]" type="text" class="form-control input-sm" value="{!! ucwords(str_replace('-', ' ', preg_replace('/[^a-zA-Z0-9\. -]/', ' ', $column->getName()))); !!}" style="width:200px;margin: auto">
+                                                <input type="hidden"  ng-model="tblColums['{!! $loop->index !!}'].created_at" >
+                                                <input type="hidden"  ng-model="tblColums['{!! $loop->index !!}'].updated_at" >
                                             </td>
                                         </tr>
                                         @endforeach
@@ -211,11 +179,27 @@
         </div>
     </div>
 </div>
+@stop
+@push('page-script')
+<script type="text/javascript">
+    let Bread = angular.module('createTableBread', []);
+    Bread.controller('CreateNewBread', ['$scope', function ($scope) {
+            $scope.tblColums = [];
+            $scope.columnsInit = function () {
+//                alert('asdfasdf');
+
+//                $scope.columns = JSON.parse(columns);
+                console.log($scope.tblColums);
+            };
+
+//            $v.abc = {hello:'asdf', jpg:'asdfdsf'};
+//            console.log($v.abc);
+        }]);
+</script>
+@endpush
 
 
-
-
-
+@section('abc')
 <div class="page-header" style="margin: 0px;border-bottom: 1px solid gray;">
     <h1  style="margin: 0px;">Create BREAD/CRUD for <small></small></h1>
 </div>
@@ -414,20 +398,3 @@
 </div>
 {{-- END Page Content --}}
 @stop
-@push('page-script')
-<script type="text/javascript">
-    let Bread = angular.module('createTableBread', []);
-    Bread.controller('CreateNewBread', ['$scope', function ($scope) {
-            $scope.tblColums = [];
-            $scope.columnsInit = function () {
-//                alert('asdfasdf');
-
-//                $scope.columns = JSON.parse(columns);
-                console.log($scope.tblColums);
-            };
-
-//            $v.abc = {hello:'asdf', jpg:'asdfdsf'};
-//            console.log($v.abc);
-        }]);
-</script>
-@endpush
