@@ -1,3 +1,4 @@
+{!! Database::table('rpl_users')->tableColumns('rpl_users') !!}
 @extends('Ripple::layouts.app')
 @section('page-content')
 <div class="" style="margin: 0px;padding-bottom: 15px;" ng-app="createTableBread" ng-controller="CreateNewBread" ng-click='columnsInit()'>
