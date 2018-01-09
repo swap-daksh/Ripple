@@ -1,4 +1,3 @@
-{!! Database::table('rpl_users')->tableColumns('rpl_users') !!}
 @extends('Ripple::layouts.app')
 @section('page-content')
 <div class="" style="margin: 0px;padding-bottom: 15px;" ng-app="createTableBread" ng-controller="CreateNewBread" ng-click='columnsInit()'>
@@ -185,7 +184,7 @@
 <script type="text/javascript">
     let Bread = angular.module('createTableBread', []);
     Bread.controller('CreateNewBread', ['$scope', function ($scope) {
-            $scope.tblColums = [];
+            $scope.tblColums = JSON.parse('{!! Database::tableColumns($table, "toJson") !!}');
             $scope.columnsInit = function () {
 //                alert('asdfasdf');
 
