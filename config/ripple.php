@@ -31,6 +31,7 @@ return [
      */
     'aliases' => [
         'Ripple' => YPC\Ripple\Support\Facades\Ripple::class,
+        'Database'=> YPC\Ripple\Support\Facades\Database::class
     ],
     /*
       |----------------------------------------------------------------------------
