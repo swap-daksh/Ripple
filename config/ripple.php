@@ -31,7 +31,8 @@ return [
      */
     'aliases' => [
         'Ripple' => YPC\Ripple\Support\Facades\Ripple::class,
-        'Database'=> YPC\Ripple\Support\Facades\Database::class
+        'Database' => YPC\Ripple\Support\Facades\Database::class,
+        'Bread' => YPC\Ripple\Support\Facades\Bread::class,
     ],
     /*
       |----------------------------------------------------------------------------
@@ -43,7 +44,8 @@ return [
      */
     'facades' => [
         'ripple' => \YPC\Ripple\Support\Core\Ripple::class,
-        'database'=> \YPC\Ripple\Support\Database\Database::class
+        'bread' => \YPC\Ripple\Support\Core\Bread::class,
+        'database' => \YPC\Ripple\Support\Database\Database::class,
     ],
     /*
       |----------------------------------------------------------------------------

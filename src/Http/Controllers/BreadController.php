@@ -10,11 +10,6 @@ class BreadController extends Controller
 
     public function createBread($table)
     {
-        if (request()->has('create-bread')) {
-//            dd(json_decode(request('bread-columns'), true));
-//            dd(request()->all());
-        }
-
         if (DB::table(prefix('breads'))->where('table', request('table'))->exists()) :
             return redirect()->route('Ripple::adminEditBread', ['table' => $table]);
         endif;
@@ -29,11 +24,7 @@ class BreadController extends Controller
             }
             return redirect()->route('Ripple::adminEditBread', ['table' => $table]);
         }
-        $exists = DB::table(prefix('breads'))->where('table', $table)->exists();
-        $tableDetails = dbal_db()->listTableDetails($table);
-//        dd(collect($tableDetails->getColumns())->toJson());
-//dd($tableDetails->getColumns());
-        return view('Ripple::bread.bread-create', compact('table', 'tableDetails', 'exists'));
+        return view('Ripple::bread.bread-create', compact('table'));
     }
 
     public function editBread($table)
