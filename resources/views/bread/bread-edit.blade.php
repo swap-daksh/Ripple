@@ -1,3 +1,4 @@
+{!! dd(Bread::getColumns('hello_testing')) !!}
 @extends('Ripple::layouts.app')
 @section('page-content')
 <div class="" style="margin: 0px;padding-bottom: 15px;" ng-app="EditBread" ng-controller="EditExistsBread">
