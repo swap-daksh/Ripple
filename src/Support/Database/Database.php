@@ -16,7 +16,7 @@ class Database
     {
         return collect(dbal_db()->listTableColumns($table))->map(function($column) {
                     return [
-                        'name' => $column->getName(),
+                        'column' => $column->getName(),
                         'dataType' => (string) $column->getType(),
                         'length' => $column->getLength(),
                         'notnull' => $column->getNotnull(),

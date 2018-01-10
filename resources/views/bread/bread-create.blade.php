@@ -159,7 +159,7 @@
             $scope.bread = {table: '{!! $table !!}', display_singular: '{!! str_singular($table) !!}', display_plural: '{!! str_plural($table) !!}', slug: '{!! str_slug($table, "-") !!}', icon: '', model: '', controller: '', description: ''};
             $scope.tblColums = {};
             for (let i in columns) {
-                $scope.tblColums[i] = {column: columns[i].name, data_type:columns[i].dataType, required: columns[i].notnull, browse: true, read: true, edit: true, add: true, delete: true, type: 'text', display_name: columns[i].name};
+                $scope.tblColums[i] = {column: columns[i].column, data_type:columns[i].dataType, required: columns[i].notnull, browse: true, read: true, edit: true, add: true, delete: true, type: 'text', display_name: columns[i].column};
             }
 
             $scope.saveBread = function () {

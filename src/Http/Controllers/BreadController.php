@@ -31,10 +31,11 @@ class BreadController extends Controller
     {
         if (request()->has('edit-bread')) :
             try {
-                $bread = request('bread')['detail'];
+                $bread = json_decode(request('bread-info'), true);
                 DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
-                collect(json_decode(request('bread')['columns'], true))->map(function ($column) {
-                    DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id'], '$$hashKey' => $column['$$hashKey'], 'created_at' => $column['created_at']]));
+                collect(json_decode(request('bread-columns'), true))->map(function($column) {
+                    $column['updated_at'] = date('Y-m-d h:i:s');
+                    DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id']]));
                 });
                 session()->flash('success', 'Bread successfully updated.');
                 return back();
@@ -42,16 +43,7 @@ class BreadController extends Controller
                 dd($e->getMessage());
             }
         endif;
-        $exists = DB::table(prefix('breads'))->where('table', $table)->exists();
-        $breadDetails = DB::table(prefix('breads'))->where('table', $table)->first();
-
-        $tableDetails = dbal_db()->listTableDetails($table);
-
-        $breadTableRows = DB::table(prefix('bread_columns'))->where('bread', $breadDetails->id)->orderBy('order', "DESC")->get();
-        $breadRows = collect(DB::table(prefix('bread_columns'))->where('bread', $breadDetails->id)->get())->mapWithKeys(function ($item) {
-            return [$item->column => $item];
-        });
-        return view('Ripple::bread.bread-edit', compact('table', 'tableDetails', 'breadDetails', 'breadRows', 'exists', 'breadTableRows'));
+        return view('Ripple::bread.bread-edit', compact('table'));
     }
 
     private static function tableColumns($columns)
