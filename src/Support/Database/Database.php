@@ -17,7 +17,7 @@ class Database
         return collect(dbal_db()->listTableColumns($table))->map(function($column) {
                     return [
                         'name' => $column->getName(),
-                        'type' => (string) $column->getType(),
+                        'dataType' => (string) $column->getType(),
                         'length' => $column->getLength(),
                         'notnull' => $column->getNotnull(),
                         'default' => $column->getDefault(),
@@ -34,8 +34,7 @@ class Database
 
     public function table($table)
     {
-        $this->table = $table;
-        return $this;
+        return dbal_db()->listTableDetails($table);
     }
 
 }

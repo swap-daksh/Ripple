@@ -10,13 +10,17 @@ class BreadController extends Controller
 
     public function createBread($table)
     {
+        if (request()->has('create-bread')) {
+//            dd(json_decode(request('bread-columns'), true));
+//            dd(request()->all());
+        }
 
         if (DB::table(prefix('breads'))->where('table', request('table'))->exists()) :
             return redirect()->route('Ripple::adminEditBread', ['table' => $table]);
         endif;
         if (request()->has('create-bread')) {
             if (!(DB::table(prefix('breads'))->where('table', request('table'))->exists())) {
-                $bread = self::insertBread();
+                $bread = self::insertBread(json_decode(request('bread-info'), true));
             }
             if (count($bread) === 1 && true === $bread[0]) {
                 session()->flash('success', 'Bread successfully created.');
@@ -49,9 +53,9 @@ class BreadController extends Controller
         endif;
         $exists = DB::table(prefix('breads'))->where('table', $table)->exists();
         $breadDetails = DB::table(prefix('breads'))->where('table', $table)->first();
-        
+
         $tableDetails = dbal_db()->listTableDetails($table);
-        
+
         $breadTableRows = DB::table(prefix('bread_columns'))->where('bread', $breadDetails->id)->orderBy('order', "DESC")->get();
         $breadRows = collect(DB::table(prefix('bread_columns'))->where('bread', $breadDetails->id)->get())->mapWithKeys(function ($item) {
             return [$item->column => $item];
@@ -70,9 +74,10 @@ class BreadController extends Controller
         });
     }
 
-    private static function insertBread()
+    private static function insertBread(Array $breadInfo)
     {
-        $bread = DB::table(prefix('breads'))->insertGetId(['table' => request('table'), "display_singular" => request('display_singular'), "display_plural" => request('display_plural'), "slug" => request('slug'), "icon" => request('icon'), "model" => request('model'), "controller" => request('controller'), "description" => request('description'), "created_at" => date('Y-m-d h:i:s'), "updated_at" => date('Y-m-d h:i:s')]);
+        $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
+        $bread = DB::table(prefix('breads'))->insertGetId($insertBread);
         if ($bread !== null) {
             return self::insertBreadColumn($bread);
         }
@@ -80,7 +85,7 @@ class BreadController extends Controller
 
     private static function insertBreadColumn($bread)
     {
-        return array_unique(collect(request('bread'))->map(function ($item, $order) use ($bread) {
+        return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
                     $item['bread'] = $bread;
                     $item['order'] = $order;
                     return DB::table(prefix('bread_columns'))->insert($item);
