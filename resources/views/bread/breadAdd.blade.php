@@ -10,9 +10,9 @@
 <div class="row">
     <div class="col-md-12">
         <div class="block block-default" data-example-id="togglable-tabs"> 
-            <div class="block-heading"><strong style="text-transform: uppercase;">General Settings</strong></div>
+            <div class="block-heading"><strong style="text-transform: uppercase;">Add {!! $table !!}</strong></div>
             <div class="block-body">
-                asdfasdfasdf
+                General Settings
             </div>
         </div>
     </div>

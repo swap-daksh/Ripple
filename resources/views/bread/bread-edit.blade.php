@@ -18,7 +18,7 @@
                     <li role="presentation" class="">
                         <a href="#bread-columns-wrapper" role="tab" id="disable-bread-tab" data-toggle="tab" aria-controls="disabled" aria-expanded="false"><strong><i class="fa fa-info-circle"></i> Bread Columns</strong></a>
                     </li> 
-                </ul> 
+                </ul>   
                 <div class="tab-pane fade active in clearfix" role="tabpanel" id="bread-info-wrapper" aria-labelledby="bread-info-wrapper"> 
                     <div class="row clearfix">
                         <div class="col-md-6 form-group">
@@ -166,13 +166,12 @@
             }
 
             $scope.updateBread = function () {
-//                $scope.bread.model = strReplaceAll($scope.bread.model, '\\', '\\\\');
                 $('#bread-info').val(JSON.stringify($scope.bread));
                 $('#bread-columns').val(JSON.stringify($scope.tblColums));
                 $('#editBread').submit();
             };
         }]);
-
+  
     /*
      * @functionDeclarations
      */
