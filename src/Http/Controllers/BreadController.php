@@ -32,6 +32,8 @@ class BreadController extends Controller
         if (request()->has('edit-bread')) :
             try {
                 $bread = json_decode(request('bread-info'), true);
+                $bread['model'] = str_replace('\\', '\\\\', $bread['model']);
+                $bread['controller'] = str_replace('\\', '\\\\', $bread['controller']);
                 DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
                 collect(json_decode(request('bread-columns'), true))->map(function($column) {
                     $column['updated_at'] = date('Y-m-d h:i:s');
@@ -44,17 +46,6 @@ class BreadController extends Controller
             }
         endif;
         return view('Ripple::bread.bread-edit', compact('table'));
-    }
-
-    private static function tableColumns($columns)
-    {
-        $abc = collect($columns)->mapWithKeys(function ($column) {
-            return [
-                'name' => $column->getName(),
-                'type' => $column->getType(),
-                'notnull' => $column->getNotnull()
-            ];
-        });
     }
 
     private static function insertBread(Array $breadInfo)
@@ -108,17 +99,23 @@ class BreadController extends Controller
 
     public function breadView($slug, $id)
     {
+        $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
+        $table = $bread->table;
         return view('Ripple::bread.breadView', compact('table', 'id'));
     }
 
     public function breadEdit($slug, $id)
     {
+        $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
+        $table = $bread->table;
         return view('Ripple::bread.breadEdit', compact('table', 'id'));
     }
 
     // function to add record
     public function breadAdd($slug)
     {
+        $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
+        $table = $bread->table;
         return view('Ripple::bread.breadAdd', compact('table'));
     }
 

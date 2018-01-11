@@ -3,7 +3,7 @@
 <div class="" style="margin: 0px;padding-bottom: 15px;" ng-app="NewBread" ng-controller="CreateNewBread">
     <div class="row">
         <div class="col-md-12">
-            <form action="" method="post" id="newBread">
+            <form action="" method="post" id="NewBread">
                 {!! csrf_field() !!}
                 <input type="hidden" name="create-bread"  value="{!! $table !!}">
                 <input type="hidden" name="bread-columns" id="bread-columns">
@@ -165,7 +165,7 @@
             $scope.saveBread = function () {
                 $('#bread-columns').val(JSON.stringify($scope.tblColums));
                 $('#bread-info').val(JSON.stringify($scope.bread));
-                document.getElementById('newBread').submit();
+                $('NewBread').submit();
             };
         }]);
 </script>

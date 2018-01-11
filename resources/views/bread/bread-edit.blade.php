@@ -146,7 +146,7 @@
             </div>
         </div>
         <div class="col-md-12">
-            <button class="btn btn-info btn-block" ng-click="updateBread();"><i class="fa fa-save"></i> CREATE BREAD</button>
+            <button class="btn btn-warning btn-block" ng-click="updateBread();"><i class="fa fa-cloud-upload"></i> UPDATE BREAD</button>
         </div>
     </div>
 </div>
@@ -166,6 +166,7 @@
             }
 
             $scope.updateBread = function () {
+//                $scope.bread.model = strReplaceAll($scope.bread.model, '\\', '\\\\');
                 $('#bread-info').val(JSON.stringify($scope.bread));
                 $('#bread-columns').val(JSON.stringify($scope.tblColums));
                 $('#editBread').submit();
