@@ -31,24 +31,24 @@ class BreadController extends Controller
     {
         if (request()->has('edit-bread')) :
             try {
-                $bread = json_decode(request('bread-info'), true);
-                $bread['model'] = str_replace('\\', '\\\\', $bread['model']);
-                $bread['controller'] = str_replace('\\', '\\\\', $bread['controller']);
-                DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
-                collect(json_decode(request('bread-columns'), true))->map(function($column) {
-                    $column['updated_at'] = date('Y-m-d h:i:s');
-                    DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id']]));
-                });
-                session()->flash('success', 'Bread successfully updated.');
-                return back();
-            } catch (\Exception $e) {
-                dd($e->getMessage());
-            }
+            $bread = json_decode(request('bread-info'), true);
+            $bread['model'] = str_replace('\\', '\\\\', $bread['model']);
+            $bread['controller'] = str_replace('\\', '\\\\', $bread['controller']);
+            DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
+            collect(json_decode(request('bread-columns'), true))->map(function ($column) {
+                $column['updated_at'] = date('Y-m-d h:i:s');
+                DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id']]));
+            });
+            session()->flash('success', 'Bread successfully updated.');
+            return back();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
         endif;
         return view('Ripple::bread.bread-edit', compact('table'));
     }
 
-    private static function insertBread(Array $breadInfo)
+    private static function insertBread(array $breadInfo)
     {
         $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
         $bread = DB::table(prefix('breads'))->insertGetId($insertBread);
@@ -60,10 +60,10 @@ class BreadController extends Controller
     private static function insertBreadColumn($bread)
     {
         return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
-                    $item['bread'] = $bread;
-                    $item['order'] = $order;
-                    return DB::table(prefix('bread_columns'))->insert($item);
-                })->toArray());
+            $item['bread'] = $bread;
+            $item['order'] = $order;
+            return DB::table(prefix('bread_columns'))->insert($item);
+        })->toArray());
     }
 
     public function updateBreadStatus()
@@ -74,17 +74,17 @@ class BreadController extends Controller
         $breadMeta = DB::table(prefix('breads_meta'));
         if ($breadMeta->where('table', request('table'))->where('key', 'status')->exists()) :
             $status = DB::table(prefix('breads_meta'))->where('table', request('table'))->where('key', 'status')->value('value');
-            if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
-                return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
-            else :
-                return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-            endif;
+        if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
+            return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
+        else :
+            return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
+        endif;
         else :
             if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')])) :
-                return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
-            else :
-                return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-            endif;
+            return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
+        else :
+            return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
+        endif;
         endif;
     }
 
