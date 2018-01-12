@@ -44,7 +44,7 @@ $.fn.extend({
             this.html(optionHTML);
         } else {
             return optionHTML;
-    }
+        }
     }
 });
 
@@ -56,66 +56,66 @@ $.fn.extend({
  */
 function dataTypeJson(o = null) {
     var dataTypes = [{
+        "int": "INT",
+        "varchar": "VARCHAR",
+        "text": "TEXT",
+        "date": "DATE"
+    }, {
+        'numeric': {
+            "tinyint": "TINYINT",
+            "smallint": "SMALLINT",
+            "mediumint": "MEDIUMINT",
             "int": "INT",
+            "bigint": "BIGINT",
+            "decimal": "DECIMAL",
+            "float": "FLOAT",
+            "double": "DOUBLE",
+            "real": "REAL",
+            "bit": "BIT",
+            "boolean": "BOOLEAN",
+            "serial": "SERIAL"
+        }
+    }, {
+        "date-and-time": {
+            "date": "DATE",
+            "datetime": "DATETIME",
+            "timestamp": "TIMESTAMP",
+            "time": "TIME",
+            "year": "YEAR"
+        }
+    }, {
+        "string": {
+            "char": "CHAR",
             "varchar": "VARCHAR",
+            "tinytext": "TINYTEXT",
             "text": "TEXT",
-            "date": "DATE"
-        }, {
-            'numeric': {
-                "tinyint": "TINYINT",
-                "smallint": "SMALLINT",
-                "mediumint": "MEDIUMINT",
-                "int": "INT",
-                "bigint": "BIGINT",
-                "decimal": "DECIMAL",
-                "float": "FLOAT",
-                "double": "DOUBLE",
-                "real": "REAL",
-                "bit": "BIT",
-                "boolean": "BOOLEAN",
-                "serial": "SERIAL"
-            }
-        }, {
-            "date-and-time": {
-                "date": "DATE",
-                "datetime": "DATETIME",
-                "timestamp": "TIMESTAMP",
-                "time": "TIME",
-                "year": "YEAR"
-            }
-        }, {
-            "string": {
-                "char": "CHAR",
-                "varchar": "VARCHAR",
-                "tinytext": "TINYTEXT",
-                "text": "TEXT",
-                "mediumtext": "MEDIUMTEXT",
-                "longtext": "LONGTEXT",
-                "binary": "BINARY",
-                "varbinary": "VARBINARY",
-                "tinyblob": "TINYBLOB",
-                "mediumblob": "MEDIUMBLOB",
-                "blob": "BLOB",
-                "longblob": "LONGBLOB",
-                "enum": "ENUM",
-                "set": "SET"
-            }
-        }, {
-            "spatial": {
-                "geometry": "GEOMETRY",
-                "point": "POINT",
-                "linestring": "LINESTRING",
-                "polygon": "POLYGON",
-                "multipoint": "MULTIPOINT",
-                "multilinestring": "MULTILINESTRING",
-                "multipolygon": "MULTIPOLYGON",
-                "geometrycollection": "GEOMETRYCOLLECTION"
-            }
-        }, {
-            "JSON": {
-                "json": "JSON"
-            }
-        }];
+            "mediumtext": "MEDIUMTEXT",
+            "longtext": "LONGTEXT",
+            "binary": "BINARY",
+            "varbinary": "VARBINARY",
+            "tinyblob": "TINYBLOB",
+            "mediumblob": "MEDIUMBLOB",
+            "blob": "BLOB",
+            "longblob": "LONGBLOB",
+            "enum": "ENUM",
+            "set": "SET"
+        }
+    }, {
+        "spatial": {
+            "geometry": "GEOMETRY",
+            "point": "POINT",
+            "linestring": "LINESTRING",
+            "polygon": "POLYGON",
+            "multipoint": "MULTIPOINT",
+            "multilinestring": "MULTILINESTRING",
+            "multipolygon": "MULTIPOLYGON",
+            "geometrycollection": "GEOMETRYCOLLECTION"
+        }
+    }, {
+        "JSON": {
+            "json": "JSON"
+        }
+    }];
     //add datatypes
     dataTypes.push(o);
     return dataTypes;
@@ -194,12 +194,15 @@ function initSlimScroll() {
             contentOutlet: $('.content-wrapper').innerHeight(),
             outletContent: $('.content-outlet').prop('scrollHeight')
         };
-        $('.content-wrapper, .content-outlet').css('height', height.contentWrapper);
-//        console.log(height);
+        $('.side-bar-left').height($('.content-wrapper').outerHeight());
+        $('.content-wrapper').css('height', height.contentWrapper + $('#footer').outerHeight());
+        $('.content-outlet').css('height', (height.contentWrapper));
+
+        //        console.log(height);
         if (window.attempt > 50) {
             clearTimeout(timeInterval);
         }
         window.attempt++;
-    }, 100);
+    }, 10);
 
 }

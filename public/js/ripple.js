@@ -1,11 +1,3 @@
-//Sidebar
-(function () {
-    setInterval(function () {
-        
-        $('.side-bar-left').height($('.content-wrapper').outerHeight());
-    }, 10);
-}(jQuery));
-
 $(document).ready(function () {
     "use strict";
 
@@ -23,14 +15,14 @@ $(document).ready(function () {
         }
     }, 10);
 
-  // init Slim scroll on load
+    // init Slim scroll on load
     initSlimScroll();
     // init Slim scroll on window resize
     $(window).on('resize', function () {
         initSlimScroll();
     });
- 
-    
+
+
     //TinyMCE Text Editor.......
     tinymce.init({
         menubar: false,

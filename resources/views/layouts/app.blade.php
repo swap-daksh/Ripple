@@ -25,11 +25,13 @@
                 {{-- Main Container --}}
                 <div class="col-md-10 content-wrapper no-padding">
                     <div class="content-outlet" >
-                    @yield('page-content')
+                    @yield('page-content') 
                     </div>
+                    @include('Ripple::layouts.footer')
                 </div>
+                
             </main>
-            @include('Ripple::layouts.footer')
+            
         </div>
         {{-- JS Scripts --}}
         <script src="{!! ripple_asset('/js/app.js') !!}"></script>
