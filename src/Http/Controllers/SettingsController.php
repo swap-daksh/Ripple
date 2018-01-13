@@ -16,15 +16,15 @@ class SettingsController extends Controller
 // General Settings
     public function settings()
     {
-        if (request()->has('setting-create')):
+        if (request()->has('setting-create')) :
             self::saveSetting();
 
-            return back();
-        elseif (request()->has('setting-update')):
+        return back();
+        elseif (request()->has('setting-update')) :
             self::updateSetting();
 
-            return back();
-        elseif (request()->has('setting-delete')):
+        return back();
+        elseif (request()->has('setting-delete')) :
             return self::deleteSetting();
         endif;
         $settings = self::hasGeneralSettings();
@@ -34,10 +34,10 @@ class SettingsController extends Controller
     // General Settings
     public function createSetting()
     {
-        if (request()->has('setting-create')):
+        if (request()->has('setting-create')) :
             self::saveSetting();
 
-            return redirect()->route('Ripple::adminSettings');
+        return redirect()->route('Ripple::adminSettings');
         endif;
 
         return view('Ripple::settings.create-setting');

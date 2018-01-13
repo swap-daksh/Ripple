@@ -194,7 +194,7 @@ function initSlimScroll() {
             contentOutlet: $('.content-wrapper').innerHeight(),
             outletContent: $('.content-outlet').prop('scrollHeight')
         };
-        $('.side-bar-left').height($('.content-wrapper').outerHeight());
+        //$('.side-bar-left').height($('.content-wrapper').outerHeight());
         $('.content-wrapper').css('height', height.contentWrapper + $('#footer').outerHeight());
         $('.content-outlet').css('height', (height.contentWrapper));
 
