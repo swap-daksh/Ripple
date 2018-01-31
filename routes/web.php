@@ -13,6 +13,7 @@
 
 //use YPC\Ripple\Support\Blade\RippleBlade;
 use YPC\Ripple\Support\Facades\Ripple;
+use Illuminate\Support\Facades\Session;
 
 //use Illuminate\Database\DatabaseManager;
 //use Doctrine\DBAL\Schema\SchemaException;
@@ -134,7 +135,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //        $queries = $schema->toSql(); // get queries to create this schema.
 //        dump('asdf');
 
-        $class = get_class(Schema::getFacadeRoot());
+        $class = get_class(Session::getFacadeRoot());
         dump($class);
 //        $schema = (new \Doctrine\DBAL\Schema\Schema())->createTable('demo_testing');
 //        $schema->addColumn("id", "integer", array('unsigned' => true));
