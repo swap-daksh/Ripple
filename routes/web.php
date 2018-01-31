@@ -32,7 +32,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                              Settings
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::match(['get', 'post'], '/{type}-settings', 'SettingsController@settings')->name('adminSettings');
+    Route::any('/settings/{type}', 'SettingsController@settings')->where(['type'=>'[a-z]+'])->name('adminSettings');
     Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
     Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
 
@@ -41,7 +41,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                              Database
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/database', 'DatabaseController@database')->name('adminDatabase');
+    Route::get('/database', 'DatabaseController@database')->name('adminDatabase');
     Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
 
