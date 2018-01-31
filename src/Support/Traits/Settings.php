@@ -12,16 +12,15 @@ use Illuminate\Support\Facades\Session;
  */
 trait Settings
 {
-    public function hasGeneralSettings()
+    public function hasSettings($type)
     {
-        return DB::table('rpl_settings')->where('group', 'general')->orderBy('id')->get();
+        return DB::table('rpl_settings')->where('group', $type)->orderBy('id')->get();
     }
 
     private function saveSetting()
     {
         if (self::hasSetting(request('setting-key'))) :
             session()->flash('setting-warning', 'Oops! Setting "' . request('setting-key') . '" already exists!!');
-
         return false;
         else :
             DB::table('rpl_settings')->insert(['key' => request('setting-key'), 'display_name' => request('setting-name'), 'value' => '', 'options' => self::settingOptions(request('option-name'), request('option-value')), 'type' => request('setting-type'), 'group' => request('group'), 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);

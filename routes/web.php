@@ -32,7 +32,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                              Settings
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::match(['get', 'post'], '/settings', 'SettingsController@settings')->name('adminSettings');
+    Route::match(['get', 'post'], '/{type}-settings', 'SettingsController@settings')->name('adminSettings');
     Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
     Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
 

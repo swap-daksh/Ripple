@@ -32,7 +32,7 @@ trait Posts
             if (request()->hasFile('post-image')):
                 $updatePost['image'] = storeFileAs('post-image', $this->post(request('post-id'))->slug);
             endif;
-            if (DB::table('posts')->where('id', request('post-id'))->update($updatePost)):
+            if (DB::table(prefix('posts'))->where('id', request('post-id'))->update($updatePost)):
                 session()->flash('success', request('post-title') . " successfully updated...");
                 return true;
             endif;
@@ -59,12 +59,12 @@ trait Posts
 
     public function post($post, $column = 'id')
     {
-        return DB::table('posts')->where($column, $post)->first();
+        return DB::table(prefix('posts'))->where($column, $post)->first();
     }
 
     public function posts($column = 'status', $value = 'published')
     {
-        return DB::table('posts')->where($column, $value)->get();
+        return DB::table(prefix('posts'))->where($column, $value)->get();
     }
 
 }
