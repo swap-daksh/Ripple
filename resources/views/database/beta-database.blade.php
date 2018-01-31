@@ -6,9 +6,9 @@
             <div class="card">
                 <div class="card-header">Database Tables</div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead class="thead-inverse">
+                    <div class="table-responsive border border-top-0">
+                    <table class="table table-striped mb-0">
+                        <thead class="bg-dark text-white">
                             <tr>
                                 <th class="text-center" style="width: 20px;"><i class="fa fa-photo text-info"></i></th>
                                 <th>Display Name</th>
