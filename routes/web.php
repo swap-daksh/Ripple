@@ -56,6 +56,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/bread/edit/{table}/rows', 'BreadController@editRowsBread')->name('adminEditRowsBread');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
     Route::any('/bread/update/status', 'BreadController@updateBreadStatus')->name('updateBreadStatus');
+    Route::any('/bread/list', 'BreadController@listBreads')->name('breadList');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------

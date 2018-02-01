@@ -165,7 +165,7 @@
             $scope.saveBread = function () {
                 $('#bread-columns').val(JSON.stringify($scope.tblColums));
                 $('#bread-info').val(JSON.stringify($scope.bread));
-                $('NewBread').submit();
+                $('#NewBread').submit();
             };
         }]);
 </script>

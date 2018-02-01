@@ -48,6 +48,18 @@ class BreadController extends Controller
         return view('Ripple::bread.bread-edit', compact('table'));
     }
 
+
+    /**
+     * Route method for listing all bread modules.
+     * 
+     * @return mixed
+     */
+    public function listBreads(){
+        $breads = DB::table(prefix('breads'))->get(); 
+        //dd($breads);
+        return view('Ripple::bread.beta-bread-list', compact('breads'));
+    }
+
     private static function insertBread(array $breadInfo)
     {
         $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
