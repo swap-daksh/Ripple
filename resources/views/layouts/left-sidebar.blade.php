@@ -21,7 +21,7 @@
                 <a class="" href="{!! route('Ripple::adminPageIndex') !!}"><i class="fa fa-file"></i><span class="sidebar-mini-hide">Menus</span></a>
             </li>
             <li>
-                <a href="{!! route('Ripple::adminSettings') !!}"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Settings</span></a>
+                <a href="{!! route('Ripple::adminSettings', ['type'=>'general']) !!}"><i class="fa fa-cog"></i><span class="sidebar-mini-hide">Settings</span></a>
             </li>
             <li>
                 <a href="{!! route('Ripple::adminDatabase') !!}"><i class="fa fa-database"></i><span class="sidebar-mini-hide">Database</span></a>

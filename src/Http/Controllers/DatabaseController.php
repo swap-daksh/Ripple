@@ -24,7 +24,7 @@ class DatabaseController extends Controller
 //        dd(dbal_db()->listTableColumns('users'));
         $tables = self::tables();
 
-        return view('Ripple::database.database-view', compact('tables'));
+        return view('Ripple::database.beta-database', compact('tables'));
     }
 
     public function createTable()
@@ -38,7 +38,7 @@ class DatabaseController extends Controller
                 return redirect()->route('Ripple::adminDatabase');
             endif;
         endif;
-        return view('Ripple::database.database-create');
+        return view('Ripple::database.beta-create-table');
     }
 
     public function viewTable($table)
