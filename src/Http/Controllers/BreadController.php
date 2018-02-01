@@ -51,11 +51,11 @@ class BreadController extends Controller
 
     /**
      * Route method for listing all bread modules.
-     * 
+     *
      * @return mixed
      */
     public function listBreads(){
-        $breads = DB::table(prefix('breads'))->get(); 
+        $breads = DB::table(prefix('breads'))->get();
         //dd($breads);
         return view('Ripple::bread.beta-bread-list', compact('breads'));
     }
