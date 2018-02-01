@@ -1,4 +1,6 @@
 @extends('Ripple::layouts.beta-app') 
+@section('page-title') General Settings @stop
+@section('page-description') All global settings are listed here @stop
 @section('page-content') 
 <div class="container-fluid p-3" ng-app="Settings">
 

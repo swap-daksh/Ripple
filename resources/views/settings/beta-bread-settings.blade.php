@@ -1,7 +1,8 @@
 @extends('Ripple::layouts.beta-app') 
+@section('page-title') Bread Settings @stop
+@section('page-title') Enable/Disable Bread options @stop
 @section('page-content')
 <div class="container-fluid p-3" ng-app="Settings"> 
-
     <div class="row" ng-controller="UpdateBreadStatus">
         <div class="col col-md-6">
             <div class="card">

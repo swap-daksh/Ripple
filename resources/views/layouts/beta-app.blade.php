@@ -20,6 +20,7 @@
             <main class="clearfix " > 
                 {{-- Main Container --}}
                 <div class="content-outlet content-wrapper p-0 container-fluid" >
+                    @include('Ripple::layouts.beta-page-title')
                     @yield('page-content') 
                 </div>
                 @include('Ripple::layouts.beta-footer')
