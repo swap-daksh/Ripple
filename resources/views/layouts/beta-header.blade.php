@@ -12,7 +12,7 @@
                         <i class="fa fa-database"></i> Bread Module
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{!! route('Ripple::adminDatabase') !!}"><i class="fa fa-list"></i>  List Breads</a>
+                        <a class="dropdown-item" href="{!! route('Ripple::breadList') !!}"><i class="fa fa-list"></i>  List Breads</a>
                         <a class="dropdown-item" href="{!! route('Ripple::adminCreateTable') !!}"><i class="fa fa-plus"></i> Create Table</a>
                     </div>
                 </li>
@@ -23,6 +23,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{!! route('Ripple::adminCreateTable') !!}"><i class="fa fa-plus"></i> Create Table</a>
                         <a class="dropdown-item" href="{!! route('Ripple::adminDatabase') !!}"><i class="fa fa-list"></i>  List Tables</a>
+                        <a class="dropdown-item" href="{!! route('Ripple::databaseTableRelationship') !!}"><i class="fa fa-list"></i>  Table Relations</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">

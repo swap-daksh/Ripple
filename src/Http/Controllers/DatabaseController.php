@@ -50,4 +50,16 @@ class DatabaseController extends Controller
         return view('Ripple::database.database-table', compact('table', 'columns'));
     }
 
+
+    /**
+     * function for table relationship view
+     * 
+     * @return mixed
+     */
+    public function tableRelationship(){
+        $tables = self::tables();
+        dd($tables);
+        return view('Ripple::database.beta-table-relationship');
+    }
+
 }

@@ -1,4 +1,4 @@
-@extends('Ripple::layouts.app')
+@extends('Ripple::layouts.beta-app')
 <?php
 /*
  * To change this license header, choose License Headers in Project Properties.

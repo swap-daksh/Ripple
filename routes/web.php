@@ -33,7 +33,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |-------------------------------------------------------------------------------------------------------------------
      */
 
-    Route::any('/settings/{type}', 'SettingsController@settings')->where(['type'=>'[a-z]+'])->name('adminSettings'); 
+    Route::any('/settings/{type}', 'SettingsController@settings')->where(['type'=>'[a-z]+'])->name('adminSettings');
     Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
     Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
 
@@ -45,6 +45,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::get('/database', 'DatabaseController@database')->name('adminDatabase');
     Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
+    Route::any('/database/table/relationship', 'DatabaseController@tableRelationship')->name('databaseTableRelationship');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -92,7 +93,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     all Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::group(['middleware' => ['hasBreadEnabled']], function() {
+    Route::group(['middleware' => ['hasBreadEnabled']], function () {
         Route::any('{slug}/browse', 'BreadController@breadBrowse')->where('slug', Ripple::hasBreadSlug())->name('adminBreadBrowse');
         Route::any('{slug}/add', 'BreadController@breadAdd')->where('slug', Ripple::hasBreadSlug())->name('adminBreadAdd');
         Route::any('{slug}/edit/{id}', 'BreadController@breadEdit')->where('slug', Ripple::hasBreadSlug())->name('adminBreadEdit');
@@ -155,8 +156,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         $RippleBLADE = new RippleBlade();
         $class = new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class);
 //        dd($class, $RippleBLADE);
-        foreach ((new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade)
-        {
+        foreach ((new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class))->getMethods() as $RippleBlade) {
             $RippleBLADE->{$RippleBlade->name}();
 //            dd($RippleBlade, $RippleBlade);
 //            dd()
