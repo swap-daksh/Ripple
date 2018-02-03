@@ -151,7 +151,9 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //        dd($class, $schema, DB::connection()->getDoctrineSchemaManager()->listTableColumns('users'), DB::connection()->getDoctrineConnection()
 //        );
     });
-
+Route::get('/test', function(){
+  return view('Ripple::test');
+});
     Route::get('/testing-abc', function () {
         $RippleBLADE = new RippleBlade();
         $class = new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class);

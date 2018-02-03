@@ -60,6 +60,10 @@ class BreadController extends Controller
         return view('Ripple::bread.beta-bread-list', compact('breads'));
     }
 
+
+
+
+
     private static function insertBread(array $breadInfo)
     {
         $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
@@ -103,8 +107,8 @@ class BreadController extends Controller
         $table = $bread->table;
         $records = DB::table($table)->get();
         $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
-        
-        return view('Ripple::bread.breadBrowse', compact('table', 'records', 'columns'));
+//dd($bread);
+        return view('Ripple::bread.breadBrowse', compact('table', 'bread', 'records', 'columns'));
     }
 
     public function breadView($slug, $id)
@@ -129,7 +133,7 @@ class BreadController extends Controller
             if(DB::table(request('table'))->insert(array_merge(request('column'), ['created_at'=>date('Y-m-d h:i:s'), 'updated_at'=>date('Y-m-d h:i:s')]))){
                 session()->flash('success', 'New record inserted into database table');
             }
-            
+
         }
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;

@@ -16,10 +16,10 @@
             @else
               <p>{!! $bread->description !!}</p>
             @endif
-            
+
           </div>
           <div class="card-footer">
-            <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-block">Browse {!! ucfirst($bread->display_singular) !!}</a>
+            <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-block">Browse {!! ucfirst($bread->display_plural) !!}</a>
           </div>
           </div>
       </div>
