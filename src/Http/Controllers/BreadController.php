@@ -106,7 +106,7 @@ class BreadController extends Controller
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
         $records = DB::table($table)->get();
-        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
 //dd($bread);
         return view('Ripple::bread.breadBrowse', compact('table', 'bread', 'records', 'columns'));
     }
