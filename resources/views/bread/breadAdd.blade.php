@@ -37,8 +37,9 @@
                     @endif
                     @endforeach
                     </div>
-                    <div class="col">
-                    <button class="btn btn-primary" type="submit">Save {!! ucfirst(str_singular($table)) !!}</button>   
+                    <div class="col-md-12 text-center p-0">
+                        <hr>
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i>  Save {!! ucfirst(str_singular($table)) !!}</button>   
                     </div>
                     </form>
                 </div>

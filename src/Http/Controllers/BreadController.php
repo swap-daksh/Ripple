@@ -23,7 +23,7 @@ class BreadController extends Controller
             }
             return redirect()->route('Ripple::adminEditBread', ['table' => $table]);
         }
-        return view('Ripple::bread.bread-create', compact('table'));
+        return view('Ripple::bread.beta-breadCreateModule', compact('table'));
     }
 
     public function editBread($table)
@@ -44,7 +44,7 @@ class BreadController extends Controller
                 dd($e->getMessage());
             }
         endif;
-        return view('Ripple::bread.bread-edit', compact('table'));
+        return view('Ripple::bread.beta-breadEditModule', compact('table'));
     }
 
 
@@ -58,7 +58,7 @@ class BreadController extends Controller
     public function listBreads()
     {
         $breads = DB::table(prefix('breads'))->get(); 
-        return view('Ripple::bread.beta-bread-list', compact('breads'));
+        return view('Ripple::bread.beta-breadListModules', compact('breads'));
     }
 
 
@@ -155,9 +155,15 @@ class BreadController extends Controller
      */
     public function breadView($slug, $id)
     {
+        $view =new \stdClass();
+        $view->bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
+        $view->table = $view->bread->table;
+        $view->columns = DB::table(prefix('bread_columns'))->where('bread', $view->bread->id)->get();
+        $view->data = DB::table($view->table)->where('id', $id)->first();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
-        return view('Ripple::bread.breadView', compact('table', 'id'));
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
+        return view('Ripple::bread.breadView', compact('table', 'id', 'columns', 'bread', 'view'));
     }
 
 
