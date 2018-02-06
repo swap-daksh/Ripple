@@ -48,22 +48,28 @@ class BreadController extends Controller
     }
 
 
+
+
     /**
-     * Route method for listing all bread modules.
+     * BreadController@listBreads route method for listing all bread modules.
      *
      * @return mixed
      */
     public function listBreads()
     {
-        $breads = DB::table(prefix('breads'))->get();
-        //dd($breads);
+        $breads = DB::table(prefix('breads'))->get(); 
         return view('Ripple::bread.beta-bread-list', compact('breads'));
     }
 
 
 
 
-
+    /**
+     * insert bread details to rpl_breads
+     * 
+     * @param array $breadInfo
+     * @return array
+     */
     private static function insertBread(array $breadInfo)
     {
         $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
@@ -73,6 +79,15 @@ class BreadController extends Controller
         }
     }
 
+
+
+
+    /**
+     * Insert bread columns of bread module to rpl_bread_columns
+     * 
+     * @param array|object $bread
+     * @return array
+     */
     private static function insertBreadColumn($bread)
     {
         return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
@@ -82,6 +97,14 @@ class BreadController extends Controller
         })->toArray());
     }
 
+
+
+
+    /**
+     * BreadController@updateBreadStatus route method for update bread status
+     * 
+     * @return json
+     */
     public function updateBreadStatus()
     {
         /* if (!DB::table('rpl_breads')->where('table', request('table'))->exists()) {
@@ -101,16 +124,35 @@ class BreadController extends Controller
         endif;
     }
 
+
+
+
+    /**
+     * BreadController@breadBrowse route method for browse all bread records
+     * 
+     * @param string $slug
+     * @return mixed
+     */
     public function breadBrowse($slug)
     {
+        $browse =new \stdClass();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
         $records = DB::table($table)->get();
         $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
-//dd($bread);
         return view('Ripple::bread.breadBrowse', compact('table', 'bread', 'records', 'columns'));
     }
 
+
+
+
+    /**
+     * BreadController@breadView route method to view a single record
+     * 
+     * @param string $slug
+     * @param integer $id
+     * @return mixed
+     */
     public function breadView($slug, $id)
     {
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
@@ -118,32 +160,68 @@ class BreadController extends Controller
         return view('Ripple::bread.breadView', compact('table', 'id'));
     }
 
+
+
+
+
+    /**
+     * BreadController@breadEdit route method to edit/update bread record
+     * 
+     * @param string $slug
+     * @param integer $id
+     * @return mixed
+     */
     public function breadEdit($slug, $id)
-    {
+    { 
+        $browse =new \stdClass();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
         $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
-        return view('Ripple::bread.breadEdit', compact('table', 'id'));
+        if(request()->has('bread-edit')){ 
+            if(DB::table(request('table'))->where('id', request('edit-id'))->update(request('column'))){
+                session()->flash('success', ucfirst($bread->display_singular).' successfully updated');
+                return back();
+            }
+
+        }
+        $edit = DB::table($table)->where('id', $id)->first();
+        
+        return view('Ripple::bread.breadEdit', compact('table', 'id', 'edit', 'columns', 'bread'));
     }
 
-    // function to add record
+
+
+
+    /**
+     * BreadController@breadAdd route method to add record to bread
+     * 
+     * @param string $slug
+     * @return mixed
+     */
     public function breadAdd($slug)
     {
         if(request()->has('bread-add')){
             if(DB::table(request('table'))->insert(array_merge(request('column'), ['created_at'=>date('Y-m-d h:i:s'), 'updated_at'=>date('Y-m-d h:i:s')]))){
                 session()->flash('success', 'New record inserted into database table');
             }
-
         }
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
-        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
-        //dd($bread, $table, $columns);
-        return view('Ripple::bread.breadAdd', compact('table', 'columns'));
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get(); 
+        return view('Ripple::bread.breadAdd', compact('table', 'columns', 'bread'));
     }
 
-    // function to add record
-    public function breadDelete()
+
+
+
+    /**
+     * BreadController@breadDelete route method to delete bread record
+     * 
+     * 
+     * @param integer $id
+     * @return mixed
+     */
+    public function breadDelete($id)
     {
         return view('Ripple::bread.breadAdd');
     }
