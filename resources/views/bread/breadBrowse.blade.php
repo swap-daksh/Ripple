@@ -40,7 +40,7 @@
                     </tr>
                     @empty
                     <tr>
-                        <td colspan="{!! count($columns) !!}">{!! ucfirst($table) !!} has no records yet.</td>
+                        <td colspan="{!! count($columns) +1 !!}">{!! ucfirst($table) !!} has no records yet.</td>
                     </tr>
                     @endforelse
                 </tbody>

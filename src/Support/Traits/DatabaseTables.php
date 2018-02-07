@@ -21,21 +21,10 @@ trait DatabaseTables
 
     public function tablesBreadWithStatus()
     {
-        return array_map(function($table) {
-            
-            $DB = DB::table('rpl_breads')->where('table', $table)->where('status', '1')->exists();
-            $columns = array_keys(dbal_db()->listTableColumns($table));
-            if ($DB):
-                switch ($DB):
-                    case true:
-                        return ['table' => $table, 'status' => 1, 'columns' => $columns];
-                    default:
-                        return ['table' => $table, 'status' => 0, 'columns' => $columns];
-                endswitch;
-            else:
-                return ['table' => $table, 'status' => 0, 'columns' => $columns];
-            endif;
-        }, self::tables());
+        return collect(DB::table(prefix('breads'))->get())->map(function($bread){
+            $columns = array_keys(dbal_db()->listTableColumns($bread->table));
+            return ['table' => $bread->table, 'status' => $bread->status, 'columns' => $columns];
+        })->toArray(); 
     }
 
 }

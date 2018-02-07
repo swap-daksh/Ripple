@@ -28,23 +28,19 @@
                                     <td class="font-w600">{!! ucwords(str_replace('_', ' ', $table)) !!}</td>
                                     <td><code>{!! $table !!}</code></td>
                                     <td>
-                                        @if(Ripple::hasEnabledBread($table))
+                                        
                                         @if(DB::table('rpl_breads')->where('table', $table)->exists())
-                                        <a class="btn btn-xs btn-info btn-block" href="{!! route('Ripple::adminEditBread', ['table' => $table]) !!}"><i class="fa fa-pencil-square-o"></i> Update</a>
+                                        <a class="btn btn-sm btn-info btn-block" href="{!! route('Ripple::adminEditBread', ['table' => $table]) !!}"><i class="fa fa-pencil-square-o"></i> Update</a>
                                         @else
-                                        <a class="btn btn-xs btn-success btn-block" href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}"><i class="fa fa-pencil"></i> Create</a>
+                                        <a class="btn btn-sm btn-success btn-block" href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}"><i class="fa fa-pencil"></i> Create</a>
                                         @endif
-                                        @else
-                                        <div data-toggle="tooltip" data-placement="left" data-original-title="This can be enable from Settings>Bread Settings > Enable Bread">
-                                            <a  class="btn btn-xs btn-warning disabled btn-block" href="javascript:void(0);"><i class="fa fa-ban "></i> Disabled</a>
-                                        </div>
-                                        @endif
+                                        
                                     </td>
                                     <td class="text-center">
                                         <div class="btn-group">
-                                            <a class="btn btn-xs btn-success" href="{!! route('Ripple::adminViewTable', ['table'=>$table]) !!}" data-toggle="tooltip" title="" data-original-title="View Table"><i class="fa fa-eye"></i></a>
+                                            <a class="btn btn-sm btn-success" href="{!! route('Ripple::adminViewTable', ['table'=>$table]) !!}" data-toggle="tooltip" title="" data-original-title="View Table"><i class="fa fa-eye"></i></a>
 
-                                            <button class="btn btn-xs btn-danger" type="button" data-toggle="tooltip" title="" data-original-title="Delete Table"><i class="fa fa-times"></i></button>
+                                            <button class="btn btn-sm btn-danger" type="button" data-toggle="tooltip" title="" data-original-title="Delete Table"><i class="fa fa-times"></i></button>
                                         </div>
                                     </td>
                                 </tr>

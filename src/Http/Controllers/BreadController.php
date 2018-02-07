@@ -113,33 +113,13 @@ class BreadController extends Controller
      */
     public function updateBreadStatus()
     {
-
+        $status = DB::table(prefix('breads'))->where('table', request('table'))->value('status'); 
+        
         if (DB::table(prefix('breads'))->where('table', request('table'))->update(['status' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
             return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
         else :
             return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-        endif;
-
-
-
-        /* if (!DB::table('rpl_breads')->where('table', request('table'))->exists()) {
-          return response()->json(['status' => 'NOK', 'msg' => 'Table "' . request('table') . '" Bread not created yet.', 'table' => request('table')]);
-          } */
-       /* $breadMeta = DB::table(prefix('breads_meta'));
-        if ($breadMeta->where('table', request('table'))->where('key', 'status')->exists()) :
-            $status = DB::table(prefix('breads_meta'))->where('table', request('table'))->where('key', 'status')->value('value');
-            if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
-                return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
-            else :
-                return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-            endif;
-        else :
-            if ($breadMeta->insert(['table' => request('table'), 'value' => 1, 'key' => 'status', 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')])) :
-                return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
-            else :
-                return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-            endif;
-        endif;*/
+        endif; 
     }
 
     /**
