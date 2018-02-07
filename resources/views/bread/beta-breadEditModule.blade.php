@@ -1,11 +1,17 @@
 @extends('Ripple::layouts.beta-app')
+@section('btn-add-new') 
+<div class="col text-right p-0">
+    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>'sdf']) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse   </a>
+</div>
+@stop
 @section('page-content')
 <div class="container-fluid p3 mt-3" ng-app="EditBread" ng-controller="EditExistsBread">
     <div class="row">
         <div class="col">
-            <div class="card mb-3">
+            <div class="card mb-3 rounded-0">
                 <div class="card-header">
                     New {!! $table !!}
+                    <a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-danger btn-sm float-right"><i class="fa fa-trash"></i> Delete</a>
                 </div>
                 <div class="card-body">
                     <form action="" method="post" id="editBread">
@@ -72,12 +78,12 @@
                                     <tbody>
                                         @foreach(Database::tableColumns($table) as $column=>$option)
                                         <tr>
-                                            <td>
+                                            <th scope="row">
                                                 {!! $column !!}
                                                 @if($option['autoincrement'])
                                                 <span class="text-success">(Autoincrement)</span>
                                                 @endif
-                                            </td>
+                                            </th>
                                             <td>{!! $option['dataType'] !!}</td>
                                             <td class="text-center">
                                                 @if($option['notnull'])
@@ -86,37 +92,37 @@
                                                 <span class="text-warning">No</span>
                                                 @endif
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-required-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].required" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-required-'.$loop->index !!}"></label>
                                                 </div> 
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-browse-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].browse" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-browse-'.$loop->index !!}"></label>
                                                 </div> 
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-read-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].read" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-read-'.$loop->index !!}"></label>
                                                 </div> 
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-edit-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].edit" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-edit-'.$loop->index !!}"></label>
                                                 </div> 
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-add-'.$loop->index !!}"></label>
                                                 </div> 
                                             </td>
-                                            <td class="text-center">
+                                            <td class="text-center align-middle">
                                                 <div class="custom-control custom-checkbox">
                                                     <input class="custom-control-input" id="{!! $column.'-delete-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].delete" type="checkbox">
                                                     <label class="custom-control-label" for="{!! $column.'-delete-'.$loop->index !!}"></label>
@@ -164,6 +170,29 @@
     </div>
 </div>
 
+
+
+
+
+<div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirm</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete <b></b> bread?</p>
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-secondary mx-auto" data-dismiss="modal"><i class="fa fa-times"></i> No, Cancel</button>
+                <a href="{!! route('Ripple::adminDeleteBread', ['table'=>$table]) !!}" class="btn btn-danger mx-auto"><i class="fa fa-trash"></i> Yes, Delete</a>
+            </div>
+        </div>
+    </div>
+</div>
 @stop
 @push('page-script')
 <script type="text/javascript">
