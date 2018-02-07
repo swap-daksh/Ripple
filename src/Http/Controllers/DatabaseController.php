@@ -58,8 +58,8 @@ class DatabaseController extends Controller
      */
     public function tableRelationship(){
         $tables = self::tables();
-        dd($tables);
-        return view('Ripple::database.beta-table-relationship');
+        //dd($tables);
+        return view('Ripple::database.beta-table-relationship', compact('tables'));
     }
 
 }

@@ -8,6 +8,16 @@ use Illuminate\Routing\Router;
 class BreadController extends Controller
 {
 
+
+
+
+
+    /**
+     * BreadController@createBread route method to create new Bread Module.
+     * 
+     * @param string $table
+     * @return mixed
+     */
     public function createBread($table)
     {
         if (DB::table(prefix('breads'))->where('table', request('table'))->exists()) :
@@ -27,6 +37,17 @@ class BreadController extends Controller
         return view('Ripple::bread.beta-breadCreateModule', compact('table'));
     }
 
+
+
+
+
+
+    /**
+     * BreadController@editBread route method for edit module Bread.
+     * 
+     * @param string $table
+     * @return mixed
+     */
     public function editBread($table)
     {
         if (request()->has('edit-bread')) :
@@ -48,10 +69,14 @@ class BreadController extends Controller
         return view('Ripple::bread.beta-breadEditModule', compact('table'));
     }
 
+
+
+
+
     /**
      * BreadController@deleteBread route method to delete breads
      * 
-     * @param integer $table
+     * @param string $table
      */
     public function deleteBread($table)
     {
@@ -64,6 +89,10 @@ class BreadController extends Controller
         }
     }
 
+
+
+
+    
     /**
      * BreadController@listBreads route method for listing all bread modules.
      *
@@ -75,35 +104,7 @@ class BreadController extends Controller
         return view('Ripple::bread.beta-breadListModules', compact('breads'));
     }
 
-    /**
-     * insert bread details to rpl_breads
-     * 
-     * @param array $breadInfo
-     * @return array
-     */
-    private static function insertBread(array $breadInfo)
-    {
-        $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
-        $bread = DB::table(prefix('breads'))->insertGetId($insertBread);
-        if ($bread !== null) {
-            return self::insertBreadColumn($bread);
-        }
-    }
-
-    /**
-     * Insert bread columns of bread module to rpl_bread_columns
-     * 
-     * @param array|object $bread
-     * @return array
-     */
-    private static function insertBreadColumn($bread)
-    {
-        return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
-                    $item['bread'] = $bread;
-                    $item['order'] = $order;
-                    return DB::table(prefix('bread_columns'))->insert($item);
-                })->toArray());
-    }
+    
 
     /**
      * BreadController@updateBreadStatus route method for update bread status
@@ -112,10 +113,19 @@ class BreadController extends Controller
      */
     public function updateBreadStatus()
     {
+
+        if (DB::table(prefix('breads'))->where('table', request('table'))->update(['status' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
+            return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
+        else :
+            return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
+        endif;
+
+
+
         /* if (!DB::table('rpl_breads')->where('table', request('table'))->exists()) {
           return response()->json(['status' => 'NOK', 'msg' => 'Table "' . request('table') . '" Bread not created yet.', 'table' => request('table')]);
           } */
-        $breadMeta = DB::table(prefix('breads_meta'));
+       /* $breadMeta = DB::table(prefix('breads_meta'));
         if ($breadMeta->where('table', request('table'))->where('key', 'status')->exists()) :
             $status = DB::table(prefix('breads_meta'))->where('table', request('table'))->where('key', 'status')->value('value');
             if ($breadMeta->where('table', request('table'))->where('key', 'status')->update(['value' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
@@ -129,7 +139,7 @@ class BreadController extends Controller
             else :
                 return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
             endif;
-        endif;
+        endif;*/
     }
 
     /**
@@ -221,6 +231,40 @@ class BreadController extends Controller
     public function breadDelete($id)
     {
         return view('Ripple::bread.breadAdd');
+    }
+
+
+
+
+
+    /**
+     * insert bread details to rpl_breads
+     * 
+     * @param array $breadInfo
+     * @return array
+     */
+    private static function insertBread(array $breadInfo)
+    {
+        $insertBread = array_merge($breadInfo, ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
+        $bread = DB::table(prefix('breads'))->insertGetId($insertBread);
+        if ($bread !== null) {
+            return self::insertBreadColumn($bread);
+        }
+    }
+
+    /**
+     * Insert bread columns of bread module to rpl_bread_columns
+     * 
+     * @param array|object $bread
+     * @return array
+     */
+    private static function insertBreadColumn($bread)
+    {
+        return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
+                    $item['bread'] = $bread;
+                    $item['order'] = $order;
+                    return DB::table(prefix('bread_columns'))->insert($item);
+                })->toArray());
     }
 
 }

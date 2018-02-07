@@ -22,10 +22,11 @@ trait DatabaseTables
     public function tablesBreadWithStatus()
     {
         return array_map(function($table) {
-            $DB = DB::table('rpl_breads_meta')->where('table', $table)->where('key', 'status');
+            
+            $DB = DB::table('rpl_breads')->where('table', $table)->where('status', '1')->exists();
             $columns = array_keys(dbal_db()->listTableColumns($table));
-            if ($DB->exists()):
-                switch ($DB->first()->value):
+            if ($DB):
+                switch ($DB):
                     case true:
                         return ['table' => $table, 'status' => 1, 'columns' => $columns];
                     default:

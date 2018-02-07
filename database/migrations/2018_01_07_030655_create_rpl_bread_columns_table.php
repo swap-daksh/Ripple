@@ -27,7 +27,8 @@ class CreateRplBreadColumnsTable extends Migration
             $table->tinyInteger('add')->default(0);
             $table->tinyInteger('delete')->default(0);
             $table->tinyInteger('order');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
         });
     }
 

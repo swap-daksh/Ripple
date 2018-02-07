@@ -23,6 +23,7 @@ class CreateRplBreadsTable extends Migration
             $table->string('model')->nullable();
             $table->string('controller')->nullable();
             $table->string('description')->nullable();
+            $table->integer('status')->default('0');
             $table->timestamps();
         });
     }

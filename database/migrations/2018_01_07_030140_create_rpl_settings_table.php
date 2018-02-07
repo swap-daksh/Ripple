@@ -23,7 +23,9 @@ class CreateRplSettingsTable extends Migration
             $table->string('type');
             $table->integer('order')->default(1);
             $table->string('group');
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
+            $table->softDeletes(); 
         });
     }
 

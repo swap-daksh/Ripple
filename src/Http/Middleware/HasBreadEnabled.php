@@ -3,6 +3,7 @@
 namespace YPC\Ripple\Http\Middleware;
 
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use Closure;
 
 class HasBreadEnabled
@@ -17,11 +18,12 @@ class HasBreadEnabled
      */
     public function handle($request, Closure $next)
     {
-        $bread = DB::table(prefix('breads'))->where('slug', $request->slug)->first();
-        if (DB::table('rpl_breads_meta')->where('table', $bread->table)->where('key', 'status')->where('value', '1')->exists()) {
-            return $next($request);
-        } else {
-            abort(404);
+        if(Schema::hasTable(prefix('breads'))){
+            if (DB::table(prefix('breads'))->where('slug', $request->slug)->where('status', '1')->exists()) {
+                return $next($request);
+            } else {
+                abort(404);
+            }
         }
     }
 

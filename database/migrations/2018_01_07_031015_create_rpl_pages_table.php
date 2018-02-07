@@ -23,8 +23,9 @@ class CreateRplPagesTable extends Migration
             $table->string('password')->nullable();
             $table->string('status');
             $table->string('visibility')->default('public')->nullable();
-            $table->softDeletes('deleted_at', 0);
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
+            $table->softDeletes(); 
         });
     }
 
