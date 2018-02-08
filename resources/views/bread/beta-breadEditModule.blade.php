@@ -1,24 +1,24 @@
 @extends('Ripple::layouts.beta-app')
+@section('page-title') Update {!! $table !!} @stop
 @section('btn-add-new') 
 <div class="col text-right p-0">
-    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>'sdf']) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse   </a>
+    <button class="btn btn-sm btn-success" onClick="document.getElementById('updateBreadBtn').click();"><i class="fa fa-save"></i> Update BREAD</button>
+    <a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete Bread</a>
+    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Table Breads</a>
 </div>
 @stop
 @section('page-content')
 <div class="container-fluid p3 mt-3" ng-app="EditBread" ng-controller="EditExistsBread">
     <div class="row">
         <div class="col">
-            <div class="card mb-3 rounded-0">
-                <div class="card-header">
-                    New {!! $table !!}
-                    <a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-danger btn-sm float-right"><i class="fa fa-trash"></i> Delete</a>
-                </div>
+            <div class="card mb-3 rounded-0"> 
                 <div class="card-body">
-                    <form action="" method="post" id="editBread">
+                    <form action="" method="post" id="editBread" class="d-none">
                         {!! csrf_field() !!}
                         <input type="hidden" name="edit-bread"  value="{!! $table !!}">
                         <input type="hidden" name="bread-columns" id="bread-columns">
                         <input type="hidden" name="bread-info" id="bread-info">
+                        <button hidden id="updateBreadBtn" ng-click="updateBread();" ></button>
                     </form>
                     <div class="row clearfix">
                         <div class="col-md-6 form-group">
@@ -58,111 +58,121 @@
                     </div>
                     <div class="row clearfix">
                         <div class="col-md-12">
-                            <div class="table-responsive">
-                                <table class="table table-striped">
-                                    <thead class="thead-dark">
-                                        <tr>
-                                            <th class="">Column</th>
-                                            <th class="">Type</th>
-                                            <th class="">Not Null</th>
-                                            <th class="text-center">Required</th>
-                                            <th class="text-center">Browse</th>
-                                            <th class="text-center">Read</th>
-                                            <th class="text-center">Edit</th>
-                                            <th class="text-center">Add</th>
-                                            <th class="text-center">Delete</th>
-                                            <th class="text-center" style="width: 150px;">Input Type</th>
-                                            <th class="text-center" style="width: 200px;">Display Name</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach(Database::tableColumns($table) as $column=>$option)
-                                        <tr>
-                                            <th scope="row">
-                                                {!! $column !!}
-                                                @if($option['autoincrement'])
-                                                <span class="text-success">(Autoincrement)</span>
-                                                @endif
-                                            </th>
-                                            <td>{!! $option['dataType'] !!}</td>
-                                            <td class="text-center">
-                                                @if($option['notnull'])
-                                                <span class="text-danger">Yes</span>
-                                                @else
-                                                <span class="text-warning">No</span>
-                                                @endif
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-required-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].required" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-required-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-browse-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].browse" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-browse-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-read-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].read" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-read-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-edit-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].edit" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-edit-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-add-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td class="text-center align-middle">
-                                                <div class="custom-control custom-checkbox">
-                                                    <input class="custom-control-input" id="{!! $column.'-delete-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].delete" type="checkbox">
-                                                    <label class="custom-control-label" for="{!! $column.'-delete-'.$loop->index !!}"></label>
-                                                </div> 
-                                            </td>
-                                            <td>
-                                                <select ng-model="tblColums['{!! $column !!}'].type" class="custom-select input-sm">
-                                                    <option value="checkbox">Checkbox</option>
-                                                    <option value="date">Date</option>
-                                                    <option value="file">File</option>
-                                                    <option value="image">Image</option>
-                                                    <option value="multiple_images">Multiple Images</option>
-                                                    <option value="number">Number</option>
-                                                    <option value="password">Password</option>
-                                                    <option value="radio_btn">Radio Button</option>
-                                                    <option value="rich_text_box">Rich Text Box</option>
-                                                    <option value="select_dropdown">Select Dropdown</option>
-                                                    <option value="select_multiple">Select Multiple</option>
-                                                    <option value="text" selected="">Text</option>
-                                                    <option value="text_area">Text Area</option>
-                                                    <option value="timestamp">Timestamp</option>
-                                                    <option value="hidden">Hidden</option>
-                                                    <option value="code_editor">Code Editor</option>
-                                                </select>
-                                            </td>
-                                            <td>
-                                                <input type="text" class="form-control input-sm" ng-model="tblColums['{!! $column !!}'].display_name">
-                                            </td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                            <div id="accordion">
+                                <div class="card rounded-0">
+                                    <div class="card-header rounded-0" style="background:#6f42c1;" id="headingOne">
+                                        <h5 class="mb-0">
+                                            <button class="btn btn-block btn-link text-white" data-toggle="collapse" data-target="#breadColumns" aria-expanded="true" aria-controls="breadColumns">
+                                                Bread Columns
+                                            </button>
+                                        </h5>
+                                    </div>
+
+                                    <div id="breadColumns" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                                        <div class="card-body p-0">
+                                            <div class="table-responsive">
+                                                <table class="table table-striped mb-0">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th class="">Column</th>
+                                                            <th class="">Type</th>
+                                                            <th class="">Not Null</th>
+                                                            <th class="text-center">Required</th>
+                                                            <th class="text-center">Browse</th>
+                                                            <th class="text-center">Read</th>
+                                                            <th class="text-center">Edit</th>
+                                                            <th class="text-center">Add</th>
+                                                            <th class="text-center">Delete</th>
+                                                            <th class="text-center" style="width: 150px;">Input Type</th>
+                                                            <th class="text-center" style="width: 200px;">Display Name</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach(Database::tableColumns($table) as $column=>$option)
+                                                        <tr>
+                                                            <th scope="row">
+                                                                {!! $column !!}
+                                                                @if($option['autoincrement'])
+                                                                <span class="text-success">(Autoincrement)</span>
+                                                                @endif
+                                                            </th>
+                                                            <td>{!! $option['dataType'] !!}</td>
+                                                            <td class="text-center">
+                                                                @if($option['notnull'])
+                                                                <span class="text-danger">Yes</span>
+                                                                @else
+                                                                <span class="text-warning">No</span>
+                                                                @endif
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-required-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].required" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-required-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-browse-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].browse" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-browse-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-read-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].read" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-read-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-edit-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].edit" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-edit-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-add-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td class="text-center align-middle">
+                                                                <div class="custom-control custom-checkbox">
+                                                                    <input class="custom-control-input" id="{!! $column.'-delete-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].delete" type="checkbox">
+                                                                    <label class="custom-control-label" for="{!! $column.'-delete-'.$loop->index !!}"></label>
+                                                                </div> 
+                                                            </td>
+                                                            <td>
+                                                                <select ng-model="tblColums['{!! $column !!}'].type" class="custom-select input-sm">
+                                                                    <option value="checkbox">Checkbox</option>
+                                                                    <option value="date">Date</option>
+                                                                    <option value="file">File</option>
+                                                                    <option value="image">Image</option>
+                                                                    <option value="multiple_images">Multiple Images</option>
+                                                                    <option value="number">Number</option>
+                                                                    <option value="password">Password</option>
+                                                                    <option value="radio_btn">Radio Button</option>
+                                                                    <option value="rich_text_box">Rich Text Box</option>
+                                                                    <option value="select_dropdown">Select Dropdown</option>
+                                                                    <option value="select_multiple">Select Multiple</option>
+                                                                    <option value="text" selected="">Text</option>
+                                                                    <option value="text_area">Text Area</option>
+                                                                    <option value="timestamp">Timestamp</option>
+                                                                    <option value="hidden">Hidden</option>
+                                                                    <option value="code_editor">Code Editor</option>
+                                                                </select>
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" class="form-control input-sm" ng-model="tblColums['{!! $column !!}'].display_name">
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <hr>
-                        </div>
-                        <div class="col-md-12 text-center">
-                            <button class="btn btn-success" ng-click="updateBread();"><i class="fa fa-cloud-upload"></i> UPDATE BREAD</button>
-                        </div>
+                        </div> 
                     </div>
                 </div>
             </div>

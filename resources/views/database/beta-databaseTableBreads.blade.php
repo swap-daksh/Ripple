@@ -6,22 +6,23 @@
         <div class="col">
             <div class="card mb-3 rounded-0"> 
                 <div class="card-body">
-                    <div class="row">
+                    <div class="row px-3">
                         @foreach($tables as $table)
-                            <div class="col-md-2 mb-2 card bg-light">
-                                <blockquote class="blockquote my-3">
-                                    <p class="text-center"><i class="fa fa-database fa-2x"></i></p>
-                                    <p class="text-center"><code>{!! $table !!}</code></p>
+                            <div class="col-md-2 p-1 ">
+                                <div class="card my-1 bg-light">
+                                <blockquote class="blockquote m-2">
+                                    <p class="text-center m-0"><i class="fab "></i></p>
+                                    <p class=""><code> {!! $table !!}</code></p>
                                     <footer class="blockquote-footer">
                                     @if(DB::table('rpl_breads')->where('table', $table)->exists())
                                     <a href="{!! route('Ripple::adminEditBread', ['table' => $table]) !!}" class="card-link text-success">Update</a> 
                                     @else
                                     <a href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}" class="card-link">Create</a>
                                     {{--<a class="btn btn-sm btn-success btn-block" href=""><i class="fa fa-pencil"></i> Create</a>--}}
-                                    @endif
-                                    
+                                    @endif 
                                     </footer>
                                 </blockquote>
+                                    </div>
                             </div>
                         @endforeach
                     </div>
