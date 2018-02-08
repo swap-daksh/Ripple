@@ -61,7 +61,7 @@
                         <div class="card rounded-0">
                             <div class="card-header rounded-0" style="background:#6f42c1;" id="headingOne">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-block btn-link text-white" data-toggle="collapse" data-target="#breadColumns" aria-expanded="true" aria-controls="breadColumns">
+                                    <button style="text-decoration: none;" class="btn btn-block btn-link text-white" data-toggle="collapse" data-target="#breadColumns" aria-expanded="true" aria-controls="breadColumns">
                                         <i class="fa fa-edit"></i> Bread Columns
                                     </button>
                                 </h5>

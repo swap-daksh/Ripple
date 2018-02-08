@@ -7,5 +7,8 @@
             <small class="text-white">@yield('page-description', "Page Description")</small>
         </div>
         @yield('btn-add-new', '')
+        <div class="col text-right p-0">
+            @yield('buttons', '')
+        </div>
     </div>
 </div>

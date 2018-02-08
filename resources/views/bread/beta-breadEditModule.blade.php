@@ -1,6 +1,6 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Update {!! $table !!} @stop
-@section('btn-add-new') 
+@section('buttons') 
 <div class="col text-right p-0">
     <button class="btn btn-sm btn-success" onClick="document.getElementById('updateBreadBtn').click();"><i class="fa fa-save"></i> Update BREAD</button>
     <a href="javascript:void(0);" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i> Delete Bread</a>
@@ -62,8 +62,8 @@
                                 <div class="card rounded-0">
                                     <div class="card-header rounded-0" style="background:#6f42c1;" id="headingOne">
                                         <h5 class="mb-0">
-                                            <button class="btn btn-block btn-link text-white" data-toggle="collapse" data-target="#breadColumns" aria-expanded="true" aria-controls="breadColumns">
-                                                Bread Columns
+                                            <button style="text-decoration: none;" class="btn btn-block btn-link text-white" data-toggle="collapse" data-target="#breadColumns" aria-expanded="true" aria-controls="breadColumns">
+                                                <i class="fa fa-edit"></i> Bread Columns
                                             </button>
                                         </h5>
                                     </div>
