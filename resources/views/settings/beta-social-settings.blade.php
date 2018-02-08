@@ -21,7 +21,7 @@
                                     <div class="card rounded-0 mb-1">
                                         <div class="card-header rounded-0 p-0" id="{!! $setting->key !!}_heading">
                                             <h5 class="mb-0">
-                                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{!! $loop->index !!}" aria-expanded="true" aria-controls="collapseOne">
+                                                <button class="btn btn-link" style="text-decoration: none;" type="button" data-toggle="collapse" data-target="#{!! $loop->index !!}" aria-expanded="true" aria-controls="collapseOne">
                                                     <i class="fa fa-cogs"></i>&nbsp; {!! ucwords(strtolower($setting->display_name)) !!}
                                                 </button>
                                             </h5>
