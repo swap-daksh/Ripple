@@ -1,6 +1,11 @@
 @extends('Ripple::layouts.beta-app') 
 @section('page-title') Create New Table @stop
 @section('page-description') Here you can create a new database table. @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::databaseModule') !!}" class="btn btn-primary btn-sm"><i class="fa fa-database"></i> Database Modules</a>
+</div>
+@stop
 @section('page-content')
 <div class="container-fluid p-3" ng-app="createTable" ng-controller="NewTableController"> 
     <div class="row">

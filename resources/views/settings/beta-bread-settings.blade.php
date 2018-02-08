@@ -1,6 +1,12 @@
 @extends('Ripple::layouts.beta-app') 
 @section('page-title') Bread Settings @stop
 @section('page-title') Enable/Disable Bread options @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Table Breads</a>
+    <a href="{!! route('Ripple::breadModule') !!}" class="btn btn-success btn-sm"><i class="fa fa-list"></i> List Breads</a>
+</div>
+@stop
 @section('page-content')
 <div class="container-fluid p-3" ng-app="Settings"> 
     <div class="row" ng-controller="UpdateBreadStatus">

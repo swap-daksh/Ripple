@@ -1,6 +1,11 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Database Table List @stop
 @section('page-description') List all tables of database @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::databaseModule') !!}" class="btn btn-primary btn-sm"><i class="fa fa-database"></i> Database Modules</a>
+</div>
+@stop
 @section('page-content')
 <div class="container-fluid p-3">
     <div class="row">

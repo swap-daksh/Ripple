@@ -1,6 +1,12 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') All available bread modules @stop
 @section('page-description') List of all bread modules @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle "></i> Add New Bread</a>
+    <a href="{!! route('Ripple::adminSettings', ['type'=>'bread']) !!}" class="btn btn-primary btn-sm"><i class="fa fa-cogs"></i> Bread Settings</a>
+</div>
+@stop
 @section('page-content')
 <div class="container-fluid p3 mt-3">
     <div class="row">
