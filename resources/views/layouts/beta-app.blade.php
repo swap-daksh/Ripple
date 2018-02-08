@@ -17,9 +17,9 @@
         <div id="app" >
             {{-- Header --}}
             @include('Ripple::layouts.beta-header')
-            <main class="clearfix " > 
+            <main class="clearfix "  style="margin-bottom: 65px"> 
                 {{-- Main Container --}}
-                <div class="content-outlet content-wrapper p-0 container-fluid" >
+                <div class="content-outlet content-wrapper p-0 container-fluid">
                     @include('Ripple::layouts.beta-page-title')
                     @yield('page-content') 
                 </div>

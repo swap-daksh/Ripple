@@ -10,30 +10,30 @@
         </div>
         <ul class="navbar-nav px-3 ">
           <li class="nav-item">
-              <a class="nav-link " href="{!! route('Ripple::breadList') !!}" id="navbarDropdown">
+              <a class="nav-link " href="{!! route('Ripple::breadModule') !!}" id="navbarDropdown">
                   <i class="fa fa-database"></i> Bread Module
               </a>
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="{!! route('Ripple::databaseModule') !!}" id="navbarDropdown" role="button">
                   <i class="fa fa-database"></i> Database Module
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{!! route('Ripple::adminCreateTable') !!}"><i class="fa fa-plus"></i> Create Table</a>
                   <a class="dropdown-item" href="{!! route('Ripple::adminDatabase') !!}"><i class="fa fa-list"></i>  List Tables</a>
                   <a class="dropdown-item" href="{!! route('Ripple::databaseTableRelationship') !!}"><i class="fa fa-list"></i>  Table Relations</a>
-              </div>
+              </div>-->
           </li>
           <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="javascript:void(0);" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link" href="{!! route('Ripple::settingModule') !!}" id="navbarDropdown" role="button">
                   <i class="fa fa-cog"></i> Setting Module
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <!--<div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{!! route('Ripple::adminSettings', ['type'=>'general']) !!}"><i class="fa fa-globe"></i>  General Settings</a>
                   <a class="dropdown-item" href="{!! route('Ripple::adminSettings', ['type'=>'bread']) !!}"><i class="fa fa-info-circle"></i>  Bread Settings</a>
                   <a class="dropdown-item" href="{!! route('Ripple::adminSettings', ['type'=>'sco']) !!}"><i class="fa fa-info-circle"></i>  SCO Settings</a>
                   <a class="dropdown-item" href="{!! route('Ripple::adminSettings', ['type'=>'social']) !!}"><i class="fa fa-info-circle"></i>  Social Settings</a>
-              </div>
+              </div>-->
           </li>
       </ul>
     </div>

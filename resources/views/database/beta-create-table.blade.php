@@ -7,8 +7,22 @@
         <div class="col"> 
             <div class="card">
                 <div class="card-body clearfix">
+                <div class="row mb-3">
+                        <div class="col-6">
+                            <input type="text" placeholder="Table Name" id="" ng-model="table.name" class="form-control input-sm">
+                        </div>
+                        <div class="col-2 align-middle">
+                            <button class="btn btn-block btn-warning btn-sm" ng-click="timeStamps()"><i class="fa fa-plus"></i> Add Timestamps</button>
+                        </div>
+                        <div class="col-2 align-middle">
+                            <button class="btn btn-block btn-danger btn-sm" ng-click="deletedAt()"><i class="fa fa-plus"></i> Add Soft Deletes</button>
+                        </div>
+                        <div class="col-2 align-middle">
+                            <button class="btn btn-success btn-block btn-sm" ng-click="saveTable();" type="submit"><i class="fa fa-save"></i> Create Table</button>
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col">
+                        <div class="col-md-8">
                             <form id="create-table" method="post" action="">
                                 {!! csrf_field() !!}
                                 <input type="hidden" name="columns">
@@ -77,11 +91,9 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col" ng-init="defaultColumn()">
-                            <div class="card">
-                                <div class="card-header">
+                        <div class="col-md-4">
+                            <div class="card rounded-0">
+                                <div class="card-header bg-dark rounded-0 text-white">
                                     Add New Column
                                 </div>
                                 <div class="card-body">
@@ -107,21 +119,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            <input type="text" placeholder="Table Name" id="" ng-model="table.name" class="form-control input-sm">
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-block btn-warning btn-sm" ng-click="timeStamps()"><i class="fa fa-plus"></i> Add Timestamps</button>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-block btn-danger btn-sm" ng-click="deletedAt()"><i class="fa fa-plus"></i> Add Soft Deletes</button>
-                        </div>
-                        <div class="col-2">
-                            <button class="btn btn-success btn-block btn-sm" ng-click="saveTable();" type="submit"><i class="fa fa-save"></i> Create Table</button>
-                        </div>
-                    </div>
+                    </div> 
                 </div>
             </div>
         </div>

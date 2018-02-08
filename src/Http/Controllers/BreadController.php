@@ -101,7 +101,7 @@ class BreadController extends Controller
     public function listBreads()
     {
         $breads = DB::table(prefix('breads'))->get();
-        return view('Ripple::bread.beta-breadListModules', compact('breads'));
+        return view('Ripple::bread.beta-breadModules', compact('breads'));
     }
 
     
@@ -154,7 +154,7 @@ class BreadController extends Controller
         $view->data = DB::table($view->table)->where('id', $id)->first();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
-        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
         return view('Ripple::bread.breadView', compact('table', 'id', 'columns', 'bread', 'view'));
     }
 
@@ -170,7 +170,7 @@ class BreadController extends Controller
         $browse = new \stdClass();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
-        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
         if (request()->has('bread-edit')) {
             if (DB::table(request('table'))->where('id', request('edit-id'))->update(request('column'))) {
                 session()->flash('success', ucfirst($bread->display_singular) . ' successfully updated');
@@ -197,7 +197,7 @@ class BreadController extends Controller
         }
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
-        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->get();
+        $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
         return view('Ripple::bread.breadAdd', compact('table', 'columns', 'bread'));
     }
 

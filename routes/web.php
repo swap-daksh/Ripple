@@ -32,7 +32,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                              Settings
       |-------------------------------------------------------------------------------------------------------------------
      */
-
+    Route::any('/setting/modules', 'SettingsController@settingModule')->name('settingModule');
     Route::any('/settings/{type}', 'SettingsController@settings')->where(['type'=>'[a-z]+'])->name('adminSettings');
     Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
     Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
@@ -42,10 +42,12 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                              Database
       |-------------------------------------------------------------------------------------------------------------------
      */
+    Route::any('/database/modules', 'DatabaseController@databaseModule')->name('databaseModule');
     Route::get('/database', 'DatabaseController@database')->name('adminDatabase');
     Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
     Route::any('/database/table/relationship', 'DatabaseController@tableRelationship')->name('databaseTableRelationship');
+    Route::any('/database/table/breads', 'DatabaseController@tableBreads')->name('databaseTableBreads');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -59,7 +61,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/bread/edit/{table}/rows', 'BreadController@editRowsBread')->name('adminEditRowsBread');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
     Route::any('/bread/update/status', 'BreadController@updateBreadStatus')->name('updateBreadStatus');
-    Route::any('/bread/list', 'BreadController@listBreads')->name('breadList');
+    Route::any('/bread/modules', 'BreadController@listBreads')->name('breadModule');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------

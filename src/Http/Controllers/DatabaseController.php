@@ -10,6 +10,28 @@ class DatabaseController extends Controller
 
     use DatabaseTables;
 
+    /**
+     * DatabaseController@databaseModule route method for database module
+     * 
+     * @return mixed
+     */
+    public function databaseModule(){
+        return view('Ripple::database.beta-databaseModules');
+    }
+
+
+    /**
+     * DatabaseController@tableBreads route method for list all breads
+     * 
+     * @return mixed
+     */
+    public function tableBreads(){
+        $tables = self::tables();
+        return view('Ripple::database.beta-databaseTableBreads', compact('tables'));
+    }
+
+
+
     public function database()
     {
        if (request()->has('table')) :

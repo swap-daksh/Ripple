@@ -1,8 +1,12 @@
 @extends('Ripple::layouts.beta-app')
+@section('page-title') Update {!! ucfirst(str_singular($table)) !!} @stop
+@section('page-description') {!! $bread->description !!} @stop
 @section('btn-add-new') 
 <div class="col text-right p-0">
-    <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add New {!! ucfirst($bread->display_singular) !!}</a>
-    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
+    <button class="btn btn-success btn-sm" onClick="document.getElementById('update-bread').submit();" type="submit"><i class="fa fa-cloud-upload"></i> Update {!! ucfirst(str_singular($bread->display_singular)) !!}</button>
+    {{--<a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>--}}
+    <a href="{!! route('Ripple::adminBreadView', ['slug'=>$bread->slug, 'id'=>$edit->id]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> View {!! ucfirst($bread->display_singular) !!}</a> 
+    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a> 
 </div>
 @stop
 @section('page-content')
@@ -10,11 +14,8 @@
 <div class="container-fluid p-3"> 
     <div class="col-md-12 p-0">
         <div class="card rounded-0">
-            <div class="card-header bg-dark rounded-0 text-white">
-                <i class="fa fa-pencil-square-o fa-2x"></i> Update {!! ucfirst(str_singular($table)) !!}
-            </div>
             <div class="card-body">
-                <form action="" enctype="multipart/form-data">
+                <form id="update-bread" method="post" action="" enctype="multipart/form-data">
                     {!! csrf_field() !!}
                     <input type="hidden" name="bread-edit" value="1">
                     <input type="hidden" name="table" value="{!! $table !!}" />
@@ -36,11 +37,7 @@
                             </div>
                         </div>
                         @endif
-                        @endforeach
-                        <div class="col-md-12 text-center">
-                            <hr>
-                            <button class="btn btn-primary" type="submit"><i class="fa fa-cloud-upload"></i> Update {!! ucfirst(str_singular($bread->display_singular)) !!}</button>   
-                        </div>
+                        @endforeach 
                 </form>
             </div>
         </div>

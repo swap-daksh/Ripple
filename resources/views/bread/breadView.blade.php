@@ -3,17 +3,15 @@
 @section('btn-add-new') 
 <div class="col text-right p-0">
     <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
+    <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>
+    <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$view->data->id]) !!}" class="btn btn-success btn-sm"> <i class="fa fa-pencil-square-o"></i> Edit {!! ucfirst($bread->display_singular) !!}</a>
+    <a href="" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Trash {!! ucfirst($bread->display_singular) !!}</a>
 </div>
 @stop
 @section('page-content')
 <div class="container-fluid p-3"> 
     <div class="col-md-12 p-0">
         <div class="card rounded-0">
-            <div class="card-header text-right bg-dark rounded-0 text-white">
-                <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>
-                <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$view->data->id]) !!}" class="btn btn-primary btn-sm"> <i class="fa fa-pencil-square-o"></i> Edit {!! ucfirst($bread->display_singular) !!}</a>
-                <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-danger btn-sm"> <i class="fa fa-trash"></i> Trash {!! ucfirst($bread->display_singular) !!}</a>
-            </div>
             <div class="card-body">
                 <div class="row">
                     @foreach($view->columns as $column)

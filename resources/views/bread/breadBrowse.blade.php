@@ -1,7 +1,7 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Browse All {!! ucfirst($table) !!} @stop
 @section('btn-add-new') 
-<div class="col p-0"><a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="float-right btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add New {!! ucfirst($bread->display_singular) !!}</a></div>
+<div class="col p-0"><a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="float-right btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a></div>
 @stop
 @section('page-content')
 <div class="container-fluid p-3"> 
@@ -15,7 +15,7 @@
                         <th>{!! strtoupper($column->display_name) !!}</th>
                         @endif
                         @endforeach
-                        <th style="width:400px">Action</th>
+                        <th class="w-10 text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,16 +26,10 @@
                         <td>{!! $record->{$column->column} !!}</td>
                         @endif
                         @endforeach
-                        <td>
-                            <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-primary">
+                        <td class="text-center">
+                            <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-success">
                                 <i class="fa fa-pencil"></i>
-                            </a>
-                            <a href="{!! route('Ripple::adminBreadView', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-info">
-                                <i class="fa fa-eye"></i>
-                            </a>
-                            <a href="javascript:;" class="btn btn-sm btn-danger">
-                                <i class="fa fa-trash"></i>
-                            </a>
+                            </a> 
                         </td>
                     </tr>
                     @empty

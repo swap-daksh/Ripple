@@ -12,6 +12,20 @@ class SettingsController extends Controller {
 
     use Settings;
 
+
+    /**
+     * SettingsController@settingModule route method for setting modules
+     * 
+     * @return mixed
+     */
+    public function settingModule(){
+        return view('Ripple::settings.beta-settingModule');
+    }
+
+
+
+
+
 // General Settings
     public function settings($type) {
         if (request()->has('setting-create')) :
