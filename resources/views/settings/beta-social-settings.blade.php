@@ -162,13 +162,10 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group clearfix">
+                                        <div class="form-group m-0 clearfix">
                                             <button class="btn btn-block btn-info btn-sm"><i class="fa fa-plus-square"></i>  Add Setting</button>
                                         </div>
-                                    </form>
-                                    <div class="form-group clearfix" style="margin-bottom: 0px;">
-                                        <button class="btn btn-block btn-warning btn-sm" type="button" onclick="document.getElementById('update-settings').submit();"><i class="fa fa-save"></i> Update Settings</button>
-                                    </div>
+                                    </form> 
                                 </div>
                             </div>
                         </div>
