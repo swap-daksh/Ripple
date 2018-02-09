@@ -1,4 +1,5 @@
 @extends('Ripple::layouts.beta-app')
+@section('page-title') Database Modules @stop
 @section('page-content')
 <div class="container-fluid p3 mt-3">
     <div class="row">

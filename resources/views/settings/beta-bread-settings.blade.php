@@ -3,8 +3,9 @@
 @section('page-title') Enable/Disable Bread options @stop
 @section('buttons')
 <div class="buttons">
+    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle "></i> Add New Bread</a>
+    <a href="{!! route('Ripple::breadModule') !!}" class="btn btn-info btn-sm"><i class="fa fa-list"></i> List Breads</a>
     <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Table Breads</a>
-    <a href="{!! route('Ripple::breadModule') !!}" class="btn btn-success btn-sm"><i class="fa fa-list"></i> List Breads</a>
 </div>
 @stop
 @section('page-content')

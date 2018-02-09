@@ -4,61 +4,42 @@
 @section('buttons')
 <div class="buttons">
     <a href="{!! route('Ripple::databaseModule') !!}" class="btn btn-primary btn-sm"><i class="fa fa-database"></i> Database Modules</a>
+    <a href="{!! route('Ripple::adminCreateTable') !!}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Add New Table</a>
 </div>
 @stop
 @section('page-content')
-<div class="container-fluid p-3">
+<div class="container-fluid p3 mt-3">
     <div class="row">
         <div class="col">
-            <div class="card">
-                <!--<div class="card-header">Database Tables</div>-->
+            <div class="card mb-3 rounded-0"> 
                 <div class="card-body">
-                    <div class="table-responsive border border-top-0">
-                        <table class="table table-striped mb-0">
-                            <thead class="bg-dark text-white">
-                                <tr>
-                                    <th class="text-center" style="width: 20px;"><i class="fa fa-photo text-info"></i></th>
-                                    <th>Display Name</th>
-                                    <th style="width: 30%;">Table Name</th>
-                                    <th style="width: 15%;">Bread</th>
-                                    <th class="text-center" style="width: 100px;">Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($tables as $table) 
-                                <tr>
-                                    <td class="text-center">
-                                        <i class="fa fa-info-circle text-info"></i>
-                                    </td>
-                                    <td class="font-w600">{!! ucwords(str_replace('_', ' ', $table)) !!}</td>
-                                    <td><code>{!! $table !!}</code></td>
-                                    <td>
-                                        
-                                        @if(DB::table('rpl_breads')->where('table', $table)->exists())
-                                        <a class="btn btn-sm btn-info btn-block" href="{!! route('Ripple::adminEditBread', ['table' => $table]) !!}"><i class="fa fa-pencil-square-o"></i> Update</a>
-                                        @else
-                                        <a class="btn btn-sm btn-success btn-block" href="{!! route('Ripple::adminCreateBread', ['table'=>$table]) !!}"><i class="fa fa-pencil"></i> Create</a>
-                                        @endif
-                                        
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="btn-group">
-                                            <a class="btn btn-sm btn-success" href="{!! route('Ripple::adminViewTable', ['table'=>$table]) !!}" data-toggle="tooltip" title="" data-original-title="View Table"><i class="fa fa-eye"></i></a>
-
-                                            <button class="btn btn-sm btn-danger" type="button" data-toggle="tooltip" title="" data-original-title="Delete Table"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>#</th>
+                                <th>Display Name</th>
+                                <th>Table Name</th>
+                                <th class="w-10">Handle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($tables as $table) 
+                            <tr>
+                                <th >{!! $loop->index + 1 !!}</th>
+                                <td>{!! ucwords(str_replace('_', ' ', $table)) !!}</td>
+                                <td><code>{!! $table !!}</code></td>
+                                <td class="w-10">
+                                    <a class="btn btn-sm btn-link" href="{!! route('Ripple::adminViewTable', ['table'=>$table]) !!}" ><i class="fa fa-eye"></i> Browse</a>
+                                </td>
+                            </tr>
+                            @endforeach 
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
         </div>
     </div>
-</div>
+</div> 
 @stop
 @push('page-script')
 <script type="text/javascript">

@@ -31,6 +31,12 @@
                             </div>
                         </div>
                         @empty
+                        <div class="alert alert-danger col" role="alert">
+                            <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i> Oops!</h4>
+                            <p>Aww, seems that you have not created any bread modules yet.</p>
+                            <hr>
+                            <p class="mb-0"><a href="{!! route('Ripple::databaseTableBreads') !!}" class="alert-link">Click here</a> to create new bread module or click to <strong>Add New Bread</strong> button in page title bar.</p>
+                        </div>
                         @endforelse 
                     </div>
                 </div>

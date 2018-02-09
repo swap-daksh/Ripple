@@ -1,8 +1,8 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') New Bread for table "{!! $table !!}" @stop
-@section('btn-add-new') 
-<div class="col text-right p-0" > 
-    <button class="btn btn-success btn-sm mx-auto" onClick="document.getElementById('createNewBread').click();"><i class="fa fa-save"></i> Create BREAD</button>
+@section('buttons') 
+<div class="buttons">
+    <button class="btn btn-success btn-sm" onClick="document.getElementById('createNewBread').click();"><i class="fa fa-save"></i> Create BREAD</button>
     <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Table Breads</a>
 </div>
 @stop

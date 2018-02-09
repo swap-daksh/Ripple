@@ -84,7 +84,7 @@ class BreadController extends Controller
         if (DB::table(prefix('breads'))->where('id', $bread->id)->delete()) {
             if (DB::table(prefix('bread_columns'))->where('bread', $bread->id)->delete()) {
                 session()->flash('success', 'Bread successfully deleted.');
-                return back();
+                return redirect(route('Ripple::databaseTableBreads'));
             }
         }
     }
