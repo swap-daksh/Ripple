@@ -2,8 +2,12 @@
 
 namespace YPC\Ripple\Support\Database;
 
+use YPC\Ripple\Support\Traits\DatabaseTables;
+
 class Database
 {
+
+    use DatabaseTables;
 
     protected $table;
 

@@ -1,7 +1,9 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Browse All {!! ucfirst($table) !!} @stop
-@section('btn-add-new') 
-<div class="col p-0"><a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="float-right btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a></div>
+@section('buttons') 
+<div class="">
+    <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="float-right btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>
+</div>
 @stop
 @section('page-content')
 <div class="container-fluid p-3"> 

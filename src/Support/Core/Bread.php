@@ -4,11 +4,7 @@ namespace YPC\Ripple\Support\Core;
 
 use Illuminate\Support\Facades\DB;
 
-/**
- * Description of Bread
- *
- * @author Yash Pal
- */
+
 class Bread
 {
 

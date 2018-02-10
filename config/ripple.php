@@ -33,6 +33,7 @@ return [
         'Ripple' => YPC\Ripple\Support\Facades\Ripple::class,
         'Database' => YPC\Ripple\Support\Facades\Database::class,
         'Bread' => YPC\Ripple\Support\Facades\Bread::class,
+        'Relation' => YPC\Ripple\Support\Facades\Relation::class,
     ],
     /*
       |----------------------------------------------------------------------------
@@ -45,6 +46,7 @@ return [
     'facades' => [
         'ripple' => \YPC\Ripple\Support\Core\Ripple::class,
         'bread' => \YPC\Ripple\Support\Core\Bread::class,
+        'relation' => \YPC\Ripple\Support\Core\Relation::class,
         'database' => \YPC\Ripple\Support\Database\Database::class,
     ],
     /*

@@ -52,19 +52,19 @@ class BreadController extends Controller
     {
         if (request()->has('edit-bread')) :
             try {
-                $bread = json_decode(request('bread-info'), true);
-                $bread['model'] = str_replace('\\', '\\\\', $bread['model']);
-                $bread['controller'] = str_replace('\\', '\\\\', $bread['controller']);
-                DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
-                collect(json_decode(request('bread-columns'), true))->map(function ($column) {
-                    $column['updated_at'] = date('Y-m-d h:i:s');
-                    DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id']]));
-                });
-                session()->flash('success', 'Bread successfully updated.');
-                return back();
-            } catch (\Exception $e) {
-                dd($e->getMessage());
-            }
+            $bread = json_decode(request('bread-info'), true);
+            $bread['model'] = str_replace('\\', '\\\\', $bread['model']);
+            $bread['controller'] = str_replace('\\', '\\\\', $bread['controller']);
+            DB::table(prefix('breads'))->where('id', $bread['id'])->update(array_diff($bread, ['id' => $bread['id']]));
+            collect(json_decode(request('bread-columns'), true))->map(function ($column) {
+                $column['updated_at'] = date('Y-m-d h:i:s');
+                DB::table(prefix('bread_columns'))->where('id', $column['id'])->update(array_diff($column, ['id' => $column['id']]));
+            });
+            session()->flash('success', 'Bread successfully updated.');
+            return back();
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
         endif;
         return view('Ripple::bread.beta-breadEditModule', compact('table'));
     }
@@ -92,7 +92,7 @@ class BreadController extends Controller
 
 
 
-    
+
     /**
      * BreadController@listBreads route method for listing all bread modules.
      *
@@ -104,7 +104,7 @@ class BreadController extends Controller
         return view('Ripple::bread.beta-breadModules', compact('breads'));
     }
 
-    
+
 
     /**
      * BreadController@updateBreadStatus route method for update bread status
@@ -113,13 +113,13 @@ class BreadController extends Controller
      */
     public function updateBreadStatus()
     {
-        $status = DB::table(prefix('breads'))->where('table', request('table'))->value('status'); 
-        
+        $status = DB::table(prefix('breads'))->where('table', request('table'))->value('status');
+
         if (DB::table(prefix('breads'))->where('table', request('table'))->update(['status' => !$status, 'updated_at' => date('Y-m-d h:i:s')])) :
             return response()->json(['status' => 'OK', 'msg' => '"' . request('table') . '" bread status has been updated.']);
         else :
             return response()->json(['status' => 'NOK', 'msg' => '"' . request('table') . '" bread status has not updated.']);
-        endif; 
+        endif;
     }
 
     /**
@@ -170,6 +170,7 @@ class BreadController extends Controller
         $browse = new \stdClass();
         $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
         $table = $bread->table;
+        //dd(\YPC\Ripple\Support\Facades\Relation::getRelation(['table' => 'users', 'column' => 'email', 'display' => 'name']));
         $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
         if (request()->has('bread-edit')) {
             if (DB::table(request('table'))->where('id', request('edit-id'))->update(request('column'))) {
@@ -191,7 +192,7 @@ class BreadController extends Controller
     public function breadAdd($slug)
     {
         if (request()->has('bread-add')) {
-            if (DB::table(request('table'))->insert(array_merge(request('column'), ['created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]))) {
+            if (DB::table(request('table'))->insert(request('column'))) {
                 session()->flash('success', 'New record inserted into database table');
             }
         }
@@ -241,10 +242,10 @@ class BreadController extends Controller
     private static function insertBreadColumn($bread)
     {
         return array_unique(collect(array_values(json_decode(request('bread-columns'), true)))->map(function ($item, $order) use ($bread) {
-                    $item['bread'] = $bread;
-                    $item['order'] = $order;
-                    return DB::table(prefix('bread_columns'))->insert($item);
-                })->toArray());
+            $item['bread'] = $bread;
+            $item['order'] = $order;
+            return DB::table(prefix('bread_columns'))->insert($item);
+        })->toArray());
     }
 
 }
