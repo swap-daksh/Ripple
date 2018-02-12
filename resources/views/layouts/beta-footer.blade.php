@@ -3,9 +3,13 @@
         <span class="text-muted">Place sticky footer content here.</span>
     </div>
 </footer>
+<div class="ripple-loader">
+<img class="loader-img" src="{!! ripple_asset('/img/loaders/flip-circle-google.svg') !!}" alt="">
+</div>
+
 <style>
     .footer { 
-        position: fixed;
+        /*position: fixed;
         bottom: 0;
         width: 100%;
         /* Set the fixed height of the footer here */

@@ -130,7 +130,11 @@
                                                             </td>
                                                             <td class="text-center align-middle">
                                                                 <div class="custom-control custom-checkbox">
+                                                                    @if($option['autoincrement'])
+                                                                    <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox" disabled>
+                                                                    @else
                                                                     <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox">
+                                                                    @endif
                                                                     <label class="custom-control-label" for="{!! $column.'-add-'.$loop->index !!}"></label>
                                                                 </div> 
                                                             </td>
@@ -215,6 +219,7 @@
             $scope.bread = JSON.parse('{!! Bread::table($table, "toJson") !!}');
             $scope.tblColums = {};
             for (let i in columns) {
+                console.log(columns[i].autoincrement);
                 $scope.tblColums[i] = {id: columns[i].id, column: columns[i].column, data_type: columns[i].data_type, required: !!+columns[i].required, browse: !!+columns[i].browse, read: !!+columns[i].read, edit: !!+columns[i].edit, add: !!+columns[i].add, delete: !!+columns[i].delete, type: columns[i].type, display_name: columns[i].display_name};
             }
 

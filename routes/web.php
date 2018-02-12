@@ -33,7 +33,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::any('/setting/modules', 'SettingsController@settingModule')->name('settingModule');
-    Route::any('/settings/{type}', 'SettingsController@settings')->where(['type'=>'[a-z]+'])->name('adminSettings');
+    Route::any('/settings/{type}', 'SettingsController@settings')->where(['type' => '[a-z]+'])->name('adminSettings');
     Route::any('/setting/create', 'SettingsController@createSetting')->name('adminCreateSetting');
     Route::post('/setting/delete', 'SettingsController@deleteSetting')->name('adminDeleteSetting');
 
@@ -47,6 +47,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/database/create', 'DatabaseController@createTable')->name('adminCreateTable');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
     Route::any('/database/table/relationship', 'DatabaseController@tableRelationship')->name('databaseTableRelationship');
+    Route::any('/database/delete/relation/{id}', 'DatabaseController@deleteTableRelation')->name('deleteTableRelation');
     Route::any('/database/table/breads', 'DatabaseController@tableBreads')->name('databaseTableBreads');
 
     /*
@@ -57,7 +58,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/bread/{table}/create', 'BreadController@createBread')->name('adminCreateBread');
     Route::any('/bread/{table}/edit', 'BreadController@editBread')->name('adminEditBread');
     Route::any('/bread/{table}/delete', 'BreadController@deleteBread')->name('adminDeleteBread');
-    
+
     Route::any('/bread/edit/{table}/rows', 'BreadController@editRowsBread')->name('adminEditRowsBread');
     Route::any('/database/table/view/{table}', 'DatabaseController@viewTable')->name('adminViewTable');
     Route::any('/bread/update/status', 'BreadController@updateBreadStatus')->name('updateBreadStatus');
@@ -155,9 +156,9 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //        dd($class, $schema, DB::connection()->getDoctrineSchemaManager()->listTableColumns('users'), DB::connection()->getDoctrineConnection()
 //        );
     });
-Route::get('/test', function(){
-  return view('Ripple::test');
-});
+    Route::get('/test', function () {
+        return view('Ripple::test');
+    });
     Route::get('/testing-abc', function () {
         $RippleBLADE = new RippleBlade();
         $class = new ReflectionClass(YPC\Ripple\Support\Blade\RippleBlade::class);

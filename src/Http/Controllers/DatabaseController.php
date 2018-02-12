@@ -91,7 +91,21 @@ class DatabaseController extends Controller
                 return back();
             }
         }
-        return view('Ripple::database.beta-tableRelations');
+
+        $relations = DB::table(prefix('relations'))->get();
+        return view('Ripple::database.beta-tableRelations', compact('relations'));
+    }
+
+
+
+    public function deleteTableRelation($id)
+    {
+        if (DB::table(prefix('relations'))->where('id', base64_decode($id))->delete()) {
+            session()->flash('success', 'Table Relation successfully deleted.');
+            return back();
+        }
+        session()->flash('error', 'Oops! something went wrong');
+        return back();
     }
 
 

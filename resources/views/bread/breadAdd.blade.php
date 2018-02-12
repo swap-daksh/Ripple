@@ -1,7 +1,7 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Create New {!! ucfirst(str_singular($table)) !!} @stop
-@section('btn-add-new') 
-<div class="col text-right p-0">
+@section('buttons') 
+<div class="buttons">
 <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
 </div>
 @stop

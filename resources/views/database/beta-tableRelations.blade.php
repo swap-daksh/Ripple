@@ -87,7 +87,25 @@
                                 Table Relations
                             </div>
                             <div class="card-body">
-                                div card body
+                                @foreach($relations as $relation)
+                                @if($relation->status === 1)
+                                <div class="alert alert-success" role="alert">
+                                    <strong>{!! strtoupper($relation->rel_table) !!} <i class="fa fa-long-arrow-alt-right "></i> {!! ucfirst($relation->rel_column) !!}</strong>
+                                    has relation to 
+                                    <strong>{!! strtoupper($relation->ref_table) !!} <i class="fa fa-long-arrow-alt-right "></i> {!! ucfirst($relation->ref_column) !!}</strong>
+                                    <sup>(Display column <strong>{!! strtoupper($relation->ref_display) !!}</strong>)</sup>
+                                    <a class="close" href="{!! route('Ripple::deleteTableRelation', ['id'=>base64_encode($relation->id)]) !!}"><i class="fa fa-trash text-danger"></i></a>
+                                </div>
+                                @else
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>{!! strtoupper($relation->rel_table) !!} <i class="fa fa-long-arrow-alt-right "></i> {!! ucfirst($relation->rel_column) !!}</strong>
+                                    has relation to 
+                                    <strong>{!! strtoupper($relation->ref_table) !!} <i class="fa fa-long-arrow-alt-right "></i> {!! ucfirst($relation->ref_column) !!}</strong>
+                                    <sup>(Display column <strong>{!! strtoupper($relation->ref_display) !!}</strong>)</sup>
+                                    <a class="close" href="{!! route('Ripple::deleteTableRelation', ['id'=>base64_encode($relation->id)]) !!}"><i class="fa fa-trash text-danger"></i></a>
+                                </div>
+                                @endif
+                                @endforeach
                             </div>
                         </div>
                     </div>

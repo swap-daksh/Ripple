@@ -123,18 +123,26 @@
                                                     </td>
                                                     <td class="text-center align-middle">
                                                         <div class="custom-control custom-checkbox">
+                                                            @if($option['autoincrement'])
+                                                            <input class="custom-control-input" id="{!! $column.'-edit-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].edit" type="checkbox" ng-disabled="true">
+                                                            @else
                                                             <input class="custom-control-input" id="{!! $column.'-edit-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].edit" type="checkbox">
+                                                            @endif 
                                                             <label class="custom-control-label" for="{!! $column.'-edit-'.$loop->index !!}"></label>
                                                         </div> 
                                                     </td>
                                                     <td class="text-center align-middle">
                                                         <div class="custom-control custom-checkbox">
+                                                            @if($option['autoincrement'])
+                                                            <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox" ng-disabled="true">
+                                                            @else
                                                             <input class="custom-control-input" id="{!! $column.'-add-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].add" type="checkbox">
+                                                            @endif
                                                             <label class="custom-control-label" for="{!! $column.'-add-'.$loop->index !!}"></label>
                                                         </div> 
                                                     </td>
                                                     <td class="text-center align-middle">
-                                                        <div class="custom-control custom-checkbox">
+                                                        <div class="custom-control custom-checkbox"> 
                                                             <input class="custom-control-input" id="{!! $column.'-delete-'.$loop->index !!}" ng-model="tblColums['{!! $column !!}'].delete" type="checkbox">
                                                             <label class="custom-control-label" for="{!! $column.'-delete-'.$loop->index !!}"></label>
                                                         </div> 
@@ -185,7 +193,11 @@
             $scope.bread = {table: '{!! $table !!}', display_singular: '{!! str_singular($table) !!}', display_plural: '{!! str_plural($table) !!}', slug: '{!! str_slug($table, "-") !!}', icon: '', model: '', controller: '', description: ''};
             $scope.tblColums = {};
             for (let i in columns) {
-                $scope.tblColums[i] = {column: columns[i].column, data_type: columns[i].dataType, required: columns[i].notnull, browse: true, read: true, edit: true, add: true, delete: true, type: 'text', display_name: columns[i].column};
+                if(columns[i].autoincrement){
+                    $scope.tblColums[i] = {column: columns[i].column, data_type: columns[i].dataType, required: columns[i].notnull, browse: true, read: true, edit: false, add: false, delete: true, type: 'text', display_name: columns[i].column};
+                }else{
+                    $scope.tblColums[i] = {column: columns[i].column, data_type: columns[i].dataType, required: columns[i].notnull, browse: true, read: true, edit: true, add: true, delete: true, type: 'text', display_name: columns[i].column};
+                }
             }
 
             $scope.onSaveBread = function () {

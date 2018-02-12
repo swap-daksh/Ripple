@@ -14,17 +14,18 @@
         @jsRoutes
     </head>
     <body class="home">
-        <div id="app" >
+        <div id="app" style="">
             {{-- Header --}}
             @include('Ripple::layouts.beta-header')
-            <main class="clearfix "  style="margin-bottom: 65px"> 
+            <main class="clearfix rpl-container"> 
                 {{-- Main Container --}}
                 <div class="content-outlet content-wrapper p-0 container-fluid">
                     @include('Ripple::layouts.beta-page-title')
                     @yield('page-content') 
                 </div>
-                @include('Ripple::layouts.beta-footer')
+                
             </main>
+            @include('Ripple::layouts.beta-footer')
         </div>
         {{-- JS Scripts --}}
         <script src="{!! ripple_asset('/js/beta-app.js') !!}"></script>

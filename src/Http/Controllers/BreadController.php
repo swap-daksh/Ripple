@@ -100,7 +100,7 @@ class BreadController extends Controller
      */
     public function listBreads()
     {
-        $breads = DB::table(prefix('breads'))->get();
+        $breads = DB::table(prefix('breads'))->where('status', 1)->get();
         return view('Ripple::bread.beta-breadModules', compact('breads'));
     }
 

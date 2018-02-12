@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark" style="background:#6f42c1;">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background:#6f42c1;">
     <div class="container-fluid p-3">
         <a class="navbar-brand" href="{!! route('Ripple::dashboard') !!}"><i class="fab fa-laravel fa-2x"></i> Ripple</a>
         

@@ -1,12 +1,33 @@
+
 $(document).ready(function () {
     "use strict";
+    //setInterval(function () { console.log(document.readyState) }, 100);
 
     /*
      * ***********************************************************************************
      *                                  Global js script Start
      * ***********************************************************************************
      */
+    var body = document.body,
+        html = document.documentElement;
 
+    var height = Math.max(body.scrollHeight, body.offsetHeight,
+        html.clientHeight, html.scrollHeight, html.offsetHeight);
+    $('#app').css('height', height + "px");
+
+
+
+    document.onreadystatechange = function () {
+        if (document.readyState == 'loaded' || document.readyState == 'complete') {
+            setTimeout(function () {
+                $('.ripple-loader').fadeOut(1000).remove();
+            }, 500);
+        }
+    };
+
+
+
+    $('.rpl-container').css('height', (height - 60) + "px");
     // Toastr Notifications.........
     var toastrNotify = setInterval(function () {
         if ($('#toast-container').length === 0) {
@@ -16,10 +37,10 @@ $(document).ready(function () {
     }, 10);
 
     // init Slim scroll on load
-//    initSlimScroll();
+    //    initSlimScroll();
     // init Slim scroll on window resize
     $(window).on('resize', function () {
-//        initSlimScroll();
+        //        initSlimScroll();
     });
 
 
