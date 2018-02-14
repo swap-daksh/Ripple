@@ -1,3 +1,11 @@
+document.onreadystatechange = function () {
+    if (document.readyState == 'loaded' || document.readyState == 'complete') {
+        setTimeout(function () {
+            $('.ripple-loader').fadeOut(1000).remove();
+        }, 500);
+    }
+};
+
 
 $(document).ready(function () {
     "use strict";
@@ -17,13 +25,7 @@ $(document).ready(function () {
 
 
 
-    document.onreadystatechange = function () {
-        if (document.readyState == 'loaded' || document.readyState == 'complete') {
-            setTimeout(function () {
-                $('.ripple-loader').fadeOut(1000).remove();
-            }, 500);
-        }
-    };
+
 
 
 

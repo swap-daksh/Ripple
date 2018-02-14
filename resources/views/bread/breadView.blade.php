@@ -1,7 +1,7 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') View {!! ucfirst($bread->display_singular) !!} @stop
-@section('btn-add-new') 
-<div class="col text-right p-0">
+@section('buttons') 
+<div class="buttons">
     <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
     <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>
     <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$view->data->id]) !!}" class="btn btn-success btn-sm"> <i class="fa fa-pencil-square-o"></i> Edit {!! ucfirst($bread->display_singular) !!}</a>
@@ -23,7 +23,12 @@
                                     <h5 class="mb-1">{!! strtoupper($column->display_name) !!}</h5>
                                     <small><i>{!! $column->display_name !!}</i></small>
                                 </div>
-                                <p class="mb-1"><i>{!! $view->data->{$column->column} !!}</i></p>
+                                @if(Relation::hasRelation($bread->table, $column->column))
+                                <p class="mb-1"><i>&nbsp;{!! Relation::get_value($bread->table, $column->column, $view->data->{$column->column}) !!}</i></p>
+                                @else 
+                                <p class="mb-1"><i>&nbsp;{!! $view->data->{$column->column} !!}</i></p>
+                                @endif 
+                                
                             </a>
                         </div>
                     </div>

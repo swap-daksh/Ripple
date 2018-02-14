@@ -3,7 +3,7 @@
         <span class="text-muted">Place sticky footer content here.</span>
     </div>
 </footer>
-<div class="ripple-loader">
+<div class="ripple-loader" id="ripple-loader">
 <img class="loader-img" src="{!! ripple_asset('/img/loaders/flip-circle-google.svg') !!}" alt="">
 </div>
 

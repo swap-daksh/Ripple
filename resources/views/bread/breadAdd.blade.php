@@ -24,13 +24,13 @@
                     <div class="col-md-6">
                     <div class="form-group">
                         <label for="">{!! strtoupper($column->display_name) !!}</label>
-                        @if(Relation::hasRelation($bread->table, $column->column))
+                        @if(Relation::hasRelation($bread->table, $column->column)) 
                             <select name="column[{!! $column->column !!}]" class="custom-select">
                                 <option value="">Select {!! ucfirst($column->column) !!}</option>
                                 @foreach(Relation::getRelation($bread->table, $column->column) as $key=>$value)
                                 <option value="{!! $key !!}">{!! $value !!}</option>
                                 @endforeach
-                            </select> 
+                            </select>  
                         @else
                         @switch($column->type)
                         @case('text')

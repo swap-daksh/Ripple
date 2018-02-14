@@ -14,6 +14,7 @@
                 <div class="card-body">
                     <div class="row px-3">
                         @foreach($tables as $table)
+                            @if(substr($table, 0, 3) !== 'rpl' && $table !== 'migrations')
                             <div class="col-md-2 p-1 ">
                                 <div class="card my-1 bg-light">
                                 <blockquote class="blockquote m-2">
@@ -30,6 +31,7 @@
                                 </blockquote>
                                     </div>
                             </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

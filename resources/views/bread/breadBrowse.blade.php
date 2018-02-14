@@ -1,7 +1,7 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') Browse All {!! ucfirst($table) !!} @stop
 @section('buttons') 
-<div class="">
+<div class=""> 
     <a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="float-right btn btn-primary btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>
 </div>
 @stop
@@ -25,7 +25,11 @@
                     <tr>
                         @foreach($columns as $column)
                         @if($column->browse)
+                        @if(Relation::hasRelation($bread->table, $column->column))
+                        <td>{!! Relation::get_value($bread->table, $column->column, $record->{$column->column}) !!}</td>
+                        @else
                         <td>{!! $record->{$column->column} !!}</td>
+                        @endif 
                         @endif
                         @endforeach
                         <td class="text-center">

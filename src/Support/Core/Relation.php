@@ -28,10 +28,17 @@ class Relation
     public function getRelation($table, $column, $conversion = 'toArray')
     {
         $relation = DB::table(prefix('relations'))->where('rel_column', $column)->first();
+        //dd(DB::table($relation->ref_table)->orderBy($relation->ref_display, 'asc')->get());
         return collect(DB::table($relation->ref_table)->orderBy($relation->ref_display, 'asc')->get())
             ->mapWithKeys(function ($data) use ($relation) {
                 return [$data->{$relation->ref_column} => $data->{$relation->ref_display}];
             })->{$conversion}();
+    }
+
+    
+    public function get_value($table, $column, $id){
+        $relation = DB::table(prefix('relations'))->where('rel_column', $column)->first();
+        return DB::table($relation->ref_table)->where($relation->ref_column, $id)->first()->{$relation->ref_display};
     }
 
 

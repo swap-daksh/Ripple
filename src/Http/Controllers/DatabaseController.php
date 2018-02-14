@@ -80,9 +80,8 @@ class DatabaseController extends Controller
     public function tableRelationship()
     {
         if (request()->has('table-relation')) {
-
-            if (!$this->hasRelationExists(request()->all())) {
-                if ($this->createRelation(request()->all())) {
+            if (!$this->hasRelationExists(request('relation'))) {
+                if ($this->createRelation(request('relation'))) {
                     session()->flash('success', 'Relation successfully created.');
                     return back();
                 }
@@ -128,7 +127,8 @@ class DatabaseController extends Controller
      * @return boolean
      */
     private function createRelation($request)
-    {
-        return DB::table(prefix('relations'))->insert(['rel_table' => $request['rel_table'], 'rel_column' => $request['rel_column'], 'ref_table' => $request['ref_table'], 'ref_column' => $request['ref_column'], 'ref_display' => $request['ref_display'], 'status' => 1, 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
+    { 
+        return DB::table(prefix('relations'))->insert(array_merge($request, ['status' => 1, 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]));
+        //return DB::table(prefix('relations'))->insert(['rel_table' => $request['rel_table'], 'rel_column' => $request['rel_column'], 'ref_table' => $request['ref_table'], 'ref_column' => $request['ref_column'], 'ref_display' => $request['ref_display'], 'status' => 1, 'created_at' => date('Y-m-d h:i:s'), 'updated_at' => date('Y-m-d h:i:s')]);
     }
 }
