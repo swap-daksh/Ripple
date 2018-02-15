@@ -14,12 +14,12 @@ class BreadController extends Controller
 
     /**
      * BreadController@createBread route method to create new Bread Module.
-     * 
+     *
      * @param string $table
      * @return mixed
      */
     public function createBread($table)
-    {
+    { 
         if (DB::table(prefix('breads'))->where('table', request('table'))->exists()) :
             return redirect()->route('Ripple::adminEditBread', ['table' => $table]);
         endif;
@@ -44,7 +44,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@editBread route method for edit module Bread.
-     * 
+     *
      * @param string $table
      * @return mixed
      */
@@ -75,7 +75,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@deleteBread route method to delete breads
-     * 
+     *
      * @param string $table
      */
     public function deleteBread($table)
@@ -108,7 +108,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@updateBreadStatus route method for update bread status
-     * 
+     *
      * @return json
      */
     public function updateBreadStatus()
@@ -124,7 +124,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@breadBrowse route method for browse all bread records
-     * 
+     *
      * @param string $slug
      * @return mixed
      */
@@ -140,7 +140,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@breadView route method to view a single record
-     * 
+     *
      * @param string $slug
      * @param integer $id
      * @return mixed
@@ -160,7 +160,7 @@ class BreadController extends Controller
 
     /**
      * BreadController@breadEdit route method to edit/update bread record
-     * 
+     *
      * @param string $slug
      * @param integer $id
      * @return mixed
@@ -185,15 +185,13 @@ class BreadController extends Controller
 
     /**
      * BreadController@breadAdd route method to add record to bread
-     * 
+     *
      * @param string $slug
      * @return mixed
      */
     public function breadAdd($slug)
     {
         if (request()->has('bread-add')) {
-
-
             $BREAD_ADDED = DB::table(request('table'))->insert(collect(request('column'))->map(function($value, $name){
                 if($value instanceof \Illuminate\Http\UploadedFile){
                     $extension = $value->extension();
@@ -207,7 +205,7 @@ class BreadController extends Controller
 
                 return $value;
             })->toArray());
-            
+
             if ($BREAD_ADDED) {
                 session()->flash('success', 'New record inserted into database table');
             }
@@ -220,8 +218,8 @@ class BreadController extends Controller
 
     /**
      * BreadController@breadDelete route method to delete bread record
-     * 
-     * 
+     *
+     *
      * @param integer $id
      * @return mixed
      */
@@ -236,7 +234,7 @@ class BreadController extends Controller
 
     /**
      * insert bread details to rpl_breads
-     * 
+     *
      * @param array $breadInfo
      * @return array
      */
@@ -251,7 +249,7 @@ class BreadController extends Controller
 
     /**
      * Insert bread columns of bread module to rpl_bread_columns
-     * 
+     *
      * @param array|object $bread
      * @return array
      */
