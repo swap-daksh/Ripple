@@ -192,7 +192,23 @@ class BreadController extends Controller
     public function breadAdd($slug)
     {
         if (request()->has('bread-add')) {
-            if (DB::table(request('table'))->insert(request('column'))) {
+
+
+            $BREAD_ADDED = DB::table(request('table'))->insert(collect(request('column'))->map(function($value, $name){
+                if($value instanceof \Illuminate\Http\UploadedFile){
+                    $extension = $value->extension();
+                    $file_name = str_singular(request('table'))."_".str_random(20).'.'.$extension;
+                    $path = 'public';
+                    if(request($name.'_upload_path') !== null){
+                        $path .= '/'.rtrim(ltrim(request($name.'_upload_path'), '/'), '/');
+                    }
+                    return $value->storeAs($path, $file_name);
+                }
+
+                return $value;
+            })->toArray());
+            
+            if ($BREAD_ADDED) {
                 session()->flash('success', 'New record inserted into database table');
             }
         }

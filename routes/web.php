@@ -95,7 +95,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
-      |                                     all Bread Operation
+      |                                     All Bread Operation
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::group(['middleware' => ['hasBreadEnabled']], function () {
@@ -103,6 +103,17 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         Route::any('{slug}/add', 'BreadController@breadAdd')->where('slug', Ripple::hasBreadSlug())->name('adminBreadAdd');
         Route::any('{slug}/edit/{id}', 'BreadController@breadEdit')->where('slug', Ripple::hasBreadSlug())->name('adminBreadEdit');
         Route::any('{slug}/view/{id}', 'BreadController@breadView')->where('slug', Ripple::hasBreadSlug())->name('adminBreadView');
+    });
+
+
+
+    /*
+     |-------------------------------------------------------------------------------------------------------------------
+     |                                      Ajax Routes
+     |-------------------------------------------------------------------------------------------------------------------
+    */
+    Route::group(['prefix'=>'ajax'], function(){
+        Route::post('sync/column', 'AjaxController@synchronizedColumn')->name('ajaxGetSynchronizedColumn');
     });
 
 
