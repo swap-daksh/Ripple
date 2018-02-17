@@ -202,10 +202,12 @@ class BreadController extends Controller
                     }
                     return $value->storeAs($path, $file_name);
                 }
-
                 return $value;
             })->toArray());
 
+            /**
+             * Check whether the bread is added or not.
+             */
             if ($BREAD_ADDED) {
                 session()->flash('success', 'New record inserted into database table');
             }
