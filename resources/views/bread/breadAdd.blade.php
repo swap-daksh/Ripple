@@ -71,6 +71,19 @@
                                     </div>
                                 </div>
                                 @break
+                                @case('file')
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control" placeholder="Path to 'public/'" type="text" name="{!! $column->column !!}_upload_path">
+                                    </div>
+                                    <div class="col">
+                                        <div class="custom-file">
+                                            <input type="file" name="column[{!! $column->column !!}]" class="custom-file-input image-file" data-file="{!! $table.'_'.str_plural($column->column) !!}">
+                                            <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                @break
                             @endswitch 
                         @endif
                     </div>
