@@ -57,7 +57,8 @@
                                 @break
                                 @case('textarea')
                                     <textarea name="column[{!! $column->column !!}]"  cols="30" rows="5" class="form-control"></textarea>
-                                @break
+                                @break 
+
                                 @case('image')
                                 <div class="row">
                                     <div class="col">
@@ -66,7 +67,7 @@
                                     <div class="col">
                                         <div class="custom-file">
                                             <input type="file" name="column[{!! $column->column !!}]" class="custom-file-input image-file" data-file="{!! $table.'_'.str_plural($column->column) !!}">
-                                            <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file</label>
+                                            <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file...</label>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +80,7 @@
                                     <div class="col">
                                         <div class="custom-file">
                                             <input type="file" name="column[{!! $column->column !!}]" class="custom-file-input image-file" data-file="{!! $table.'_'.str_plural($column->column) !!}">
-                                            <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file</label>
+                                            <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file...</label>
                                         </div>
                                     </div>
                                 </div>
