@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRplUsersTable extends Migration
+class CreateRplRolesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateRplUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('rpl_users', function (Blueprint $table) {
+        Schema::create('rpl_roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->rememberToken();
-            $table->timestamps();
+            $table->string('display_name');
+            $table->timestamp('created_at')->nullable()->useCurrent();
+            $table->timestamp('updated_at')->nullable()->useCurrent();
+            $table->softDeletes(); 
         });
     }
 
@@ -30,6 +30,6 @@ class CreateRplUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rpl_users');
+        Schema::dropIfExists('rpl_roles');
     }
 }
