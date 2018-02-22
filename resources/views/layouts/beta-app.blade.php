@@ -9,6 +9,7 @@
         <meta name="description" content="Ripple - Admin pane for laravel framework">
         <meta name="author" content="Yash Pal">
         <meta name="robots" content="noindex, nofollow">
+        <link rel="icon" type="image/png" href="{!! ripple_asset('/img/favicons/favicon.png') !!}">
         {{-- Stylesheets & Web fonts --}}
         @include('Ripple::layouts.beta-links')
         @jsRoutes
