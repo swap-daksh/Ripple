@@ -7,7 +7,7 @@
 @stop
 @section('page-content')
 <div class="container-fluid p-3"> 
-    <div class="col-md-12 border p-3">
+    <div class="col-md-12 border p-0">
         <div class="table-responsive">
             <table class="table table-striped table-borderless table-header-bg option-wrappers" id="option-wrappers" style="margin-bottom: 0px;">
                 <thead class="thead-dark">

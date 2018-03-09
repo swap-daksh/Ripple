@@ -3,4 +3,5 @@
 <script src="{!! ripple_asset('/lib/js/slimscroll/jquery.slimscroll.min.js') !!}"></script>
 <script src="{!! ripple_asset('/js/beta-ripple.js') !!}"></script>
 @include('Ripple::layouts.toast-notification')
+@stack('page-vue-components')
 @stack('page-script')

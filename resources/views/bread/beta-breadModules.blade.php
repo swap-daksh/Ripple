@@ -3,16 +3,16 @@
 @section('page-description') List of all bread modules @stop
 @section('buttons')
 <div class="buttons">
-    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-success btn-sm"><i class="fa fa-plus-circle "></i> Add New Bread</a>
-    <a href="{!! route('Ripple::adminSettings', ['type'=>'bread']) !!}" class="btn btn-primary btn-sm"><i class="fa fa-cogs"></i> Bread Settings</a>
+    <a href="{!! route('Ripple::databaseTableBreads') !!}" class="btn btn-success btn-sm"><i class="fa fa-edit "></i> Add/Edit Bread</a>
+    <a href="{!! route('Ripple::adminSettings', ['type'=>'bread']) !!}" class="btn btn-primary btn-sm"><i class="fa fa-cogs"></i> Enable/Disable Bread</a>
 </div>
 @stop
 @section('page-content')
 <div class="container-fluid p3 mt-3">
     <div class="row">
         <div class="col">
-            <div class="card mb-3 rounded-0"> 
-                <div class="card-body">
+            <div class="card mb-3 rounded-0 border-0"> 
+                <div class="card-body p-0">
                     <div class="row px-3">
 
                         @forelse($breads as $bread)

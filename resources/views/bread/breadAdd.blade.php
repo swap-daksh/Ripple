@@ -11,10 +11,7 @@
 <div class="container-fluid p3 mt-3">
     <div class="row">
         <div class="col">
-            <div class="card mb-3">
-                <div class="card-header">
-                    New {!! ucfirst(str_singular($table)) !!}
-                </div>
+            <div class="card mb-3 rounded-0"> 
                 <div class="card-body">
                     <form method="POST" id="AddBreadForm" enctype="multipart/form-data">
                     {!! csrf_field() !!}
