@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     var height = Math.max(body.scrollHeight, body.offsetHeight,
         html.clientHeight, html.scrollHeight, html.offsetHeight);
-    $('#app').css('height', height + "px");
+    $('#app').css('min-height', height + "px");
 
 
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 
 
-    $('.rpl-container').css('height', (height - 60) + "px");
+    $('.rpl-container').css('min-height', (height - 60) + "px");
     // Toastr Notifications.........
     var toastrNotify = setInterval(function () {
         if ($('#toast-container').length === 0) {
@@ -240,7 +240,13 @@ $.fn.extend({
     previewImage: function (o) {
         this.on('change', function () {
             var options = $.extend({ 'class': 'img-responsive', id: '', height: '200', width: 'auto', alt: '', wrapInto: '#' + $(this).attr('data-preview') }, o);
-
+            
+            if($(this).attr('data-width')){
+                options.width = $(this).attr('data-width');
+            }
+            if($(this).attr('data-height')){
+                options.width = $(this).attr('data-width');
+            }
             $(options.wrapInto)
                 //Setting up img wrapper height to prevent toggle div height
                 .css('height', $(options.wrapInto).children('img').height() + 'px')

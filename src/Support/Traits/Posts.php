@@ -2,7 +2,7 @@
 
 namespace YPC\Ripple\Support\Traits;
 
-use YPC\Ripple\Models\Post;
+use YPC\Ripple\Models\Rpl_Post;
 use Illuminate\Support\Facades\DB;
 
 trait Posts
@@ -15,7 +15,7 @@ trait Posts
             $tag = json_encode((request('post-tag') ? request('post-tag') : array()));
             $slug = $this->post_slug(str_slug(request('post-title'), '-'));
             $createPost = ['title' => request('post-title'), 'slug' => $slug, 'content' => request('post-content'), 'excerpt' => request('post-excerpt'), 'image' => storeFileAs('post-image', $slug), 'author' => request('post-author'), 'comments' => request('post-comments'), 'categories' => $category, 'tags' => $tag, 'type' => request('post-type'), 'status' => request('post-status'), 'visibility' => request('post-visibility')];
-            $DBinsert = DBinsert(new Post(), $createPost);
+            $DBinsert = DBinsert(new Rpl_Post(), $createPost);
             if ($DBinsert):
                 session()->flash('post', $DBinsert->id);
                 return $DBinsert;
@@ -39,7 +39,7 @@ trait Posts
         endif;
     }
 
-    private function post_slug($slug, $count = 0, $table = 'posts', $column = 'slug')
+    private function post_slug($slug, $count = 0, $table = 'rpl_posts', $column = 'slug')
     {
         if (DB::table($table)->where($column, $slug)->exists()):
             $count++;
@@ -62,7 +62,7 @@ trait Posts
         return DB::table(prefix('posts'))->where($column, $post)->first();
     }
 
-    public function posts($column = 'status', $value = 'published')
+    public function posts($column = 'status', $value = 'publish')
     {
         return DB::table(prefix('posts'))->where($column, $value)->get();
     }

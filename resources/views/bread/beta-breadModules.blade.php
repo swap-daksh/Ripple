@@ -9,39 +9,43 @@
 @stop
 @section('page-content')
 <div class="container-fluid p3 mt-3">
-    <div class="row">
+    <div class="row mb-3">
+    @forelse($breads as $bread)
         <div class="col">
-            <div class="card mb-3 rounded-0 border-0"> 
-                <div class="card-body p-0">
-                    <div class="row px-3">
-
-                        @forelse($breads as $bread)
-                        <div class="col-md-2 p-1 ">
-                            <div class="card my-1 bg-light">
-                                <blockquote class="blockquote m-2">
-                                    <p class="text-center"> 
-                                        @if($bread->icon !== '')
-                                        <i class="fa fa-{!! $bread->icon !!} fa-2x"></i>
-                                        @else
-                                        <i class="fab fa-2x"></i>
-                                        @endif
-                                    </p>
-                                    <footer class="blockquote-footer"><a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="card-link">{!! ucfirst($bread->display_plural) !!}</a></footer>
-                                </blockquote>
-                            </div>
-                        </div>
-                        @empty
-                        <div class="alert alert-danger col" role="alert">
-                            <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i> Oops!</h4>
-                            <p>Aww, seems that you have not created any bread modules yet.</p>
-                            <hr>
-                            <p class="mb-0"><a href="{!! route('Ripple::databaseTableBreads') !!}" class="alert-link">Click here</a> to create new bread module or click to <strong>Add New Bread</strong> button in page title bar.</p>
-                        </div>
-                        @endforelse 
-                    </div>
+            <div class="card h-100 rounded-0">
+                <div class="card-header">
+                    @if($bread->icon !== '')
+                    <i class="fa fa-{!! $bread->icon !!}"></i>
+                    @else
+                    <i class="fas fa-th"></i>
+                    @endif
+                    {!! ucfirst($bread->display_plural) !!}
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        @if($bread->description !== '')
+                        @else
+                            This is default description of <strong>{!! ucfirst($bread->display_plural) !!}</strong>. You can update the BREAD 
+                            description by editing this bread.
+                        @endif
+                    </p>
+                    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-sm btn-primary">Browse</a>
                 </div>
             </div>
         </div>
+        @php $count = $loop->index + 1; @endphp
+        @if(($count % 4) == 0)
+        </div>
+        <div class="row mb-3">
+        @endif
+    @empty
+        <div class="alert alert-danger col" role="alert">
+            <h4 class="alert-heading"><i class="fa fa-exclamation-triangle"></i> Oops!</h4>
+            <p>Aww, seems that you have not created any bread modules yet.</p>
+            <hr>
+            <p class="mb-0"><a href="{!! route('Ripple::databaseTableBreads') !!}" class="alert-link">Click here</a> to create new bread module or click to <strong>Add New Bread</strong> button in page title bar.</p>
+        </div>
+    @endforelse
     </div>
 </div>
 @stop
