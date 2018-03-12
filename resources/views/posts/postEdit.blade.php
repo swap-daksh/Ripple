@@ -1,5 +1,10 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') New Blog Post @stop
+@section('buttons') 
+<div class="buttons">
+    <a href="{!! route('Ripple::adminPostIndex') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List Posts</a>
+</div>
+@stop
 @section('page-content') 
 <div class="container-fluid p3 mt-3">
     
