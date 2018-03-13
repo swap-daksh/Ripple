@@ -1,7 +1,8 @@
 @extends('Ripple::layouts.beta-app')
-@section('page-title') New Blog Post @stop
+@section('page-title') {!! $post->title !!} @stop
 @section('buttons') 
 <div class="buttons">
+<a href="{!! route('Ripple::adminPostAdd') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add New</a>
     <a href="{!! route('Ripple::adminPostIndex') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List Posts</a>
 </div>
 @stop
@@ -113,8 +114,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <input class="image-preview" name="post-image" id="post-image" data-preview="featured-image" data-width="100%" data-height="200" style="display:none;" type="file">
-                        <button class="btn btn-primary btn-rounded btn-sm" type="button" onclick="document.getElementById('post-image').click();">Change Image</button>
+                        <div class="custom-file">
+                            <input class="image-preview custom-file-input" name="post-image" id="post-image" data-preview="featured-image" data-width="100%" data-height="200" type="file">
+                            <label class="custom-file-label" for="post-image">Choose file</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,12 +155,12 @@
         placeholder: "Categories",
 //            allowClear: true
     });
-    var editor = ace.edit("editor");
+  /*  var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
     editor.session.setMode("ace/mode/php");
 //    alert(editor.getValue());
     editor.on('change', function () {
         document.getElementById('code-editor').value = editor.getValue();
-    });
+    });*/
 </script>
 @endpush

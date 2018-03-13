@@ -33,9 +33,15 @@
                         @endif
                         @endforeach
                         <td class="text-center">
-                            <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-success">
-                                <i class="fa fa-pencil"></i>
-                            </a> 
+                            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                <a href="{!! route('Ripple::adminBreadEdit', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-success">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                
+                                <a href="{!! route('Ripple::adminBreadView', ['slug'=>$bread->slug, 'id'=>$record->id]) !!}" class="btn btn-sm btn-primary">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            </div>
                         </td>
                     </tr>
                     @empty

@@ -173,7 +173,7 @@ class BreadController extends Controller
         //dd(\YPC\Ripple\Support\Facades\Relation::getRelation(['table' => 'users', 'column' => 'email', 'display' => 'name']));
         $columns = DB::table(prefix('bread_columns'))->where('bread', $bread->id)->orderBy('order')->get();
         if (request()->has('bread-edit')) {
-            if (DB::table(request('table'))->where('id', request('edit-id'))->update(request('column'))) {
+            if (DB::table(request('table'))->where('id', request('edit-id'))->update($this->renderBreadColumns(request('column')))) {
                 session()->flash('success', ucfirst($bread->display_singular) . ' successfully updated');
                 return back();
             }
@@ -192,18 +192,7 @@ class BreadController extends Controller
     public function breadAdd($slug)
     {
         if (request()->has('bread-add')) {
-            $BREAD_ADDED = DB::table(request('table'))->insert(collect(request('column'))->map(function($value, $name){
-                if($value instanceof \Illuminate\Http\UploadedFile){
-                    $extension = $value->extension();
-                    $file_name = str_singular(request('table'))."_".str_random(20).'.'.$extension;
-                    $path = 'public';
-                    if(request($name.'_upload_path') !== null){
-                        $path .= '/'.rtrim(ltrim(request($name.'_upload_path'), '/'), '/');
-                    }
-                    return $value->storeAs($path, $file_name);
-                }
-                return $value;
-            })->toArray());
+            $BREAD_ADDED = DB::table(request('table'))->insert($this->renderBreadColumns(request('column')));
 
             /**
              * Check whether the bread is added or not.
@@ -225,11 +214,34 @@ class BreadController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function breadDelete($id)
+    public function breadDelete($slug, $id)
     {
-        return view('Ripple::bread.breadAdd');
+        $bread = DB::table(prefix('breads'))->where('slug', $slug)->first();
+        if(DB::table($bread->table)->where('id', $id)->delete()){
+            session()->flash('success', $bread->display_singular.' successfully deleted.');
+            return redirect()->route("Ripple::adminBreadBrowse", ['slug'=>$slug]);
+        }
     }
 
+
+
+    /**
+     * Get array of all breads
+     */
+    private function renderBreadColumns($columns){
+        return collect($columns)->map(function($value, $name){
+            if($value instanceof \Illuminate\Http\UploadedFile){
+                $extension = $value->extension();
+                $file_name = str_singular(request('table'))."_".str_random(20).'.'.$extension;
+                $path = 'public';
+                if(request($name.'_upload_path') !== null){
+                    $path .= '/'.rtrim(ltrim(request($name.'_upload_path'), '/'), '/');
+                }
+                return $value->storeAs($path, $file_name);
+            }
+            return $value;
+        })->toArray();
+    }
 
 
 

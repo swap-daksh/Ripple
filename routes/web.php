@@ -18,14 +18,29 @@ use Illuminate\Support\Facades\Session;
 //use Illuminate\Database\DatabaseManager;
 //use Doctrine\DBAL\Schema\SchemaException;
 //use Doctrine\DBAL\Schema\Table as DoctrineTable;
-
 Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'YPC\Ripple\Http\Controllers'), 'middleware' => ['web'], 'prefix' => 'admin'], function () {
+    /*
+     |-----------------------------------------------------------------------
+     |  Authentication Routes
+     |-----------------------------------------------------------------------
+    */
+    Route::get('/login', 'AdminAuthController@showLoginForm')->name('adminLoginForm');
+    Route::post('/login-admin', 'AdminAuthController@adminLogin')->name('adminLoginAttempt');
+    Route::post('/logout', 'AdminAuthController@adminLogin')->name('adminLogout');
+});
+
+Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'YPC\Ripple\Http\Controllers'), 'middleware' => ['web', 'RedirectIfNotAdmin'], 'prefix' => 'admin'], function () {
     /*
       |----------------------------------------------------------------------
       |	Admin Route
       |----------------------------------------------------------------------
      */
     Route::any('/', 'RippleController@dashboard')->name('dashboard');
+
+
+    
+
+
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -103,6 +118,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         Route::any('{slug}/add', 'BreadController@breadAdd')->where('slug', Ripple::hasBreadSlug())->name('adminBreadAdd');
         Route::any('{slug}/edit/{id}', 'BreadController@breadEdit')->where('slug', Ripple::hasBreadSlug())->name('adminBreadEdit');
         Route::any('{slug}/view/{id}', 'BreadController@breadView')->where('slug', Ripple::hasBreadSlug())->name('adminBreadView');
+        Route::any('{slug}/delete/{id}', 'BreadController@breadDelete')->where('slug', Ripple::hasBreadSlug())->name('adminBreadDelete');
     });
 
 

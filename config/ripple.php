@@ -58,6 +58,7 @@ return [
       |
      */
     'middlewares' => [
-        "hasBreadEnabled" => \YPC\Ripple\Http\Middleware\HasBreadEnabled::class
+        "hasBreadEnabled" => \YPC\Ripple\Http\Middleware\HasBreadEnabled::class,
+        "RedirectIfNotAdmin"=> \YPC\Ripple\Http\Middleware\RedirectIfNotAdmin::class,
     ],
 ];

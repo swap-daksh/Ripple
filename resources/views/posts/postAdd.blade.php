@@ -58,7 +58,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Tags</label>
-                                    <select name="post-tag" multiple class="custom-select multipleSelect">
+                                    <select name="post-tag[]" multiple class="custom-select multipleSelect">
                                         <option value="asdf">sdf</option>
                                         <option value="asdfw">sdfse</option>
                                         <option value="asdf4">sdfwe</option>
@@ -69,7 +69,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Categories</label>
-                                    <select name="post-category" multiple class="custom-select multipleSelect">
+                                    <select name="post-category[]" multiple class="custom-select multipleSelect">
                                         <option value="asdf">sdf</option>
                                         <option value="asdfw">sdfse</option>
                                         <option value="asdf4">sdfwe</option>
@@ -106,8 +106,10 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <input class="image-preview" name="post-image" id="post-image" data-preview="featured-image" data-width="100%" data-height="200" style="display:none;" type="file">
-                        <button class="btn btn-primary btn-rounded btn-sm" type="button" onclick="document.getElementById('post-image').click();">Change Image</button>
+                        <div class="custom-file">
+                            <input class="image-preview custom-file-input" name="post-image" id="post-image" data-preview="featured-image" data-width="100%" data-height="200" type="file">
+                            <label class="custom-file-label" for="post-image">Choose file</label>
+                        </div>
                     </div>
                 </div>
             </div>

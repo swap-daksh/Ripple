@@ -150,18 +150,12 @@
                                                                     <option value="date">Date</option>
                                                                     <option value="file">File</option>
                                                                     <option value="image">Image</option>
-                                                                    <option value="multiple_images">Multiple Images</option>
                                                                     <option value="number">Number</option>
-                                                                    <option value="password">Password</option>
-                                                                    <option value="radio_btn">Radio Button</option>
-                                                                    <option value="rich_text_box">Rich Text Box</option>
-                                                                    <option value="select_dropdown">Select Dropdown</option>
-                                                                    <option value="select_multiple">Select Multiple</option>
+                                                                    <option value="password">Password</option> 
+                                                                    <option value="text_editor">Text Editor</option>
                                                                     <option value="text" selected="">Text</option>
-                                                                    <option value="text_area">Text Area</option>
-                                                                    <option value="timestamp">Timestamp</option>
-                                                                    <option value="hidden">Hidden</option>
-                                                                    <option value="code_editor">Code Editor</option>
+                                                                    <option value="text_area">Text Area</option> 
+                                                                    <option value="hidden">Hidden</option> 
                                                                 </select>
                                                             </td>
                                                             <td>

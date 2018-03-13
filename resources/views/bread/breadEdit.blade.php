@@ -37,14 +37,95 @@
                                         @endforeach
                                     </select> 
                                 @else
-                                @switch($column->type)
-                                @case('text')
-                                <input class="form-control" value="{!! $edit->{$column->column} !!}" type="text" name="column[{!! $column->column !!}]">
-                                @break
-                                @case('textarea')
-                                <textarea name="column[{!! $column->column !!}]" id="" cols="30" rows="5" class="form-control">{!! $edit->{$column->column} !!}</textarea>
-                                @break
-                                @endswitch 
+
+                                    @switch($column->type)
+
+                                    @case('hidden')
+                                        <input class="form-control" type="hidden" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
+                                    @break
+
+                                    @case('number')
+                                        <input class="form-control" type="number" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
+                                    @break
+
+                                    @case('password')
+                                        <input class="form-control" type="password" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
+                                    @break
+
+                                    @case('date')
+                                        <input class="form-control" type="date" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
+                                    @break
+
+                                    @case('image')
+                                    <div class="card">
+                                        <div class="card-body py-1">
+                                            <div class="row">
+                                                <div class="col-4 p-0">
+                                                    <div class="clearfix" id="preview-image">
+                                                        @if($edit->{$column->column} == '')
+                                                        <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
+                                                        @else
+                                                        <img width="auto" height="150" class="img-responsive" src="{!! url(Storage::url($edit->{$column->column})) !!}" alt="">
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class="col-8 p-0">
+                                                    <div id="{!! $column->column !!}_file_details_info" class="detail_info w-100 px-2">
+                                                        <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
+                                                        <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
+                                                        <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
+                                                    </div> 
+
+                                                    <div class="row px-3">
+                                                        <div class="col px-1">
+                                                            <div class="input-group  mb-2 mr-sm-2">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text"><i class="fa fa-info-circle"></i></div>
+                                                                </div>
+                                                                <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col p-0">
+                                                            <div class="custom-file">
+                                                                <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $edit->{$column->column} !!}" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
+                                                                <label class="custom-file-label" for="{!! $edit->{$column->column} !!}">Choose file</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @break
+
+                                    @case('file')
+                                        <div class="row">
+                                            <div class="col">
+                                                <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
+                                            </div>
+                                            <div class="col">
+                                                <div class="custom-file">
+                                                    <input type="file" name="column[{!! $column->column !!}]" class="custom-file-input" data-file="{!! $table.'_'.str_plural($column->column) !!}">
+                                                    <label class="custom-file-label" for="customFile" id="{!! $table.'_'.str_plural($column->column) !!}">Choose file...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @break 
+
+                                    @case('text')
+                                    <input class="form-control" value="{!! $edit->{$column->column} !!}" type="text" name="column[{!! $column->column !!}]">
+                                    @break
+
+
+                                    @case('textarea')
+                                    <textarea name="column[{!! $column->column !!}]" id="" cols="30" rows="5" class="form-control">{!! $edit->{$column->column} !!}</textarea>
+                                    @break
+
+                                    @case('texteditor')
+                                        <textarea class="form-control ripple_text_editor" name="column[{!! $column->column !!}]">{!! $edit->{$column->column} !!}</textarea>
+                                    @break
+
+                                    @endswitch 
                                 @endif
                             </div>
                         </div>

@@ -29,7 +29,7 @@ $(document).ready(function () {
 
 
 
-    $('.rpl-container').css('min-height', (height - 60) + "px");
+    $('.rpl-container').css('min-height', (height - 53) + "px");
     // Toastr Notifications.........
     var toastrNotify = setInterval(function () {
         if ($('#toast-container').length === 0) {
@@ -79,6 +79,40 @@ $(document).ready(function () {
     $('.image-preview').previewImage({ id: 'asdfasfd' });
 
 
+    /**
+     * File field on change event 
+     */
+    $(document).on('change', '.custom-file-input', function () {
+        var attr = $(this).attr('multiple');
+        if (typeof attr === typeof undefined) {
+            var file = $(this)[0].files[0];
+            $(this).siblings('.custom-file-label').html('<div class="text-primary">' + file.name + '</div>');
+        }
+    });
+
+
+
+
+    /**
+     * Bread System image file on change
+     */
+    $(document).on('change', '.custom-file-input-bread', function(){
+        var attr = $(this).attr('multiple');
+        if (typeof attr === typeof undefined) {
+            var file = $(this)[0].files[0];
+            if(file.size >= 1024 && file.size < 1048576){
+                var fileSize = (file.size / 1024).toFixed(2) + 'KB';
+            }else if(file.size >= 1048576 && file.size < 1073741824){
+                var fileSize = (file.size / 1048576).toFixed(2) + 'MB';
+            }
+
+            var HTML = '';
+            HTML += '<p><strong>Title:</strong>&nbsp;&nbsp;<code>' + file.name + '</code></p>';
+            HTML += '<p><strong>Size:</strong>&nbsp;&nbsp;<code>'+ fileSize +'</code></p>';
+            HTML += '<p><strong>Type:</strong>&nbsp;&nbsp;<code>'+ file.type +'</code></p>';
+            $($(this).attr('data-details')).html(HTML);
+        }
+    });
 
 
 
@@ -245,7 +279,7 @@ $.fn.extend({
                 options.width = $(this).attr('data-width');
             }
             if($(this).attr('data-height')){
-                options.width = $(this).attr('data-width');
+                options.height = $(this).attr('data-height');
             }
             $(options.wrapInto)
                 //Setting up img wrapper height to prevent toggle div height
