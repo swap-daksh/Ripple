@@ -4,9 +4,14 @@ namespace YPC\Ripple\Http\Controllers;
 
 class CategoryController extends Controller {
 
-    public function categoryIndex() {
-        dd(ripple_asset('/js/jquery.js'));
-        dd('hureee We are in Index Method');
+
+    /**
+     * Show the categories list view
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function categoriesIndex() {
+        return view('Ripple::categories.categoriesIndex');
     }
 
 }

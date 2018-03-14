@@ -8,7 +8,7 @@
 </div>
 @stop
 @section('page-content')
-<div class="container-fluid p3 mt-3">
+<div class="container-fluid p-3 mt-3">
     <div class="row">
         <div class="col">
             <div class="card mb-3 rounded-0"> 

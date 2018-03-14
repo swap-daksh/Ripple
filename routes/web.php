@@ -100,6 +100,15 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/posts', 'PostController@postIndex')->name('adminPostIndex');
     Route::any('/post/add', 'PostController@postAdd')->name('adminPostAdd');
     Route::any('/post/edit', 'PostController@postEdit')->name('adminPostEdit');
+
+    /*
+      |-------------------------------------------------------------------------------------------------------------------
+      |                                     Categories
+      |-------------------------------------------------------------------------------------------------------------------
+     */
+    Route::any('/categories', 'CategoryController@categoriesIndex')->name('adminIndexCategories');
+
+
     /*
       |-------------------------------------------------------------------------------------------------------------------
       |                                     Users
