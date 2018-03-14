@@ -2,7 +2,7 @@
 @section('page-title') Categories List @stop
 @section('buttons')
     <div class="buttons">
-        <a href="" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New</a>
+        <a href="{!! route('Ripple::adminAddCategories') !!}" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Add New</a>
     </div>
 @stop
 @section('page-content')

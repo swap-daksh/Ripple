@@ -107,6 +107,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |-------------------------------------------------------------------------------------------------------------------
      */
     Route::any('/categories', 'CategoryController@categoriesIndex')->name('adminIndexCategories');
+    Route::any('/category/add', 'CategoryController@categoriesAdd')->name('adminAddCategories');
 
 
     /*

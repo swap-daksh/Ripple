@@ -28,7 +28,13 @@
                         @if(Relation::hasRelation($bread->table, $column->column))
                         <td>{!! Relation::get_value($bread->table, $column->column, $record->{$column->column}) !!}</td>
                         @else
-                        <td>{!! $record->{$column->column} !!}</td>
+                        <td>
+                        @if($column->type == 'image' && $record->{$column->column} != '')
+                            <img src="{!! url(Storage::url($record->{$column->column})) !!}" alt="{!! $column->column !!}" width="50" height="50" />
+                        @else
+                            {!! $record->{$column->column} !!}
+                        @endif
+                        </td>
                         @endif 
                         @endif
                         @endforeach

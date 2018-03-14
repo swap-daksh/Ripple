@@ -63,19 +63,24 @@
                                                 <div class="col-4 p-0">
                                                     <div class="clearfix" id="preview-image">
                                                         @if($edit->{$column->column} == '')
-                                                        <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
+                                                         <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
                                                         @else
-                                                        <img style="max-width: 200px; max-height:150px" class="img-responsive" src="{!! url(Storage::url($edit->{$column->column})) !!}" alt="">
+                                                         <img style="max-width: 200px; max-height:150px" class="img-responsive" src="{!! url(Storage::url($edit->{$column->column})) !!}" alt="">
                                                         @endif
                                                     </div>
                                                 </div>
                                                 <div class="col-8 p-0">
                                                     <div id="{!! $column->column !!}_file_details_info" class="detail_info w-100 px-2">
-                                                        <p><strong>Title:</strong>&nbsp;&nbsp;<code>{!! basename(Storage::url($edit->{$column->column})) !!}</code></p>
-                                                        <p><strong>Size:</strong>&nbsp;&nbsp;<code>{!! storage_file_size($edit->{$column->column}) !!}</code></p>
-                                                        <p><strong>Type:</strong>&nbsp;&nbsp;<code>{!! Storage::getMimetype($edit->{$column->column}) !!}</code></p>
+                                                        @if($edit->{$column->column} == '')
+                                                            <p><strong>Title:</strong>&nbsp;&nbsp;<code>_________.___</code></p>
+                                                            <p><strong>Size:</strong>&nbsp;&nbsp;<code>__.__ KB/MB</code></p>
+                                                            <p><strong>Type:</strong>&nbsp;&nbsp;<code>___/____</code></p>
+                                                        @else
+                                                            <p><strong>Title:</strong>&nbsp;&nbsp;<code>{!! basename(Storage::url($edit->{$column->column})) !!}</code></p>
+                                                            <p><strong>Size:</strong>&nbsp;&nbsp;<code>{!! storage_file_size($edit->{$column->column}) !!}</code></p>
+                                                            <p><strong>Type:</strong>&nbsp;&nbsp;<code>{!! Storage::getMimetype($edit->{$column->column}) !!}</code></p>
+                                                        @endif
                                                     </div> 
-
                                                     <div class="row px-3">
                                                         <div class="col px-1">
                                                             <div class="input-group  mb-2 mr-sm-2">
@@ -87,8 +92,8 @@
                                                         </div>
                                                         <div class="col p-0">
                                                             <div class="custom-file">
-                                                                <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $edit->{$column->column} !!}" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="200" data-height="150" type="file">
-                                                                <label class="custom-file-label" for="{!! $edit->{$column->column} !!}">Choose file</label>
+                                                                <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="200" data-height="150" type="file">
+                                                                <label class="custom-file-label" for="{!! $column->column !!}">Choose file</label>
                                                             </div>
                                                         </div>
                                                     </div>

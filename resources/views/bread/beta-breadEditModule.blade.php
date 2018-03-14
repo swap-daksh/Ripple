@@ -18,12 +18,14 @@
                         <input type="hidden" name="edit-bread"  value="{!! $table !!}">
                         <input type="hidden" name="bread-columns" id="bread-columns">
                         <input type="hidden" name="bread-info" id="bread-info">
+                        <input ng-model="bread.status" type="hidden">
                         <button hidden id="updateBreadBtn" ng-click="updateBread();" ></button>
                     </form>
                     <div class="row clearfix">
                         <div class="col-md-6 form-group">
                             <label for="email">Display Name (Singular)</label>
                             <input class="input-sm form-control"  placeholder="Display Name (Singular)" ng-model="bread.display_singular" type="text">
+                            
                         </div>
                         <div class="col-md-6 form-group">
                             <label for="email">Display Name (Plural)</label>
