@@ -111,3 +111,21 @@ if (!function_exists('prefix')) {
     }
 
 }
+
+
+if(!function_exists('storage_file_size')){
+    function storage_file_size($file, $return = 'string'){
+        $size = \Illuminate\Support\Facades\Storage::size($file);
+        $sizeInString = '';
+        if ($size >= 1024 && $size < 1048576) {
+            $sizeInString = round($size / 1024, 2) . 'KB';
+        } else if ($size >= 1048576 && $size < 1073741824) {
+            $sizeInString = round($size / 1048576, 2) . 'MB';
+        }
+        if($return == 'string'){
+            return $sizeInString;
+        }else{
+            return $size;
+        }
+    }
+}

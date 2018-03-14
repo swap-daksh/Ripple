@@ -291,7 +291,7 @@ $.fn.extend({
                         var image = new FileReader();
                         image.onload = function (e) {
                             $('<img/>', {
-                                src: e.target.result, class: options.class, width: options.width, height: options.height, alt: options.alt, id: options.id
+                                src: e.target.result, class: options.class, 'style': 'max-width :'+options.width+'px !important; height:'+options.height+'px;', alt: options.alt, id: options.id
                             }).appendTo(options.wrapInto);
                         };
                         image.readAsDataURL(this.files[i]);

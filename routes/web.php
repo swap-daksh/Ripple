@@ -177,7 +177,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 //        $queries = $schema->toSql(); // get queries to create this schema.
 //        dump('asdf');
 
-        $class = get_class(Session::getFacadeRoot());
+        $class = get_class(\Illuminate\Support\Facades\Storage::getFacadeRoot());
         dump($class);
 //        $schema = (new \Doctrine\DBAL\Schema\Schema())->createTable('demo_testing');
 //        $schema->addColumn("id", "integer", array('unsigned' => true));
