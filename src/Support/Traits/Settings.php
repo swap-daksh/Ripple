@@ -5,18 +5,27 @@ namespace YPC\Ripple\Support\Traits;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-/**
- * Description of Settings.
- *
- * @author Yash Pal
- */
 trait Settings
 {
+
+    /**
+     * Check if the settings group has settings or not
+     * 
+     * @param string $type
+     * @return object
+     */
     public function hasSettings($type)
     {
         return DB::table('rpl_settings')->where('group', $type)->orderBy('id')->get();
     }
 
+
+    /**
+     * It saves the settings but first it checks for the settings already registered if there is no any setting
+     * exists corresponding to the setting key it saves the setting otherwise return and error message.
+     * 
+     * @return mixed
+     */
     private function saveSetting()
     {
         if (self::hasSetting(request('setting-key'))) :
@@ -28,6 +37,12 @@ trait Settings
         endif;
     }
 
+
+    /**
+     * It updates all modified settings.
+     * 
+     * @return void
+     */
     private static function updateSetting()
     {
         foreach (array_keys(request()->all()) as $setting) :
@@ -36,6 +51,12 @@ trait Settings
         session()->flash('setting-success', 'Success! Settings are saved!');
     }
 
+
+    /**
+     * Deletes setting
+     * 
+     * @return json
+     */
     private static function deleteSetting()
     {
         if (DB::table('rpl_settings')
@@ -48,6 +69,14 @@ trait Settings
         endif;
     }
 
+
+    /**
+     * Each settings are being passing through this function it checks for files in settings and upload it
+     * if there is any otherwise it returns the setting value.
+     * 
+     * @param object $settingFile
+     * @return string
+     */
     private static function settingFile($settingFile)
     {
         if (request()->hasFile($settingFile)) :
@@ -57,11 +86,25 @@ trait Settings
         endif;
     }
 
+
+    /**
+     * Checks if the setting exists in database.
+     * @param string $hasSetting
+     * @return boolean
+     */
     private function hasSetting($hasSetting)
     {
         return DB::table('rpl_settings')->where('key', $hasSetting)->exists();
     }
 
+
+    /**
+     * Returns the json of setting options.
+     * @param array|object $option_name
+     * @param array|object $option_value
+     * 
+     * @return string|json
+     */
     private function settingOptions($option_name, $option_value)
     {
         if (is_array($option_name)) :
