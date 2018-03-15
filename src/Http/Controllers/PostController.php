@@ -28,7 +28,9 @@ class PostController extends Controller
 
     public function postEdit()
     {
-        $this->updatePost();
+        if($this->updatePost()){
+            return back();
+        }
          $post = $this->post(request('post'));
         return view('Ripple::posts.postEdit', compact('post'));
     }

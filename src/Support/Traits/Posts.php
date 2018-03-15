@@ -35,6 +35,8 @@ trait Posts
             if (DB::table(prefix('posts'))->where('id', request('post-id'))->update($updatePost)):
                 session()->flash('success', request('post-title') . " successfully updated...");
                 return true;
+            else:
+                return false;
             endif;
         endif;
     }

@@ -1,7 +1,12 @@
 @extends('Ripple::layouts.beta-app')
 @section('page-title') New Blog Post @stop
+@section('buttons') 
+<div class="buttons">
+    <a href="{!! route('Ripple::adminPostIndex') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List Posts</a>
+</div>
+@stop
 @section('page-content')
-<div class="container-fluid p3 mt-3">
+<div class="container-fluid p-3 mt-3">
     
     <form action="" method="post" enctype="Multipart/form-data">
         {!! csrf_field() !!}
@@ -58,22 +63,20 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Tags</label>
-                                    <select name="post-tag[]" multiple class="custom-select multipleSelect">
-                                        <option value="asdf">sdf</option>
-                                        <option value="asdfw">sdfse</option>
-                                        <option value="asdf4">sdfwe</option>
-                                        <option value="asdfwe">sdfwe</option>
+                                    <select name="post-tag[]" multiple class="custom-select multipleSelect tags">
+                                    @foreach(Ripple::allTags() as $tag)
+                                        <option value="{!! $tag->name !!}">{!! $tag->name !!}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Categories</label>
-                                    <select name="post-category[]" multiple class="custom-select multipleSelect">
-                                        <option value="asdf">sdf</option>
-                                        <option value="asdfw">sdfse</option>
-                                        <option value="asdf4">sdfwe</option>
-                                        <option value="asdfwe">sdfwe</option>
+                                    <select name="post-category[]" multiple class="custom-select categories multipleSelect">
+                                        @foreach(Ripple::allCategories() as $category)
+                                            <option value="{!! $category->name !!}">{!! $category->name !!}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -116,20 +119,7 @@
         </div>
     </form>
 </div>
-@foreach(Ripple::allCategories() as $category)
-<label for="category-{!! $category->id !!}" class="css-input btn checkbox-category btn-default css-checkbox css-checkbox-primary">
-    <input id="category-{!! $category->id !!}" name="post-category[]" value="{!! $category->id !!}" type="checkbox">
-    <span></span> 
-    {!! $category->name !!}
-</label>
-@endforeach
-@foreach(Ripple::allTags() as $tag)
-<label for="tag-{!! $tag->id !!}" class="btn btn-default checkbox-tag css-input css-checkbox css-checkbox-info">
-    <input id="tag-{!! $tag->id !!}" name="post-tag[]" value="{!! $tag->id !!}" type="checkbox">
-    <span></span> 
-    {!! $tag->name !!}
-</label>
-@endforeach
+
 @stop
 @push('page-script') 
 <link rel="stylesheet" href="{!! ripple_asset('/lib/css/select2/select2.min.css') !!}"/>
@@ -143,16 +133,13 @@
         placeholder: "Select a state",
         allowClear: false
     });
-    $(".multipleSelect").select2({
-        placeholder: "Categories",
-//            allowClear: true
+    $(".tags.multipleSelect").select2({
+        placeholder: "Tags",
+        allowClear: true
     });
-    var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/twilight");
-    editor.session.setMode("ace/mode/php");
-//    alert(editor.getValue());
-    editor.on('change', function () {
-        document.getElementById('code-editor').value = editor.getValue();
+    $('.categories.multipleSelect').select2({
+        placeholder: "Categories",
+        allowClear: true
     });
 </script>
 @endpush

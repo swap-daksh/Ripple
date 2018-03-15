@@ -8,18 +8,28 @@
         <div class="collapse navbar-collapse" id="main-nav">
             <ul class="navbar-nav pl-3 ml-auto ">
                 <li class="nav-item">
+                    <a class="nav-link " href="{!! route('Ripple::adminPostIndex') !!}" id="navbarDropdown">
+                        <i class="fas fa-newspaper "></i> News &amp; Blog
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="{!! route('Ripple::adminIndexCategories') !!}" id="navbarDropdown">
+                        <i class="fas fa-tags  "></i> Tags &amp; Categories
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link " href="{!! route('Ripple::breadModule') !!}" id="navbarDropdown">
-                        <i class="fa fa-database"></i> Bread Module
+                        <i class="fas fa-folder-open "></i> BREAD
                     </a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{!! route('Ripple::databaseModule') !!}" id="navbarDropdown" role="button">
-                        <i class="fa fa-database"></i> Database Module
+                        <i class="fa fa-database"></i> Database
                     </a> 
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="{!! route('Ripple::settingModule') !!}" id="navbarDropdown" role="button">
-                        <i class="fa fa-cog"></i> Setting Module
+                        <i class="fa fa-cog"></i> Settings
                     </a> 
                 </li>
                 <li class="nav-item">

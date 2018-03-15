@@ -303,27 +303,3 @@ $.fn.extend({
 });
 
 
-
-//ripple_functions
-//function setImageValue(url) {
-//    $('.mce-btn.mce-open').parent().find('.mce-textbox').val(url);
-//}
-
-
-//    $.ajaxSetup({
-//        headers: {
-//            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//        }
-//    });
-//
-//$(document).on('click', '#new-ripple-setting', function () {
-//    $('.sticky-form-body').fadeIn(100);
-//    $('.sticky-form-wrapper').addClass('open');
-//    $('.sticky-btn-close').show();
-//});
-//$(document).on('click', '#close-form-wrapper', function () {
-//    $('.sticky-btn-close').hide();
-//    $('.sticky-form-body').fadeOut(100);
-//    $('.sticky-form-wrapper').removeClass('open');
-//
-//});

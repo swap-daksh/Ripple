@@ -2,7 +2,7 @@
 @section('page-title') Update {!! ucfirst(str_singular($table)) !!} @stop
 @section('page-description') {!! $bread->description !!} @stop
 @section('buttons')
-    <button class="btn btn-success btn-sm" onClick="document.getElementById('update-bread').submit();" type="submit"><i class="fa fa-cloud-upload"></i> Update {!! ucfirst(str_singular($bread->display_singular)) !!}</button>
+    <button class="btn btn-success btn-sm" onClick="document.getElementById('update-bread').submit();" type="submit"><i class="fa fa-save"></i> Update {!! ucfirst(str_singular($bread->display_singular)) !!}</button>
     {{--<a href="{!! route('Ripple::adminBreadAdd', ['slug'=>$bread->slug]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-plus"></i> Add {!! ucfirst($bread->display_singular) !!}</a>--}}
     <a href="{!! route('Ripple::adminBreadView', ['slug'=>$bread->slug, 'id'=>$edit->id]) !!}" class="btn btn-info btn-sm"> <i class="fa fa-eye"></i> View {!! ucfirst($bread->display_singular) !!}</a> 
     <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a> 

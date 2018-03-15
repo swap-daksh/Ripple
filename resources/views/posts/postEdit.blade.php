@@ -2,12 +2,12 @@
 @section('page-title') {!! $post->title !!} @stop
 @section('buttons') 
 <div class="buttons">
-<a href="{!! route('Ripple::adminPostAdd') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add New</a>
+    <a href="{!! route('Ripple::adminPostAdd') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add New</a>
     <a href="{!! route('Ripple::adminPostIndex') !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> List Posts</a>
 </div>
 @stop
 @section('page-content') 
-<div class="container-fluid p3 mt-3">
+<div class="container-fluid p-3 mt-3">
     
     <form action="" method="post" enctype="Multipart/form-data">
         {!! csrf_field() !!}
@@ -65,9 +65,13 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Tags</label>
-                                    <select name="post-tag" multiple class="custom-select multipleSelect">
+                                    <select name="post-tag[]" multiple class="custom-select multipleSelect tags">
                                     @foreach(Ripple::allTags() as $tag)
-                                    <option value="asdf">sdf</option>
+                                        @if(in_array($tag->name, json_decode($post->tags, true)))
+                                            <option value="{!! $tag->name !!}" selected>{!! $tag->name !!}</option>
+                                        @else
+                                            <option value="{!! $tag->name !!}">{!! $tag->name !!}</option>
+                                        @endif
                                     @endforeach
                                     </select>
                                 </div>
@@ -75,11 +79,14 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Post Categories</label>
-                                    <select name="post-category" multiple class="custom-select multipleSelect">
-                                        <option value="asdf">sdf</option>
-                                        <option value="asdfw">sdfse</option>
-                                        <option value="asdf4">sdfwe</option>
-                                        <option value="asdfwe">sdfwe</option>
+                                    <select name="post-category[]" multiple class="custom-select categories multipleSelect">
+                                        @foreach(Ripple::allCategories() as $category)
+                                            @if(in_array($category->name, json_decode($post->categories, true)))
+                                            <option value="{!! $category->name !!}" selected>{!! $category->name !!}</option>
+                                            @else
+                                            <option value="{!! $category->name !!}">{!! $category->name !!}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -123,21 +130,7 @@
             </div>
         </div>
     </form>
-</div>
-@foreach(Ripple::allCategories() as $category)
-<label for="category-{!! $category->id !!}" class="css-input btn checkbox-category btn-default css-checkbox css-checkbox-primary">
-    <input id="category-{!! $category->id !!}" name="post-category[]" value="{!! $category->id !!}" type="checkbox">
-    <span></span> 
-    {!! $category->name !!}
-</label>
-@endforeach
-@foreach(Ripple::allTags() as $tag)
-<label for="tag-{!! $tag->id !!}" class="btn btn-default checkbox-tag css-input css-checkbox css-checkbox-info">
-    <input id="tag-{!! $tag->id !!}" name="post-tag[]" value="{!! $tag->id !!}" type="checkbox">
-    <span></span> 
-    {!! $tag->name !!}
-</label>
-@endforeach
+</div> 
 @stop
 @push('page-script') 
 <link rel="stylesheet" href="{!! ripple_asset('/lib/css/select2/select2.min.css') !!}"/>
@@ -151,9 +144,13 @@
         placeholder: "Select a state",
         allowClear: false
     });
-    $(".multipleSelect").select2({
+    $(".tags.multipleSelect").select2({
+        placeholder: "Tags",
+        allowClear: true
+    });
+    $('.categories.multipleSelect').select2({
         placeholder: "Categories",
-//            allowClear: true
+        allowClear: true
     });
   /*  var editor = ace.edit("editor");
     editor.setTheme("ace/theme/twilight");
