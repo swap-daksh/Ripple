@@ -43,6 +43,15 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/', 'RippleController@dashboard')->name('dashboard');
 
 
+
+
+    /*
+      |----------------------------------------------------------------------
+      |	User Roles
+      |----------------------------------------------------------------------
+     */
+    Route::any('/roles', "RoleController@rolesIndex")
+    ->name('adminIndexRoles');
     
 
 
