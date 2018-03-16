@@ -49,7 +49,7 @@ abstract class Type extends DBALTYPES
         self::SET => \YPC\Ripple\Support\Database\DataTypes\Types\Set::class,
         self::ENUM => \YPC\Ripple\Support\Database\DataTypes\Types\Enum::class,
         self::GEOMETRYCOLLECTION => \YPC\Ripple\Support\Database\DataTypes\Types\GeometryCollection::class,
-        self::GEOMETRY => \YPC\Ripple\Support\Database\DataTypes\Types\GeoMetry::class,
+        self::GEOMETRY => \YPC\Ripple\Support\Database\DataTypes\Types\Geometry::class,
         self::LINESTRING => \YPC\Ripple\Support\Database\DataTypes\Types\LineString::class,
         self::MULTILINESTRING => \YPC\Ripple\Support\Database\DataTypes\Types\MultiLineString::class,
         self::MULTIPOINT => \YPC\Ripple\Support\Database\DataTypes\Types\MultiPoint::class,
