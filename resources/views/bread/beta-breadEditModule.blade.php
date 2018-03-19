@@ -154,7 +154,7 @@
                                                                     <option value="image">Image</option>
                                                                     <option value="number">Number</option>
                                                                     <option value="password">Password</option> 
-                                                                    <option value="text_editor">Text Editor</option>
+                                                                    <option value="texteditor">Text Editor</option>
                                                                     <option value="text" selected="">Text</option>
                                                                     <option value="text_area">Text Area</option> 
                                                                     <option value="hidden">Hidden</option> 

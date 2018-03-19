@@ -157,7 +157,7 @@
                                                             <option value="number">Number</option>
                                                             <option value="password">Password</option>
                                                             <option value="radio_btn">Radio Button</option>
-                                                            <option value="rich_text_box">Rich Text Box</option>
+                                                            <option value="texteditor">Text Editor</option>
                                                             <option value="select_dropdown">Select Dropdown</option>
                                                             <option value="select_multiple">Select Multiple</option>
                                                             <option value="text" selected="">Text</option>
