@@ -26,16 +26,32 @@
                             <div class="form-group">
                                 <label for="">{!! strtoupper($column->display_name) !!}</label>
                                 @if(Relation::hasRelation($bread->table, $column->column))
-                                    <select name="column[{!! $column->column !!}]" class="custom-select">
-                                        <option value="">Select {!! ucfirst($column->column) !!}</option>
+                                    @if(Relation::hasSyncRef($bread->table, $column->column))
+                                        @php $dataSync = Relation::dataSync() @endphp
+                                        <div id="{!! $table.'_'.str_plural($dataSync->rel_column).'_json' !!}" class="d-none">
+                                            {!! json_encode($dataSync) !!}
+                                        </div>
+                                        <select id="{!! $table.'_'.str_plural($column->column) !!}" name="column[{!! $column->column !!}]" data-column="{!! ucfirst($column->column) !!}" class="custom-select syncRef" data-sync="{!! $dataSync->sync_result !!}" data-target="{!! $table.'_'.str_plural($dataSync->rel_column) !!}">
+                                            @foreach(Relation::getRelation($bread->table, $column->column) as $key=>$value)
+                                                @if(!Relation::isDependent($bread->table, $column->column))
+                                                <option value="{!! $key !!}" @if($edit->{$column->column} == $key) selected @endif >{!! $value !!}</option>
+                                                @elseif($edit->{$column->column} == $key)
+                                                <option value="{!! $key !!}">{!! $value !!}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    @else
+                                    <select id="{!! $table.'_'.str_plural($column->column) !!}" data-column="{!! ucfirst($column->column) !!}" name="column[{!! $column->column !!}]" class="custom-select">
+                                        
                                         @foreach(Relation::getRelation($bread->table, $column->column) as $key=>$value)
-                                        @if($edit->{$column->column} == $key)
-                                        <option value="{!! $key !!}" selected>{!! $value !!}</option>
-                                        @else
-                                        <option value="{!! $key !!}">{!! $value !!}</option>
-                                        @endif
+                                            @if(!Relation::isDependent($bread->table, $column->column))
+                                                <option value="{!! $key !!}">{!! $value !!}</option>
+                                            @elseif($edit->{$column->column} == $key)
+                                                <option value="{!! $key !!}" selected>{!! $value !!}</option>
+                                            @endif
                                         @endforeach
-                                    </select> 
+                                    </select>  
+                                    @endif
                                 @else
 
                                     @switch($column->type)
@@ -142,3 +158,34 @@
     </div>
 </div>
 @stop
+@push('page-script')
+<script>
+$(document).ready(function(){
+    $(document).on('change', 'select[data-sync="1"].syncRef', function(){
+        window.synchronize = {
+            ele: $(this),
+            rel: JSON.parse($('#'+$(this).attr('data-target')+'_json').html())
+        };
+        rel = window.synchronize.rel;
+        window.synchronize.data = {
+            _token: "{!! csrf_token() !!}",
+            table: rel.ref_table,
+            column: rel.sync_column,
+            column_value: $(this).val()
+        }; 
+        $.post(route('Ripple::ajaxGetSynchronizedColumn'), window.synchronize.data, function(data){
+            var HTML = "<option value=''>Select "+$('#'+window.synchronize.ele.attr('data-target')).attr('data-column')+"</option>";
+            var rel = window.synchronize.rel;
+            for(let i in data){
+                HTML += "<option value='"+data[i][rel.ref_column]+"'>"+data[i][rel.ref_display]+"</option>";
+            }
+            $('#'+window.synchronize.ele.attr('data-target')).html(HTML);
+        });
+    });
+
+    $(document).on('change', '.image-file', function(){ 
+        $('#'+$(this).attr('data-file')).html($(this)[0].files[0].name);
+    });
+});
+</script>
+@endpush
