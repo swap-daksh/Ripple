@@ -27,6 +27,9 @@ class RippleServiceProvider extends ServiceProvider
         #Load routes from "routes/web.php"...
         $this->loadRoutesFrom(realpath(__DIR__ . '/../../routes/web.php'));
 
+        # Load Migrations
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+
         #Load Package Views...
         $this->loadViewsFrom(realpath(__DIR__ . '/../../resources/views'), 'Ripple');
 
