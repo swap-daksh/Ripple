@@ -9,20 +9,18 @@
 
 @stop
 @section('page-content')
-
-<div class="container-fluid p-3"> 
-    <div class="col-md-12 p-0">
-        <div class="card rounded-0">
-            <div class="card-body">
-                <form id="update-bread" method="post" action="" enctype="multipart/form-data">
-                    {!! csrf_field() !!}
-                    <input type="hidden" name="bread-edit" value="1">
-                    <input type="hidden" name="table" value="{!! $table !!}" />
-                    <input type="hidden" name="edit-id" value="{!! $edit->id !!}" />
-                    <div class="row">
+<div class="container-fluid p-3 pt-0">
+    <div class="row">
+        <div class="col">
+            <div class="card mb-3 rounded-0">
+                <div class="card-body">
+                    <form id="update-bread" method="post" action="" enctype="multipart/form-data">
+                        {!! csrf_field() !!}
+                        <input type="hidden" name="bread-edit" value="1">
+                        <input type="hidden" name="table" value="{!! $table !!}" />
+                        <input type="hidden" name="edit-id" value="{!! $edit->id !!}" />
                         @foreach($columns as $column)
                         @if($column->edit)
-                        <div class="col-md-6">
                             <div class="form-group">
                                 <label for="">{!! strtoupper($column->display_name) !!}</label>
                                 @if(Relation::hasRelation($bread->table, $column->column))
@@ -74,20 +72,20 @@
 
                                     @case('image')
                                     <div class="card">
-                                        <div class="card-body py-1">
-                                            <div class="row">
-                                                <div class="col-4 p-0">
-                                                    <div class="clearfix" id="preview-image">
-                                                        @if($edit->{$column->column} == '')
-                                                         <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
-                                                        @else
-                                                         <img style="max-width: 200px; max-height:150px" class="img-responsive" src="{!! url(Storage::url($edit->{$column->column})) !!}" alt="">
-                                                        @endif
+                                            <div class="card-body p-3">
+                                                <div class="row">
+                                                    <div class="col-4">
+                                                        <div class="clearfix" id="preview-image"> 
+                                                            @if($edit->{$column->column} == '')
+                                                            <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
+                                                            @else
+                                                            <img style="max-width: 200px; max-height:150px" class="img-responsive" src="{!! url(Storage::url($edit->{$column->column})) !!}" alt="">
+                                                            @endif
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="col-8 p-0">
-                                                    <div id="{!! $column->column !!}_file_details_info" class="detail_info w-100 px-2">
-                                                        @if($edit->{$column->column} == '')
+                                                    <div class="col-4">
+                                                        <div id="{!! $column->column !!}_file_details_info" class="detail_info w-100 px-2">
+                                                            @if($edit->{$column->column} == '')
                                                             <p><strong>Title:</strong>&nbsp;&nbsp;<code>_________.___</code></p>
                                                             <p><strong>Size:</strong>&nbsp;&nbsp;<code>__.__ KB/MB</code></p>
                                                             <p><strong>Type:</strong>&nbsp;&nbsp;<code>___/____</code></p>
@@ -96,27 +94,25 @@
                                                             <p><strong>Size:</strong>&nbsp;&nbsp;<code>{!! storage_file_size($edit->{$column->column}) !!}</code></p>
                                                             <p><strong>Type:</strong>&nbsp;&nbsp;<code>{!! Storage::getMimetype($edit->{$column->column}) !!}</code></p>
                                                         @endif
-                                                    </div> 
-                                                    <div class="row px-3">
-                                                        <div class="col px-1">
-                                                            <div class="input-group  mb-2 mr-sm-2">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text"><i class="fa fa-info-circle"></i></div>
-                                                                </div>
-                                                                <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
-                                                            </div>
                                                         </div>
-                                                        <div class="col p-0">
-                                                            <div class="custom-file">
-                                                                <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="200" data-height="150" type="file">
-                                                                <label class="custom-file-label" for="{!! $column->column !!}">Choose file</label>
+                                                    </div>
+                                                    <div class="col-4">
+                                                        <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
+                                                        <div class="input-group  mb-2 mr-sm-2">
+                                                            <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
+                                                                <div class="input-group-text"><i class="far fa-folder-open "></i></div>
                                                             </div>
+                                                            <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
+                                                        </div>
+                                                        <label for="">Choose Image File</label>
+                                                        <div class="custom-file">
+                                                            <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}_custom_input_file" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
+                                                            <label class="custom-file-label rounded-right" for="{!! $column->column !!}_custom_input_file">Choose file</label>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
                                     @break
 
                                     @case('file')
@@ -149,10 +145,14 @@
                                     @endswitch 
                                 @endif
                             </div>
-                        </div>
                         @endif
-                        @endforeach 
-                </form>
+                        @endforeach
+                    </form>
+                </div>
+                <div class="card-footer text-right">
+                    <button onClick="document.getElementById('update-bread').submit();" class="btn btn-sm btn-success"><i class="fa fa-save"></i>  Update {!! ucfirst(str_singular($table)) !!}</button>
+                    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
+                </div>
             </div>
         </div>
     </div>

@@ -52,9 +52,11 @@ class Relation
      * @param string|int $column_value
      * @return string|int
      */
-    public function get_value($table, $column, $column_value){
-        $relation = DB::table(prefix('relations'))->where('rel_column', $column)->first();
-        return DB::table($relation->ref_table)->where($relation->ref_column, $column_value)->first()->{$relation->ref_display};
+    public function get_value($table, $column, $column_value)
+    {
+        $relation = DB::table(prefix('relations'))->where('rel_table', $table)->where('rel_column', $column)->first();
+        return DB::table($relation->ref_table)->where($relation->ref_column, $column_value)
+        ->value($relation->ref_display);
     }
 
 
