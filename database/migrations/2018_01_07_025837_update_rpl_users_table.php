@@ -17,7 +17,7 @@ class UpdateRplUsersTable extends Migration
             if (!Schema::hasColumn('users', 'avatar')) {
                 $table->string('avatar')->nullable()->after('email')->default('avatars/default.png');
             }
-            if (!Schema::hasColumn('users', 'role')) {
+            if(!Schema::hasColumn('users', 'role')){
                 $table->integer('role')->default(0)->after('id');
             }
         });

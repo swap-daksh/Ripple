@@ -2,12 +2,13 @@
 @section('page-title') Create New {!! ucfirst(str_singular($table)) !!} @stop
 @section('buttons') 
 <div class="buttons">
-    <button onClick="document.getElementById('AddBreadForm').submit();" class="btn btn-sm btn-success"><i class="fa fa-save"></i>  Save {!! ucfirst(str_singular($table)) !!}</button>
-    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
+<button onClick="document.getElementById('AddBreadForm').submit();" class="btn btn-sm btn-success"><i class="fa fa-save"></i>  Save {!! ucfirst(str_singular($table)) !!}</button>
+<a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
+
 </div>
 @stop
 @section('page-content')
-<div class="container-fluid p-3 pt-0">
+<div class="container-fluid p-3 mt-3">
     <div class="row">
         <div class="col">
             <div class="card mb-3 rounded-0"> 
@@ -18,6 +19,7 @@
                     <input type="hidden" name="table" value="{!! $table !!}" />
                     @foreach($columns as $column)
                     @if($column->add)
+                    <div class="w-50 float-left">
                         <div class="form-group">
                             <label for="">{!! strtoupper($column->display_name) !!}</label>
                             @if(Relation::hasRelation($bread->table, $column->column)) 
@@ -84,32 +86,35 @@
 
                                     @case('image')
                                         <div class="card">
-                                            <div class="card-body p-3">
+                                            <div class="card-body py-1">
                                                 <div class="row">
-                                                    <div class="col-4">
+                                                    <div class="col-4 p-0">
                                                         <div class="clearfix" id="preview-image"> 
                                                             <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
                                                         </div>
                                                     </div>
-                                                    <div class="col-4">
+                                                    <div class="col-8 p-0">
                                                         <div id="{!! $column->column !!}_file_details_info" class="detail_info w-100 px-2">
                                                             <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
                                                             <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
                                                             <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-4">
-                                                        <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
-                                                        <div class="input-group  mb-2 mr-sm-2">
-                                                            <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
-                                                                <div class="input-group-text"><i class="far fa-folder-open "></i></div>
+                                                        <div class="row px-3">
+                                                            <div class="col px-1">
+                                                                <div class="input-group  mb-2 mr-sm-2">
+                                                                    <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
+                                                                        <div class="input-group-text"><i class="fa fa-info-circle"></i></div>
+                                                                    </div>
+                                                                    <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
+                                                                </div>
+                                                            
                                                             </div>
-                                                            <input class="form-control" placeholder="public/" type="text" name="{!! $column->column !!}_upload_path">
-                                                        </div>
-                                                        <label for="">Choose Image File</label>
-                                                        <div class="custom-file">
-                                                            <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}_custom_input_file" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
-                                                            <label class="custom-file-label rounded-right" for="{!! $column->column !!}_custom_input_file">Choose file</label>
+                                                            <div class="col p-0">
+                                                                <div class="custom-file">
+                                                                    <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}_custom_input_file" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
+                                                                    <label class="custom-file-label rounded-right" for="{!! $column->column !!}_custom_input_file">Choose file</label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -134,13 +139,10 @@
                                 @endswitch 
                             @endif
                         </div>
+                    </div>
                     @endif
                     @endforeach
                     </form>
-                </div>
-                <div class="card-footer text-right">
-                    <button onClick="document.getElementById('AddBreadForm').submit();" class="btn btn-sm btn-success"><i class="fa fa-save"></i>  Save {!! ucfirst(str_singular($table)) !!}</button>
-                    <a href="{!! route('Ripple::adminBreadBrowse', ['slug'=>$bread->slug]) !!}" class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Browse {!! ucfirst($bread->display_plural) !!}</a>
                 </div>
             </div>
         </div>

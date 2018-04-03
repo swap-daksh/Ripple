@@ -15,23 +15,18 @@
         @jsRoutes
     </head>
     <body class="home">
-        <div id="app" class="container-fluid" style="">
+        <div id="app" style="">
             {{-- Header --}}
             @include('Ripple::layouts.beta-header')
-            <div class="row" >
-                @include('Ripple::layouts.beta-sidebar')
-                <main class="clearfix rpl-container col-md-10"> 
-                    {{-- Main Container --}}
-                    <div class="content-outlet content-wrapper p-0 container-fluid">
-                        @include('Ripple::layouts.beta-page-title')
-                        @yield('page-content') 
-                    </div>
-                </main>
-            </div>
+            <main class="clearfix rpl-container"> 
+                {{-- Main Container --}}
+                <div class="content-outlet content-wrapper p-0 container-fluid">
+                    @include('Ripple::layouts.beta-page-title')
+                    @yield('page-content') 
+                </div>
+                
+            </main>
             @include('Ripple::layouts.beta-footer')
-        </div>
-        <div class="ripple-loader" id="ripple-loader">
-            <img class="loader-img" src="{!! ripple_asset('/img/loaders/flip-circle-google.svg') !!}" alt="">
         </div>
         {{-- JS Scripts --}}
         <script src="{!! ripple_asset('/js/beta-app.js') !!}"></script>

@@ -24,7 +24,6 @@
                 <div class="card-body">
                     <p class="card-text">
                         @if($bread->description !== '')
-                            {!! $bread->description !!}
                         @else
                             This is default description of <strong>{!! ucfirst($bread->display_plural) !!}</strong>. You can update the BREAD 
                             description by editing this bread.
