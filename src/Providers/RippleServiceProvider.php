@@ -65,8 +65,7 @@ class RippleServiceProvider extends ServiceProvider
      */
     public function loadMiddlewares(Router $Router)
     {
-        foreach (config('ripple.middlewares', []) as $name => $class)
-        {
+        foreach (config('ripple.middlewares', []) as $name => $class) {
             if (app()->version() >= 5.4) {
                 $Router->aliasMiddleware($name, $class);
             } else {
@@ -81,14 +80,14 @@ class RippleServiceProvider extends ServiceProvider
     public function loadAlias()
     {
         $loadAlias = AliasLoader::getInstance();
-        foreach (config('ripple.aliases', []) as $abstract => $class):
+        foreach (config('ripple.aliases', []) as $abstract => $class) :
             $loadAlias->alias($abstract, $class);
         endforeach;
     }
 
     public function bindFacades()
     {
-        foreach (config('ripple.facades', []) as $facade => $class):
+        foreach (config('ripple.facades', []) as $facade => $class) :
             $this->app->bind($facade, $class);
         endforeach;
     }
@@ -96,7 +95,7 @@ class RippleServiceProvider extends ServiceProvider
     public function loadCommands($commands = array())
     {
         #Load All Commands
-        foreach (glob(__DIR__ . '/../Commands/*.php') as $command):
+        foreach (glob(__DIR__ . '/../Commands/*.php') as $command) :
             $commands[] = '\YPC\Ripple\Commands\\' . basename($command, '.php');
         endforeach;
         #Register All Commands
@@ -120,32 +119,29 @@ class RippleServiceProvider extends ServiceProvider
             #Publishable JS
             'js' => [realpath(__DIR__ . '/../../public/js') => public_path('vendor/ypc/ripple/public/js/')],
         ];
-        foreach ($publishes as $tag => $paths):
+        foreach ($publishes as $tag => $paths) :
             $this->publishes($paths, $tag);
         endforeach;
     }
 
     public function loadBladeDirectives($RippleBlade)
     {
-        foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod)
-        {
+        foreach ((new \ReflectionClass(RippleBlade::class))->getMethods() as $BladeMethod) {
             $RippleBlade->{$BladeMethod->name}();
         }
     }
 
     public function loadHelpers()
     {
-        foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file)
-        {
+        foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file) {
             require_once realpath($file);
         }
     }
 
     public function registerCustomDataTypes()
     {
-        foreach (\YPC\Ripple\Support\Database\DataTypes\Type::$register as $datatype => $class):
+        foreach (\YPC\Ripple\Support\Database\DataTypes\Type::$register as $datatype => $class) :
             \Doctrine\DBAL\Types\Type::addType($datatype, $class);
         endforeach;
     }
-
 }
