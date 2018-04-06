@@ -21,6 +21,9 @@ class RippleServiceProvider extends ServiceProvider
         #Setting up default string length
         Schema::defaultStringLength(191);
 
+        #Merge Ripple configuration files
+        $this->mergeRippleConfiguration();
+        
         #Load Ripple Helpers
         $this->loadHelpers();
         
@@ -44,6 +47,8 @@ class RippleServiceProvider extends ServiceProvider
 
         #Load All Middlewares to app
         $this->loadMiddlewares($Router);
+
+        
     }
 
     /**
@@ -115,8 +120,6 @@ class RippleServiceProvider extends ServiceProvider
             'images' => [realpath(__DIR__ . '/../../public/img') => public_path('vendor/ypc/ripple/public/img/')],
             #Publishable Configuration
             'config' => [realpath(__DIR__ . '/../../config') => config_path('/')],
-            #Publishable Database
-            'database' => [realpath(__DIR__ . '/../../database/migrations') => database_path('/migrations')],
             #Publishable CSS
             'css' => [realpath(__DIR__ . '/../../public/css') => public_path('vendor/ypc/ripple/public/css/')],
             #Publishable JS
@@ -138,6 +141,19 @@ class RippleServiceProvider extends ServiceProvider
     {
         foreach (glob(__DIR__ . '/../Support/Helpers/*.php') as $file) {
             require_once realpath($file);
+        }
+    }
+
+
+    /**
+     * Merge Package configuration with application's configurations
+     *
+     * @return void
+     */
+    public function mergeRippleConfiguration()
+    {
+        foreach (glob(realpath(__DIR__.'/../../config/').'/*.php') as $config) {
+            $this->mergeConfigFrom($config, basename($config, '.php'));
         }
     }
 
