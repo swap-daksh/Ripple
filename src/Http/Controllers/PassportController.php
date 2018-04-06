@@ -2,11 +2,12 @@
 
 namespace YPC\Ripple\Http\Controllers;
 
+class PassportController extends Controller
+{
 
-class PassportController extends Controller{
 
-
-    public function AppPassport(){
+    public function appPassport()
+    {
         return view('Ripple::passport.passportIndex');
     }
 }

@@ -189,6 +189,9 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     Route::any('/user/profile', 'UserController@userProfile')
     ->name('adminUserProfile');
 
+    # Product routes
+    Route::resource('products', 'ProductController');
+
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -215,7 +218,6 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         Route::any('{slug}/delete/{id}', 'BreadController@breadDelete')
         ->where('slug', Ripple::hasBreadSlug())
         ->name('adminBreadDelete');
-
     });
 
 
@@ -224,7 +226,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     Api Management
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/passport', 'PassportController@AppPassport')
+    Route::any('/passport', 'PassportController@appPassport')
     ->name('appPassport');
 
 
