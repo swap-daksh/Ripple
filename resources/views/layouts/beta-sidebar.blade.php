@@ -19,6 +19,11 @@
                         </a>
                     </li>
                     <li class="list-group-item">
+                        <a class="list-link" href="{!! route('Ripple::products.index') !!}" role="button">
+                            <i class="fa fa-cart-plus "></i> Shopping Store
+                        </a> 
+                    </li>
+                    <li class="list-group-item">
                         <a class="list-link" href="{!! route('Ripple::databaseModule') !!}" role="button">
                             <i class="fa fa-database"></i> Database Tools
                         </a> 

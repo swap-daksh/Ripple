@@ -20,7 +20,7 @@ class CreateRplCategoriesTable extends Migration
             $table->string('type');
             $table->longText('description')->nullable();
             $table->integer('parent')->nullable()->default(0);
-            $table->integer('count')->nullable()->default(0);
+            $table->integer('_group')->nullable()->default('post');
             $table->timestamps();
         });
     }
