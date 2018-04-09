@@ -1,0 +1,1 @@
+@extends('Ripple::layouts.beta-app')
