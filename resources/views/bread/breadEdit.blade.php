@@ -66,6 +66,14 @@
                                         <input class="form-control" type="password" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
                                     @break
 
+                                    @case('checkbox')
+                                    <div class="custom-control custom-checkbox">
+                                        <input  type='hidden' value='0' name="column[{!! $column->column !!}]" >
+                                        <input type="checkbox" name="column[{!! $column->column !!}]" class="custom-control-input" value="1" {!! $edit->{$column->column} == '1' ? 'checked':'unchecked' !!} id="{!! $column->column !!}_custom_checkbox">
+                                        <label class="custom-control-label" for="{!! $column->column !!}_custom_checkbox">Check/Uncheck</label>
+                                    </div>
+                                    @break
+
                                     @case('date')
                                         <input class="form-control" type="date" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
                                     @break
