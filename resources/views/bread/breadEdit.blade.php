@@ -72,11 +72,22 @@
                                         <input type="checkbox" name="column[{!! $column->column !!}]" class="custom-control-input" value="1" {!! $edit->{$column->column} == '1' ? 'checked':'unchecked' !!} id="{!! $column->column !!}_custom_checkbox">
                                         <label class="custom-control-label" for="{!! $column->column !!}_custom_checkbox">Check/Uncheck</label>
                                     </div>
-									
                                     @break
 
                                     @case('date')
                                         <input class="form-control" type="date" name="column[{!! $column->column !!}]" value="{!! $edit->{$column->column} !!}" >
+                                    @break
+                                    @case('select')
+                                    <select id="{!! $table.'_'.str_plural($column->column) !!}" name="column[{!! $column->column !!}]" data-column="{!! ucfirst($column->column) !!}" class="custom-select syncRef"> 
+                                        dd($column->options);
+                                        
+                                        @foreach(explode(",",$column->options) as $option)
+                                            @php
+                                            $item_meta_ar = explode(":",$option);
+                                            @endphp
+                                            <option value="{!! $item_meta_ar[0] !!}" {{  $edit->{$column->column} ==  $item_meta_ar[0]  ? 'selected' : '' }}>{!! $item_meta_ar[1] !!}</option>
+                                        @endforeach
+                                        </select>
                                     @break
 
                                     @case('image')
