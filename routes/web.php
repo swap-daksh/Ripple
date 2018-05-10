@@ -31,13 +31,12 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     
     Route::post('/logout', 'AdminAuthController@adminLogin')
     ->name('adminLogout');
-    
 });
 
 Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'YPC\Ripple\Http\Controllers'), 'middleware' => ['web', 'RedirectIfNotAdmin'], 'prefix' => 'admin'], function () {
     /*
       |----------------------------------------------------------------------
-      |	Admin Route
+      | Admin Route
       |----------------------------------------------------------------------
      */
     Route::any('/', 'RippleController@dashboard')->name('dashboard');
@@ -47,7 +46,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
 
     /*
       |----------------------------------------------------------------------
-      |	User Roles
+      |  User Roles
       |----------------------------------------------------------------------
      */
     Route::any('/roles', "RoleController@rolesIndex")
@@ -183,14 +182,34 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
       |                                     Users
       |-------------------------------------------------------------------------------------------------------------------
      */
-    Route::any('/users/list', 'UserController@userIndex')
-    ->name('adminUserIndex');
-
-    Route::any('/user/profile', 'UserController@userProfile')
-    ->name('adminUserProfile');
+    Route::resource('users', 'UserController');
 
     # Product routes
     Route::resource('products', 'ProductController');
+
+
+    /*
+     |---------------------------------------------------------------------------------------------------------------------
+     |                                    User Roles
+     |---------------------------------------------------------------------------------------------------------------------
+     */
+
+    Route::resource('roles', 'RoleController');
+
+     /*
+     |---------------------------------------------------------------------------------------------------------------------
+     |                                    Dealer Roles
+     |---------------------------------------------------------------------------------------------------------------------
+     */
+
+    Route::resource('dealer', 'DealerController');
+
+    Route::group(['prefix'=>'dealers'], function () {
+
+        Route::any('approved', 'DealerController@showApproved')->name('dealerApproved');
+        Route::any('unapproved', 'DealerController@showUnapproved')->name('dealerUnapproved');
+        Route::any('sold', 'DealerController@showSold')->name('dealerSold');
+    });
 
 
     /*
@@ -290,7 +309,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
         //        $schema->toSql();
         //        dd($class, $schema, DB::connection()->getDoctrineSchemaManager()->listTableColumns('users'), DB::connection()->getDoctrineConnection()
         //        );
-        }); 
+    });
     Route::get('/test', function () {
         return view('Ripple::test');
     });

@@ -37,5 +37,6 @@
         <script src="{!! ripple_asset('/js/beta-app.js') !!}"></script>
         <script src="{!! ripple_asset('/js/beta-functions.js') !!}"></script>
         @include('Ripple::layouts.beta-scripts')
+        @stack('rp-script-js')
     </body>
 </html>
