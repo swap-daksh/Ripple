@@ -82,6 +82,7 @@ class DealerController extends Controller
     {
         $dealer = $request->dealer;
         $dealer['image'] = $this->dealerImage('dealer_image');
+        dd($dealerImage);
         $id = ApprovedCar::insertGetId($dealer);
         return redirect()->route('Ripple::dealer.edit', ['id'=>$id]);
     }
@@ -137,6 +138,7 @@ class DealerController extends Controller
 
     private function dealerImage($file, $update = false)
     {
+       
         if (request()->hasFile($file)) {
             return storeFileAs($file, 'dealer-'.str_slug(request('dealer')['name']).md5(strtotime(date('Y-m-d'))));
         }

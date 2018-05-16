@@ -80,7 +80,7 @@
                                                         <div class="col-6 mt-3">
                                                             <label for="">Choose Image File</label>
                                                             <div class="custom-file">
-                                                                <input class="image-preview custom-file-input-bread" name="dealer[image]" id="product_image_custom_input_file" data-preview="preview-image" data-details="#product_image_file_details_info" data-width="auto" data-height="150" type="file">
+                                                                <input class="image-preview custom-file-input-bread" name="dealer_image" id="product_image_custom_input_file" data-preview="preview-image" data-details="#product_image_file_details_info" data-width="auto" data-height="150" type="file">
                                                                 <label class="custom-file-label rounded-right" for="product_image_custom_input_file">Choose file</label>
                                                             </div>
                                                         </div>
@@ -183,7 +183,7 @@
     });
 
     @endif
-    @if(!empty($car->series) )
+    @if(!empty($car->series))
     $(document).ready(function(){
         var seriesId = {{$car->series}} ;
         var modelId = {{$car->model}} ;

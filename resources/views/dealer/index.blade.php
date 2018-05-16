@@ -1,11 +1,36 @@
 @extends('Ripple::layouts.beta-app')
-@section('page-title') Old Cars @stop
-@section('page-description') List all Old Cars. @stop
+
+@if(Request::is('dashboard/unapproved'))
+@section('page-title') Unapproved Cars @stop
+@section('page-description') List all Unapproved Cars. @stop
 @section('buttons')
 <div class="buttons">
     <a href="{!! route('Ripple::dealer.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add an Old Car</a>
 </div>
 @stop
+@endif
+
+@if(Request::is('dashboard/approved'))
+@section('page-title') Approved Cars @stop
+@section('page-description') List all Approved Cars. @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::dealer.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add an Old Car</a>
+</div>
+@stop
+@endif
+
+@if(Request::is('dashboard/sold'))
+@section('page-title') Sold Cars @stop
+@section('page-description') List all Sold Cars. @stop
+@section('buttons')
+<div class="buttons">
+    <a href="{!! route('Ripple::dealer.create') !!}" class="btn btn-primary btn-sm"><i class="fa fa-plus-circle"></i> Add an Old Car</a>
+</div>
+@stop
+@endif
+
+
 @section('page-content')
 <div class="container-fluid p-3">
     <div class="row">
@@ -13,7 +38,6 @@
         <table class="table border border-1">
             <thead class="thead-light">
                 <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Maker</th>
                 <th scope="col">Car Model</th>
                 <th scope="col">Body Type</th>
@@ -24,7 +48,6 @@
             <tbody>
             @foreach($cars as $car)
                 <tr>
-                    <th class="align-middle" scope="row">{!! $car->id !!}</th>
                     <td class="align-middle">{!! $car->getMaker->maker !!}</td>
                     <td class="align-middle">{!! $car->getSeries->series !!}</td>
                     <td class="align-middle">{!! $car->bodies->body !!}</td>

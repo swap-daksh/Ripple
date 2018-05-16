@@ -4,7 +4,9 @@ namespace YPC\Ripple\Http\Middleware;
 
 use Illuminate\Support\Facades\Auth;
 use Closure;
-class RedirectIfNotAdmin{
+
+class RedirectIfNotDealer
+{
     /**
      * Handle an incoming request.
      *
@@ -15,13 +17,9 @@ class RedirectIfNotAdmin{
 
      public function handle($request, Closure $next){
          if(Auth::check()){
-            if(Auth::user()->role == 'admin'){
+            if(Auth::user()->role == 'dealer' || Auth::user()->role == 'admin'){
                 return $next($request);
-            } elseif(Auth::user()->role == 'dealer') {
-                return redirect('dashboard');
-            }
-            
-            else{
+            }else{
                 return redirect()->route('home');
             }
          }

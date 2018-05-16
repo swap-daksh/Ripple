@@ -19,7 +19,12 @@
             {{-- Header --}}
             @include('Ripple::layouts.beta-header')
             <div class="row" >
+            @if(Auth::user()->role == 'admin')
                 @include('Ripple::layouts.beta-sidebar')
+            @endif
+            @if(Auth::user()->role == 'dealer')
+                @include('Ripple::layouts.beta-dealer-sidebar')
+            @endif
                 <main class="clearfix rpl-container col-md-10"> 
                     {{-- Main Container --}}
                     <div class="content-outlet content-wrapper p-0 container-fluid">

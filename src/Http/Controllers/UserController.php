@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Storage;
 use YPC\Ripple\Support\Faker\FileFactory;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Models\UserMeta;
+use Auth;
 
 class UserController extends Controller
 {
@@ -19,6 +21,19 @@ class UserController extends Controller
         $users = User::get();
         return view('Ripple::users.index', compact('users'));
     }
+    
+
+    /**
+     * Display User Profile
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function profile()
+    {
+        $id = Auth::user()->id;
+        $user = User::where('id', $id)->first();
+        return view('Ripple::users.show', compact('user'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -30,7 +45,8 @@ class UserController extends Controller
         //dd(url(Storage::url(Storage::putFile('public', (new FileFactory())->image('test.png', 1000, 1000)))));
         //dd((new FileFactory())->image('test.jpg', 100, 200)->store());
         //dd(Storage::putFile('public', (new FileFactory())->image('test.jpg', 1000, 1000)));
-        return view('Ripple::users.create');
+        $roles = DB::table('rpl_roles')->get();
+        return view('Ripple::users.create', compact('roles'));
     }
 
     /**
@@ -42,8 +58,23 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = $request->user;
+
+        $metas = $request->meta;
         $user['avatar'] = $this->userImage('user_image');
+        $meta['logo'] = $this->userImage('meta_logo');
+
         $id = DB::table('users')->insertGetId($user);
+
+        #Get key and value of User Meta and process it for bulk insert
+        $meta_array = array();
+        $i = 0;
+        foreach ($metas as $key => $meta) {
+            $meta_array[$i]  =  array('user_id'=> $id,'meta_key'=>$key, 'meta_value'=>$meta);
+            ++$i;
+        }
+
+        UserMeta::insert($meta_array);
+
         return redirect()->route('Ripple::users.edit', ['id'=>$id]);
     }
 
@@ -67,9 +98,28 @@ class UserController extends Controller
      */
     public function edit($id)
     {
+        $roles = DB::table('rpl_roles')->get();
         $user = User::where('id', $id)->first();
+        $meta = UserMeta::where('user_id', $id)->pluck('meta_value', 'meta_key');
+        return view('Ripple::users.edit', compact('user', 'roles', 'meta'));
+    }
+
+    /**
+     * Show the form for editing User Profile
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function editProfile()
+    {
+        $id = Auth::user()->id;
+        $roles = DB::table('rpl_roles')->get();
+        $meta = UserMeta::where('user_id', $id)->pluck('meta_value', 'meta_key');
+        $user = User::where('id', $id)->first();
+
+       
         
-        return view('Ripple::users.edit', compact('user'));
+        return view('Ripple::users.edit', compact('user', 'roles', 'meta'));
     }
 
     /**
@@ -81,16 +131,74 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $password = request('new-password');
         $user = $request->user;
-        if ($userImage = $this->userImage('user_image', true)) {
+        $metas = $request->meta;
+        if (!(empty($password))) {
+            $user['password'] = bcrypt($password);
+        }
+        if ($userImage = $this->userImage('user_avatar', true)) {
             $user['avatar'] = $userImage;
+        }
+        if ($metaLogo = $this->userImage('meta_logo', true)) {
+            $meta['logo'] = $metaLogo;
         }
         if (user::where('id', $id)->update($user)) {
                 return redirect()->route('Ripple::users.edit', ['id'=>$id]);
         }
+
+
+        #Get key and value of User Meta and process it for bulk insert
+        $meta_array = array();
+        $i = 0;
+        foreach ($metas as $key => $meta) {
+            $meta_array[$i]  =  array('user_id'=> $id,'meta_key'=>$key, 'meta_value'=>$meta);
+            ++$i;
+        }
+        
+        UserMeta::updateOrCreate($meta_array);
+
         return redirect()->route('Ripple::users.edit', ['id'=>$id]);
     }
 
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateProfile(Request $request)
+    {
+        $id = Auth::user()->id;
+        $password = request('new-password');
+        $user = $request->user;
+        $metas = $request->meta;
+        
+        if (!(empty($password))) {
+            $user['password'] = bcrypt($password);
+        }
+        if ($userImage = $this->userImage('user_avatar', true)) {
+            $user['avatar'] = $userImage;
+        }
+        if ($metaLogo = $this->userImage('meta_logo', true)) {
+            $meta['logo'] = $metaLogo;
+        }
+
+
+
+        #Get key and value of User Meta and process it for bulk insert
+        $meta_array = array();
+        $i = 0;
+        foreach ($metas as $key => $meta) {
+              $meta_array[$i]  =  array('user_id'=> $id,'meta_key'=>$key, 'meta_value'=>$meta);
+              UserMeta::updateOrCreate($meta_array[$i]);
+              ++$i;
+        }
+
+        return redirect()->route('Ripple::editProfile');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -120,4 +228,3 @@ class UserController extends Controller
         );
     }
 }
-

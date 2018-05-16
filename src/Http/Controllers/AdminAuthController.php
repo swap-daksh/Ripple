@@ -31,7 +31,13 @@ class AdminAuthController extends Controller{
     public function showLoginForm()
     {
         if (Auth::user()) {
-            return redirect()->route('Ripple::dashboard');
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('Ripple::dashboard');
+            } elseif (Auth::user()->role == 'dealer') {
+                return redirect()->route('Ripple::dealerDashboard');
+            } else {
+                //do nothing
+            }
         }
 
         return view('Ripple::auth.login');
@@ -80,7 +86,14 @@ class AdminAuthController extends Controller{
      */
     public function redirectTo()
     {
-        return redirect()->route('Ripple::dashboard');
+        if (Auth::user()) {
+            if (Auth::user()->role == 'admin') {
+                return redirect()->route('Ripple::dashboard');
+            } elseif (Auth::user()->role == 'dealer') {
+                return redirect()->route('Ripple::dealerDashboard');
+            } else {
+                //do nothing
+            }
+        }
     }
-
 }
