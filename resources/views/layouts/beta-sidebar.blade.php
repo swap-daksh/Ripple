@@ -24,6 +24,26 @@
                         </a> 
                     </li>
                     <li class="list-group-item">
+                        <a class="list-link" href="{!! route('Ripple::order.index') !!}" role="button">
+                            <i class="fas fa-shopping-basket"></i> Orders 
+                        </a> 
+                    </li>
+                    <li class="list-group-item">
+                        <a class="list-link" href="{!! route('Ripple::dealer.index') !!}" role="button">
+                           <i class="fas fa-car"></i> Old Cars 
+                        </a> 
+                    </li>
+                    <li class="list-group-item">
+                            <a class="list-link" href="{!! route('Ripple::users.index') !!}" role="button">
+                                <i class="fas fa-users"></i> User
+                            </a> 
+                    </li>
+                    <li class="list-group-item">
+                            <a class="list-link" href="{!! route('Ripple::roles.index') !!}" role="button">
+                                <i class="fas fa-users"></i> User Roles 
+                            </a> 
+                    </li>
+                    <li class="list-group-item">
                         <a class="list-link" href="{!! route('Ripple::databaseModule') !!}" role="button">
                             <i class="fa fa-database"></i> Database Tools
                         </a> 

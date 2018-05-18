@@ -187,7 +187,13 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
     # Product routes
     Route::resource('products', 'ProductController');
 
+    /*
+     |---------------------------------------------------------------------------------------------------------------------
+     |                                    User Roles
+     |---------------------------------------------------------------------------------------------------------------------
+     */
 
+    Route::resource('order', 'OrderController');
     /*
      |---------------------------------------------------------------------------------------------------------------------
      |                                    User Roles
@@ -203,14 +209,7 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
      */
 
     Route::resource('dealer', 'DealerController');
-
-    Route::group(['prefix'=>'dealers'], function () {
-
-        Route::any('approved', 'DealerController@showApproved')->name('dealerApproved');
-        Route::any('unapproved', 'DealerController@showUnapproved')->name('dealerUnapproved');
-        Route::any('sold', 'DealerController@showSold')->name('dealerSold');
-    });
-
+    Route::resource('dealergallery', 'DealerGalleryController');
 
     /*
       |-------------------------------------------------------------------------------------------------------------------
@@ -323,4 +322,26 @@ Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.name
             //            dd()
         }
     });
+});
+
+
+
+
+Route::group(['as' => 'Ripple::', 'namespace' => config('ripple.controllers.namespace', 'YPC\Ripple\Http\Controllers'), 'middleware' => ['web','RedirectIfNotDealer'], 'prefix' => 'dashboard'], function () {
+    /*
+     |-----------------------------------------------------------------------
+     |  Authentication Routes
+     |-----------------------------------------------------------------------
+    */
+
+    Route::resource('dealer', 'DealerController');
+    Route::resource('dealergallery', 'DealerGalleryController');
+    
+
+    Route::any('/', 'UserController@profile')->name('dealerDashboard');
+    Route::any('edit-profile', 'UserController@editProfile')->name('editProfile');
+    Route::put('update-profile', 'UserController@updateProfile')->name('updateProfile');
+    Route::any('approved', 'DealerController@showApproved')->name('dealerApproved');
+    Route::any('unapproved', 'DealerController@showUnapproved')->name('dealerUnapproved');
+    Route::any('sold', 'DealerController@showSold')->name('dealerSold');
 });
