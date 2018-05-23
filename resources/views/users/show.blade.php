@@ -34,9 +34,23 @@
             <div class="card rounded-0">
                 <div class="card-header">
                     <h3>{!! $user->name !!}</h3>
+                    @if(!empty($meta['maker']))
+
+                    @php
+                    $userMakers = explode(",", $meta['maker']);
+                    @endphp
+                    Dealer in
+                    <strong>
+                        @forelse($userMakers as $make)
+                        {{ App\Models\Maker::where('id', $make)->pluck('maker')[0]}},
+                        @empty
+                        @endforelse
+                    </strong>
+                    @endif
                 </div>
+               
                 <div class="card-body row">
-                        <div class="col-md-2"><img style="width:100%" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt=""></div>
+                        <div class="col-md-2"><img style="width:100%" class="img-responsive" src="{!! $user->avatar != 'avatars/default.png' ? url(Storage::url( $user->avatar )) : ripple_asset('/img/default/default.png') !!}" alt=""></div>
                         <div class="col-md-5">
                             <table class="table table-border">
                                 <tr>
@@ -65,7 +79,26 @@
                                 </tr>
                               </table>
                             </div>
-                        <div class="col-md-5"></div>
+                        <div class="col-md-5">
+                                <table class="table table-border">
+                                        <tr>
+                                          <td>Company Name</td>
+                                          <td>{{ !empty($meta['company_name']) ? $meta['company_name'] : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Company Profile</td>
+                                          <td>{{ !empty($meta['company_profile']) ? $meta['company_profile'] : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Family Name</td>
+                                          <td>{{ !empty($meta['family_name']) ? $meta['family_name'] : '' }}</td>
+                                        </tr>
+                                        <tr>
+                                          <td>Address</td>
+                                          <td>{{ !empty($meta['address']) ? $meta['address'] : '' }}</td>
+                                        </tr>
+                                </table>
+                        </div>
                 </div>             
             </div>
         </div>

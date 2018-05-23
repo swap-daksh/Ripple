@@ -32,39 +32,39 @@
                                 </div>
                                 <label for="userAvatar">User Avatar</label>
                                 <div class="card rounded-0">
-                                    <div class="card-body p-3">
-                                        <div class="row">
-                                                <div class="col-5">
-                                                    <div class="clearfix" id="preview-image"> 
-                                                        <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
-                                                    </div>
-                                                </div>
-                                                <div class="col-7">
-                                                    <div id="product_image_file_details_info" class="detail_info w-100 px-2">
-                                                        <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
-                                                        <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
-                                                        <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 mt-3">
-                                                    <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
-                                                    <div class="input-group  mb-2 mr-sm-2">
-                                                        <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
-                                                            <div class="input-group-text"><i class="far fa-folder-open "></i></div>
+                                        <div class="card-body p-3">
+                                            <div class="row">
+                                                    <div class="col-5">
+                                                        <div class="clearfix" id="preview-image"> 
+                                                            <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
                                                         </div>
-                                                        <input class="form-control" placeholder="public/" type="text" name="user_image_upload_path">
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <div id="product_image_file_details_info" class="detail_info w-100 px-2">
+                                                            <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
+                                                            <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
+                                                            <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
+                                                        <div class="input-group  mb-2 mr-sm-2">
+                                                            <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
+                                                                <div class="input-group-text"><i class="far fa-folder-open "></i></div>
+                                                            </div>
+                                                            <input class="form-control" placeholder="public/" type="text" name="user_image_upload_path">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6 mt-3">
+                                                        <label for="">Choose Image File</label>
+                                                        <div class="custom-file">
+                                                            <input class="image-preview custom-file-input-bread" name="user_avatar" id="product_image_custom_input_file" data-preview="preview-image" data-details="#product_image_file_details_info" data-width="auto" data-height="150" type="file">
+                                                            <label class="custom-file-label rounded-right" for="product_image_custom_input_file">Choose file</label>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-6 mt-3">
-                                                    <label for="">Choose Image File</label>
-                                                    <div class="custom-file">
-                                                        <input class="image-preview custom-file-input-bread" name="user_avatar" id="product_image_custom_input_file" data-preview="preview-image" data-details="#product_image_file_details_info" data-width="auto" data-height="150" type="file">
-                                                        <label class="custom-file-label rounded-right" for="product_image_custom_input_file">Choose file</label>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        </div>
                                     </div>
-                                </div>
 
                                 <div class="form-group">
                                     <label for="">Role</label> 
@@ -178,39 +178,39 @@
                                     </div>
                                     <label for="firstName">Logo</label>
                                     <div class="card rounded-0">
-                                        <div class="card-body p-3">
-                                            <div class="row">
-                                                    <div class="col-5">
-                                                        <div class="clearfix" id="preview-image-avatar"> 
-                                                            <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <div id="avatar_image_file_details_info" class="detail_info w-100 px-2">
-                                                            <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
-                                                            <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
-                                                            <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-6 mt-3">
-                                                        <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
-                                                        <div class="input-group  mb-2 mr-sm-2">
-                                                            <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
-                                                                <div class="input-group-text"><i class="far fa-folder-open "></i></div>
+                                            <div class="card-body p-3">
+                                                <div class="row">
+                                                        <div class="col-5">
+                                                            <div class="clearfix" id="preview-image-avatar"> 
+                                                                <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
                                                             </div>
-                                                            <input class="form-control" placeholder="public/" type="text" name="user_image_upload_path">
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <div id="avatar_image_file_details_info" class="detail_info w-100 px-2">
+                                                                <p><strong>Title:</strong>&nbsp;&nbsp;<code>______.___</code></p>
+                                                                <p><strong>Size:</strong>&nbsp;&nbsp;<code>___.__ KB/MB</code></p>
+                                                                <p><strong>Type:</strong>&nbsp;&nbsp;<code>_____/____</code></p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 mt-3">
+                                                            <label for="">Upload Directory <sup class="text-danger">Optional</sup></label>
+                                                            <div class="input-group  mb-2 mr-sm-2">
+                                                                <div class="input-group-prepend" data-toggle="tooltip" title="Specify your path under public directory.">
+                                                                    <div class="input-group-text"><i class="far fa-folder-open "></i></div>
+                                                                </div>
+                                                                <input class="form-control" placeholder="public/" type="text" name="user_image_upload_path">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6 mt-3">
+                                                            <label for="">Choose Image File</label>
+                                                            <div class="custom-file">
+                                                                <input class="image-preview custom-file-input-bread" name="meta_logo" id="avatar_image_custom_input_file" data-preview="preview-image-avatar" data-details="#avatar_image_file_details_info" data-width="auto" data-height="150" type="file">
+                                                                <label class="custom-file-label rounded-right" for="avatar_image_custom_input_file">Choose file</label>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-6 mt-3">
-                                                        <label for="">Choose Image File</label>
-                                                        <div class="custom-file">
-                                                            <input class="image-preview custom-file-input-bread" name="meta_logo" id="product_image_custom_input_file" data-preview="preview-image-avatar" data-details="#avatar_image_file_details_info" data-width="auto" data-height="150" type="file">
-                                                            <label class="custom-file-label rounded-right" for="product_image_custom_input_file">Choose file</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
 
                                     <div class="form-group">
                                         <label for="">Family Name</label> 
@@ -228,6 +228,21 @@
                                         Valid Address is required.
                                         </div>
                                     </div>
+                                    <div class="form-group row">
+                                            <label class="col-md-12" for="">Makers</label> 
+                                            @forelse($makers as $maker)
+                                            
+                                            <div class="form-check col-md-6">
+                                                    <input class="form-check-input" name="meta[maker][{{$maker->id}}]" value="{{$maker->id}}" type="checkbox" id="defaultCheck-{{$maker->id}}">
+                                                    <label class="form-check-label" for="defaultCheck-{{$maker->id}}">
+                                                      {{$maker->maker}}
+                                                    </label>
+                                            </div>
+                                            @empty
+                                                  No Maker found
+                                            @endforelse
+
+                                        </div>
 
                                 </div>
                         </div>

@@ -256,6 +256,29 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group row">
+                                            <label class="col-md-12" for="">Makers</label> 
+                                            @php
+                                             if(!empty($meta['maker'])) {
+                                                $userMakers = explode(",", $meta['maker']);
+                                              }else{
+                                                $userMakers = array();
+                                              }
+                                            @endphp
+                                            @forelse($makers as $maker)
+                                            
+                                            <div class="form-check col-md-6">
+                                                    <input class="form-check-input" name="meta[maker][{{$maker->id}}]" type="checkbox" value="{{$maker->id}}" {{in_array($maker->id, $userMakers )? 'checked' : ''}} id="defaultCheck-{{$maker->id}}">
+                                                    <label class="form-check-label" for="defaultCheck-{{$maker->id}}">
+                                                      {{$maker->maker}}
+                                                    </label>
+                                            </div>
+                                            @empty
+                                                  No Maker found
+                                            @endforelse
+
+                                        </div>
+
                                 </div>
                            
                         

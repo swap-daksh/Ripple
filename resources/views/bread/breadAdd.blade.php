@@ -101,7 +101,7 @@
                                             <div class="card-body p-3">
                                                 <div class="row">
                                                     <div class="col-4">
-                                                        <div class="clearfix" id="preview-image"> 
+                                                        <div class="clearfix" id="{!! $column->column !!}-image"> 
                                                             <img width="auto" height="150" class="img-responsive" src="{!! ripple_asset('/img/default/default.png') !!}" alt="">
                                                         </div>
                                                     </div>
@@ -122,7 +122,7 @@
                                                         </div>
                                                         <label for="">Choose Image File</label>
                                                         <div class="custom-file">
-                                                            <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}_custom_input_file" data-preview="preview-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
+                                                            <input class="image-preview custom-file-input-bread" name="column[{!! $column->column !!}]" id="{!! $column->column !!}_custom_input_file" data-preview="{!! $column->column !!}-image" data-details="#{!! $column->column !!}_file_details_info" data-width="auto" data-height="150" type="file">
                                                             <label class="custom-file-label rounded-right" for="{!! $column->column !!}_custom_input_file">Choose file</label>
                                                         </div>
                                                     </div>
